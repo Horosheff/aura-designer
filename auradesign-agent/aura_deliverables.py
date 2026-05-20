@@ -5,8 +5,8 @@
 Aura Designer - Deliverables Builder
 ====================================
 Создает обязательные аналитические документы вокруг AURADESIGN.md:
-todo-карту репликации, анализ источника, prompt для brand-kit изображения
-и психологию цвета. Не вызывает MCP напрямую; sub-agent использует эти файлы
+todo-карту репликации, анализ источника, font-match, prompt для brand-kit изображения,
+психологию цвета, visual-diff gate и reviewer-pass. Не вызывает MCP напрямую; sub-agent использует эти файлы
 как строгий бриф для gpt-image-2 и recraft_remove_background.
 """
 
@@ -171,6 +171,80 @@ Aura Designer работает в режиме **copy-in-copy**: исходна�
 """
 
 
+def build_font_match(name, source, fonts):
+    detected = "\n".join(f"- `{font}`" for font in fonts) if fonts else "- Шрифты источника не извлечены автоматически; требуется визуальный подбор."
+    return f"""# AURA_FONT_MATCH
+
+Проект: **{name}**
+Источник: `{source or "не указан"}`
+
+## Назначение
+
+Этот файл фиксирует подбор Google Fonts с поддержкой кириллицы. Если проект может содержать русский текст, оба шрифта пары должны иметь Cyrillic/Cyrillic Extended. Полный каталог и правила находятся в `.cursor/skills/aura-cyrillic-google-fonts/SKILL.md`.
+
+## Найденные шрифты источника
+
+{detected}
+
+## Shortlist Кириллических Пар
+
+### Product / SaaS
+
+- `Manrope` + `Inter` — чистый продуктовый UI, высокая читаемость.
+- `Onest` + `Manrope` — современная русская digital-эстетика.
+- `Golos Text` + `Golos Text` — надежный интерфейс, хорош для сервисов.
+- `Geologica` + `Golos Text` — геометричный tech/product характер.
+
+### Creator / Portfolio / Pastel
+
+- `Nunito Sans` + `Nunito Sans` — мягко, дружелюбно, без агрессии.
+- `Comfortaa` + `Nunito Sans` — округлые заголовки и читаемый body.
+- `Rubik` + `Nunito Sans` — плотный, живой, молодежный стиль.
+- `Jost` + `Manrope` — clean editorial, хорошо держит кириллицу.
+
+### Editorial / Premium
+
+- `Cormorant Garamond` + `Manrope` — культурная, fashion/editorial подача.
+- `Lora` + `Source Sans 3` — статьи, лонгриды, экспертность.
+- `PT Serif` + `PT Sans` — русская журнальная классика.
+- `Merriweather` + `Open Sans` — спокойный медиа/образовательный стиль.
+
+### Brutal / Poster / Graphic
+
+- `Unbounded` + `Manrope` — крупные плакатные заголовки с кириллицей.
+- `Unbounded` + `Golos Text` — выразительный русский нео-брутализм.
+- `Russo One` + `Roboto` — спортивный, громкий, индустриальный.
+- `Rubik Mono One` + `Rubik` — плотный poster-style.
+
+### Tech / AI / Fintech
+
+- `IBM Plex Mono` + `IBM Plex Sans` — код, AI, fintech.
+- `JetBrains Mono` + `Manrope` — developer-first продукты.
+- `Roboto Mono` + `Roboto` — строгий технический интерфейс.
+- `Exo 2` + `Open Sans` — футуризм с кириллицей.
+
+### Luxury / Beauty / Culture
+
+- `Tenor Sans` + `Open Sans` — мягкий premium lifestyle.
+- `Prata` + `Roboto` — выразительный luxury display.
+- `Forum` + `PT Sans` — театр, культура, афиша.
+- `Oranienbaum` + `PT Serif` — исторический, музейный, архивный стиль.
+
+## Выбранная Пара
+
+- **Display:** `[заполнить после visual font match]`
+- **Body:** `[заполнить после visual font match]`
+- **Почему:** `[почему эта пара ближе всего к источнику]`
+- **Cyrillic check:** `[OK/FAIL]`
+
+## Запреты
+
+- Не использовать шрифт без кириллицы для русского текста.
+- Не использовать `Inter` как автоматический display для любой ниши.
+- Не использовать `Satoshi`, `Neue Montreal`, `Helvetica Neue`, `Avenir`, `Clash Display` как Google Fonts для русских страниц.
+"""
+
+
 def build_brand_kit_prompt(name, source, colors, fonts):
     palette = ", ".join(colors) if colors else "extract exact palette from source"
     font_list = ", ".join(fonts) if fonts else "extract exact typography from source"
@@ -236,6 +310,82 @@ def build_color_psychology(name, colors):
 """
 
 
+def build_visual_diff(source, html):
+    return f"""# AURA_VISUAL_DIFF
+
+Источник: `{source or "не указан"}`
+HTML: `{html}`
+Статус: **PENDING_BROWSER_CHECK**
+
+## Назначение
+
+Этот файл является visual-diff gate. Агент не должен писать "готово идеально", пока не сравнит источник и результат side-by-side.
+
+## Обязательные Viewports
+
+- [ ] 1440px desktop
+- [ ] 768px tablet
+- [ ] 375px mobile
+
+## Зоны Сравнения
+
+- [ ] Hero: позиция изображения, заголовок, слои, фон, CTA.
+- [ ] Typography: похожесть шрифта, размер, вес, line-height, tracking, регистр.
+- [ ] Shapes: кляксы, круги, blobs, капсулы, линии, cards, stickers, SVG.
+- [ ] Borders/Shadows: отсутствие чужих stroke/shadow, соответствие источнику.
+- [ ] Spacing: внешние поля, gap, вертикальный ритм, max-width.
+- [ ] Color: палитра, opacity, контраст, фон.
+- [ ] Assets: изображения, cutout, background removal, MCP URL.
+- [ ] Mobile: отсутствие горизонтального скролла, сохранение композиционной логики.
+
+## Оценка
+
+| Зона | Отклонение | Решение |
+| --- | --- | --- |
+| Hero | `[0-100%]` | `[OK/FIX]` |
+| Typography | `[0-100%]` | `[OK/FIX]` |
+| Shapes | `[0-100%]` | `[OK/FIX]` |
+| Spacing | `[0-100%]` | `[OK/FIX]` |
+| Colors | `[0-100%]` | `[OK/FIX]` |
+
+## Gate
+
+- **PASS** только если нет критичных расхождений по hero, typography, shapes и assets.
+- Если shape отличается типом (клякса заменена звездой, круг заменен ромбом), gate должен быть **FAIL**.
+- Если добавлены обводки/тени, которых нет в источнике, gate должен быть **FAIL**.
+"""
+
+
+def build_reviewer_pass():
+    return """# AURA_REVIEWER_PASS
+
+Статус: **PENDING_REVIEWER**
+
+## Назначение
+
+Этот файл фиксирует обязательный второй проход `aura-design-reviewer`. Reviewer проверяет не красоту вообще, а соответствие источнику.
+
+## Reviewer Checklist
+
+- [ ] Источник не был переосмыслен без запроса пользователя.
+- [ ] Композиция hero совпадает с источником.
+- [ ] Шрифты подобраны с учетом кириллицы, если она нужна.
+- [ ] Все формы соответствуют source shape map: кляксы, blobs, круги, капсулы, линии.
+- [ ] Нет style bleeding из прошлых задач.
+- [ ] Нет лишних черных обводок, если их нет в источнике.
+- [ ] Нет лишних жестких теней, если их нет в источнике.
+- [ ] MCP-ассеты реально записаны в `AURA_ASSET_REGISTRY.json`.
+- [ ] Visual diff gate заполнен и не содержит критичных расхождений.
+
+## Итог
+
+- Reviewer: `[имя/агент]`
+- Date: `[YYYY-MM-DD]`
+- Verdict: `[PASS/FAIL]`
+- Required fixes: `[список правок]`
+"""
+
+
 def main():
     parser = argparse.ArgumentParser(description="Aura Designer deliverables builder")
     parser.add_argument("--contract", default="AURADESIGN.md", help="Путь к AURADESIGN.md")
@@ -254,14 +404,20 @@ def main():
 
     write_text(os.path.join(args.output_dir, "AURA_REPLICATION_TODO.md"), build_todo(args.source, args.html))
     write_text(os.path.join(args.output_dir, "AURA_SOURCE_ANALYSIS.md"), build_source_analysis(name, args.source, colors, fonts))
+    write_text(os.path.join(args.output_dir, "AURA_FONT_MATCH.md"), build_font_match(name, args.source, fonts))
     write_text(os.path.join(args.output_dir, "AURA_BRAND_KIT_IMAGE_PROMPT.md"), build_brand_kit_prompt(name, args.source, colors, fonts))
     write_text(os.path.join(args.output_dir, "AURA_COLOR_PSYCHOLOGY.md"), build_color_psychology(name, colors))
+    write_text(os.path.join(args.output_dir, "AURA_VISUAL_DIFF.md"), build_visual_diff(args.source, args.html))
+    write_text(os.path.join(args.output_dir, "AURA_REVIEWER_PASS.md"), build_reviewer_pass())
 
     print("[OK] Deliverables созданы:")
     print(f"- {os.path.join(args.output_dir, 'AURA_REPLICATION_TODO.md')}")
     print(f"- {os.path.join(args.output_dir, 'AURA_SOURCE_ANALYSIS.md')}")
+    print(f"- {os.path.join(args.output_dir, 'AURA_FONT_MATCH.md')}")
     print(f"- {os.path.join(args.output_dir, 'AURA_BRAND_KIT_IMAGE_PROMPT.md')}")
     print(f"- {os.path.join(args.output_dir, 'AURA_COLOR_PSYCHOLOGY.md')}")
+    print(f"- {os.path.join(args.output_dir, 'AURA_VISUAL_DIFF.md')}")
+    print(f"- {os.path.join(args.output_dir, 'AURA_REVIEWER_PASS.md')}")
 
 
 if __name__ == "__main__":

@@ -110,6 +110,25 @@ def check_hero_cutout_overlap(html, findings):
         findings.append(("critical", "Нет явного верхнего z-index у второго блока/оверлеев для маскировки нижнего края hero-person asset."))
 
 
+def check_visual_gates(output_dir, findings):
+    visual_diff_path = os.path.join(output_dir, "AURA_VISUAL_DIFF.md")
+    reviewer_path = os.path.join(output_dir, "AURA_REVIEWER_PASS.md")
+
+    if os.path.exists(visual_diff_path):
+        visual_diff = read_text(visual_diff_path)
+        if "PENDING_BROWSER_CHECK" in visual_diff:
+            findings.append(("medium", "`AURA_VISUAL_DIFF.md` создан, но browser side-by-side проверка еще не заполнена."))
+        if "Gate" not in visual_diff:
+            findings.append(("medium", "`AURA_VISUAL_DIFF.md` не содержит секцию Gate."))
+
+    if os.path.exists(reviewer_path):
+        reviewer = read_text(reviewer_path)
+        if "PENDING_REVIEWER" in reviewer:
+            findings.append(("medium", "`AURA_REVIEWER_PASS.md` создан, но `aura-design-reviewer` еще не поставил PASS/FAIL."))
+        if "Verdict" not in reviewer:
+            findings.append(("medium", "`AURA_REVIEWER_PASS.md` не содержит итоговый Verdict."))
+
+
 def build_report(source_map_path, html_path, output_dir):
     findings = []
     source_map = read_json(source_map_path)
@@ -140,15 +159,20 @@ def build_report(source_map_path, html_path, output_dir):
         check_image_source(src, html_path, findings)
     check_asset_registry(output_dir, html, findings)
     check_hero_cutout_overlap(html, findings)
+    check_visual_gates(output_dir, findings)
 
     required = [
         "AURA_REPLICATION_TODO.md",
         "AURA_SOURCE_ANALYSIS.md",
+        "AURA_FONT_MATCH.md",
         "AURA_BRAND_KIT_IMAGE_PROMPT.md",
         "AURA_COLOR_PSYCHOLOGY.md",
+        "AURA_VISUAL_DIFF.md",
+        "AURA_REVIEWER_PASS.md",
         "AURA_SOURCE_MAP.json",
         "AURA_COMPOSITION_LOCK.json",
         "AURA_COMPONENT_MAP.json",
+        "AURA_SHAPE_MAP.json",
     ]
     for filename in required:
         check_file(os.path.join(output_dir, filename), filename, findings)
@@ -168,6 +192,8 @@ def build_report(source_map_path, html_path, output_dir):
         "",
         "- Проверена структура source-map.",
         "- Проверено наличие обязательных deliverables.",
+        "- Проверено наличие `AURA_SHAPE_MAP.json` и `AURA_FONT_MATCH.md`.",
+        "- Проверены visual-diff gate и reviewer-pass артефакты.",
         "- Проверено наличие ключевого headline/image в HTML.",
         "- Проверена доступность всех `<img src>` из HTML.",
         "- Проверен `AURA_ASSET_REGISTRY.json` для MCP KV ассетов.",
@@ -190,6 +216,8 @@ def build_report(source_map_path, html_path, output_dir):
         "## Что нужно для pixel-perfect QA",
         "",
         "- Сделать screenshot источника и результата на 1440px, 768px, 375px.",
+        "- Заполнить `AURA_VISUAL_DIFF.md` по зонам Hero/Typography/Shapes/Spacing/Colors.",
+        "- Запустить `aura-design-reviewer` и заполнить `AURA_REVIEWER_PASS.md`.",
         "- Проверить координаты hero image и headline side-by-side.",
         "- Проверить масштаб, z-index, интервалы, сетку, цвета и mobile overflow.",
     ])

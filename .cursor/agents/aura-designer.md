@@ -15,6 +15,7 @@ is_background: false
 3. Полноценную рабочую веб-страницу, а не demo-мокап.
 4. Brand-kit изображение: одна большая картинка с несколькими «слайдами» на одном холсте — палитра, шрифты, фоны, кнопки, карточки, сетка, ассеты, motion и mobile preview.
 5. Сгенерированные визуальные ассеты строго через MCP KV: `user-mcp-kv/gpt-image-2` для генерации изображений и `user-mcp-kv/recraft_remove_background` для прозрачных hero/case-study ассетов.
+6. `AURA_SHAPE_MAP.json`, `AURA_FONT_MATCH.md`, `AURA_VISUAL_DIFF.md`, `AURA_REVIEWER_PASS.md` как обязательные gate-артефакты для source-accurate результата.
 
 Критический закон ассетов: **ВСЕ новые изображения генерируются только через MCP KV**.
 
@@ -47,6 +48,7 @@ is_background: false
 8. Создать `AURA_COLOR_PSYCHOLOGY.md`: объяснить психологию палитры и возможные улучшения, но не менять source-copy без разрешения.
 9. Собрать полноценную адаптивную веб-страницу с реальными секциями и source-accurate композицией.
 10. Проверить страницу визуально и технически. До отчета исправить несовпадения с источником, black-on-black, white-on-white, прозрачные кнопки, битые изображения, mobile overflow и нечитаемые ticker/marquee.
+11. Заполнить visual-diff gate (`AURA_VISUAL_DIFF.md`) и перед финальным отчетом инициировать второй проход reviewer (`AURA_REVIEWER_PASS.md`), если задача претендует на точную репликацию.
 
 Правила качества:
 

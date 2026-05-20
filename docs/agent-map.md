@@ -100,7 +100,9 @@ auradesign-agent/aura_source_analyzer.py
 - Создает `AURA_SOURCE_MAP.json`.
 - Создает `AURA_COMPOSITION_LOCK.json`.
 - Создает `AURA_COMPONENT_MAP.json`.
+- Создает `AURA_SHAPE_MAP.json`.
 - Фиксирует заголовки, изображения, кнопки, цвета, шрифты, компоненты и первичные композиционные сигналы.
+- Фиксирует shape-сигналы и ручной чеклист для клякс, blobs, кругов, капсул, линий, рамок и теней.
 
 ## 6. Репликатор
 
@@ -127,8 +129,9 @@ auradesign-agent/aura_visual_qa.py
 Что делает:
 
 - Создает `AURA_VISUAL_QA.md`.
-- Проверяет наличие source-map, deliverables, headline/image в HTML, placeholder и emoji.
-- Готовит список проблем перед browser/screenshot diff.
+- Проверяет наличие source-map, shape-map, deliverables, headline/image в HTML, placeholder и emoji.
+- Проверяет наличие `AURA_VISUAL_DIFF.md` и `AURA_REVIEWER_PASS.md`.
+- Готовит список проблем перед browser/screenshot diff и reviewer pass.
 
 ## 8. Linter
 
@@ -169,8 +172,11 @@ auradesign-agent/aura_deliverables.py
 
 - Создает `AURA_REPLICATION_TODO.md` — рабочий todo-list для точного повторения источника.
 - Создает `AURA_SOURCE_ANALYSIS.md` — анализ композиции, слоев, сетки, hero и визуальных правил.
+- Создает `AURA_FONT_MATCH.md` — shortlist кириллических Google Fonts пар и выбор пары под источник.
 - Создает `AURA_BRAND_KIT_IMAGE_PROMPT.md` — готовый prompt для MCP `gpt-image-2`, чтобы получить одну большую brand-kit картинку.
 - Создает `AURA_COLOR_PSYCHOLOGY.md` — анализ психологии цветов и рекомендации, которые нельзя применять без разрешения пользователя.
+- Создает `AURA_VISUAL_DIFF.md` — visual-diff gate для сравнения source/result.
+- Создает `AURA_REVIEWER_PASS.md` — обязательный чеклист второго прохода reviewer.
 
 ## 11. Project Skills
 

@@ -1,7 +1,7 @@
 # AURA_REPLICATION_TODO
 
 Источник: `assets/c__Users_mrrut_AppData_Roaming_Cursor_User_workspaceStorage_empty-window_images_6cb7528a15e37b8afeae3991a0ad6b47-00891b14-2bfe-43dc-aa91-09743c073341.png`
-Целевой файл страницы: `index.html`
+Целевой файл страницы: `auradesign-agent/index.html`
 
 ## Обязательный порядок работы
 

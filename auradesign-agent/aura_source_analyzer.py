@@ -5,7 +5,8 @@
 Aura Designer - Source Analyzer
 ===============================
 Строит машинные карты источника для режима copy-in-copy:
-`AURA_SOURCE_MAP.json`, `AURA_COMPOSITION_LOCK.json`, `AURA_COMPONENT_MAP.json`.
+`AURA_SOURCE_MAP.json`, `AURA_COMPOSITION_LOCK.json`, `AURA_COMPONENT_MAP.json`,
+`AURA_SHAPE_MAP.json`.
 
 Модуль намеренно работает на стандартной библиотеке Python. В Cursor sub-agent
 может дополнять эти карты данными браузера, скриншотами и MCP-инструментами.
@@ -181,6 +182,119 @@ def infer_components(parser):
     return components
 
 
+def classify_shape_from_token(token):
+    lowered = token.lower()
+    if any(part in lowered for part in ["rounded-full", "circle", "avatar", "dot"]):
+        return "circle-or-pill"
+    if any(part in lowered for part in ["pill", "badge", "chip", "tag", "capsule"]):
+        return "capsule"
+    if any(part in lowered for part in ["blob", "blot", "organic", "squiggle"]):
+        return "organic-blob"
+    if any(part in lowered for part in ["star", "spark", "burst"]):
+        return "star-or-sparkle"
+    if any(part in lowered for part in ["wave", "curve", "swoosh"]):
+        return "wave-or-curve"
+    if any(part in lowered for part in ["card", "panel", "tile"]):
+        return "card-container"
+    if any(part in lowered for part in ["line", "divider", "border"]):
+        return "line-or-divider"
+    if "rounded" in lowered:
+        return "rounded-rectangle"
+    return ""
+
+
+def extract_shape_tokens(parser):
+    tokens = []
+    for class_name in parser.class_names:
+        shape_type = classify_shape_from_token(class_name)
+        if shape_type:
+            tokens.append({
+                "source": "class",
+                "token": class_name,
+                "shapeType": shape_type,
+                "copyRule": "Повторить тип формы и не добавлять stroke/shadow без источника.",
+            })
+
+    for style in parser.inline_styles:
+        lowered = style.lower()
+        if "border-radius" in lowered:
+            tokens.append({
+                "source": "inline-style",
+                "token": style,
+                "shapeType": "border-radius-shape",
+                "copyRule": "Скопировать фактический border-radius и пропорции.",
+            })
+        if "clip-path" in lowered:
+            tokens.append({
+                "source": "inline-style",
+                "token": style,
+                "shapeType": "clipped-custom-shape",
+                "copyRule": "Скопировать clip-path или перенести контур в inline SVG.",
+            })
+        if "box-shadow" in lowered:
+            tokens.append({
+                "source": "inline-style",
+                "token": style,
+                "shapeType": "shadow-signal",
+                "copyRule": "Скопировать тип тени: мягкая/жесткая/ambient; не усиливать черным.",
+            })
+
+    unique_tokens = []
+    seen = set()
+    for item in tokens:
+        key = (item["source"], item["token"], item["shapeType"])
+        if key not in seen:
+            unique_tokens.append(item)
+            seen.add(key)
+    return unique_tokens[:80]
+
+
+def build_shape_map(data, parser=None):
+    if parser:
+        detected = extract_shape_tokens(parser)
+        confidence = "class-and-style-heuristics"
+    else:
+        detected = []
+        confidence = "requires-visual-analysis"
+
+    return {
+        "version": "alpha",
+        "source": data.get("source", ""),
+        "purpose": "Фиксирует формы источника, чтобы агент копировал кляксы, круги, blobs, капсулы, линии и тени без стилевого смешения.",
+        "confidence": confidence,
+        "detectedShapeSignals": detected,
+        "manualShapeChecklist": [
+            {
+                "id": "hero-decor",
+                "whatToCapture": "Все декоративные формы hero: кляксы, круги, stickers, blobs, линии, волны.",
+                "fields": ["shapeType", "width", "height", "radius", "fill", "stroke", "strokeWidth", "shadow", "opacity", "rotation", "zIndex"],
+            },
+            {
+                "id": "buttons-and-badges",
+                "whatToCapture": "Формы кнопок, бейджей, тегов, чипов и декоративных подписей.",
+                "fields": ["shapeType", "padding", "radius", "fill", "stroke", "shadow", "hoverBehavior"],
+            },
+            {
+                "id": "cards-and-containers",
+                "whatToCapture": "Карточки, панели, рамки, разделители и фоновые плоскости.",
+                "fields": ["shapeType", "border", "borderOpacity", "shadow", "background", "cornerRadius"],
+            },
+            {
+                "id": "icons-and-symbols",
+                "whatToCapture": "SVG/иконки: число лучей/лепестков, симметрия, мягкость углов, наличие stroke.",
+                "fields": ["shapeType", "pathStyle", "pointCount", "symmetry", "stroke", "fill", "lineJoin"],
+            },
+        ],
+        "strictRules": [
+            "Не заменять форму источника другой декоративной формой.",
+            "Если в источнике клякса/blob, использовать органический SVG path с кривыми.",
+            "Если в источнике круг, использовать круг; если капсула, использовать капсулу.",
+            "Не добавлять черные stroke и flat-shadow, если их нет в источнике.",
+            "Перед финальным отчетом сравнить форму, пропорции, radius, stroke, shadow, opacity и rotation.",
+        ],
+    }
+
+
 def infer_composition(parser):
     first_h1 = next((h for h in parser.headings if h["tag"] == "h1"), parser.headings[0] if parser.headings else None)
     primary_image = parser.images[0] if parser.images else None
@@ -222,7 +336,7 @@ def analyze_url(url):
     parser = SourceHTMLParser(base_url=url)
     parser.feed(html)
 
-    return {
+    data = {
         "sourceType": "url",
         "source": url,
         "title": parser.title or parser.meta.get("og:title", ""),
@@ -236,11 +350,13 @@ def analyze_url(url):
         "components": infer_components(parser),
         "composition": infer_composition(parser),
     }
+    data["shapeMap"] = build_shape_map(data, parser)
+    return data
 
 
 def analyze_image(image):
     name = os.path.basename(image)
-    return {
+    data = {
         "sourceType": "image",
         "source": image,
         "title": os.path.splitext(name)[0].replace("-", " ").replace("_", " ").strip().title(),
@@ -265,6 +381,8 @@ def analyze_image(image):
             },
         },
     }
+    data["shapeMap"] = build_shape_map(data)
+    return data
 
 
 def write_json(path, data):
@@ -298,15 +416,18 @@ def main():
         "buttons": data["buttons"],
         "images": data["images"],
     }
+    shape_map = data.get("shapeMap") or build_shape_map(data)
 
     write_json(os.path.join(args.output_dir, "AURA_SOURCE_MAP.json"), source_map)
     write_json(os.path.join(args.output_dir, "AURA_COMPOSITION_LOCK.json"), composition_lock)
     write_json(os.path.join(args.output_dir, "AURA_COMPONENT_MAP.json"), component_map)
+    write_json(os.path.join(args.output_dir, "AURA_SHAPE_MAP.json"), shape_map)
 
     print("[OK] Source maps созданы:")
     print(f"- {os.path.join(args.output_dir, 'AURA_SOURCE_MAP.json')}")
     print(f"- {os.path.join(args.output_dir, 'AURA_COMPOSITION_LOCK.json')}")
     print(f"- {os.path.join(args.output_dir, 'AURA_COMPONENT_MAP.json')}")
+    print(f"- {os.path.join(args.output_dir, 'AURA_SHAPE_MAP.json')}")
 
 
 if __name__ == "__main__":

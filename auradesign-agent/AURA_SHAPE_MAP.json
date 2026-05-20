@@ -1,0 +1,71 @@
+{
+  "version": "alpha",
+  "source": "assets/c__Users_mrrut_AppData_Roaming_Cursor_User_workspaceStorage_empty-window_images_6cb7528a15e37b8afeae3991a0ad6b47-00891b14-2bfe-43dc-aa91-09743c073341.png",
+  "purpose": "Фиксирует формы источника, чтобы агент копировал кляксы, круги, blobs, капсулы, линии и тени без стилевого смешения.",
+  "confidence": "requires-visual-analysis",
+  "detectedShapeSignals": [],
+  "manualShapeChecklist": [
+    {
+      "id": "hero-decor",
+      "whatToCapture": "Все декоративные формы hero: кляксы, круги, stickers, blobs, линии, волны.",
+      "fields": [
+        "shapeType",
+        "width",
+        "height",
+        "radius",
+        "fill",
+        "stroke",
+        "strokeWidth",
+        "shadow",
+        "opacity",
+        "rotation",
+        "zIndex"
+      ]
+    },
+    {
+      "id": "buttons-and-badges",
+      "whatToCapture": "Формы кнопок, бейджей, тегов, чипов и декоративных подписей.",
+      "fields": [
+        "shapeType",
+        "padding",
+        "radius",
+        "fill",
+        "stroke",
+        "shadow",
+        "hoverBehavior"
+      ]
+    },
+    {
+      "id": "cards-and-containers",
+      "whatToCapture": "Карточки, панели, рамки, разделители и фоновые плоскости.",
+      "fields": [
+        "shapeType",
+        "border",
+        "borderOpacity",
+        "shadow",
+        "background",
+        "cornerRadius"
+      ]
+    },
+    {
+      "id": "icons-and-symbols",
+      "whatToCapture": "SVG/иконки: число лучей/лепестков, симметрия, мягкость углов, наличие stroke.",
+      "fields": [
+        "shapeType",
+        "pathStyle",
+        "pointCount",
+        "symmetry",
+        "stroke",
+        "fill",
+        "lineJoin"
+      ]
+    }
+  ],
+  "strictRules": [
+    "Не заменять форму источника другой декоративной формой.",
+    "Если в источнике клякса/blob, использовать органический SVG path с кривыми.",
+    "Если в источнике круг, использовать круг; если капсула, использовать капсулу.",
+    "Не добавлять черные stroke и flat-shadow, если их нет в источнике.",
+    "Перед финальным отчетом сравнить форму, пропорции, radius, stroke, shadow, opacity и rotation."
+  ]
+}

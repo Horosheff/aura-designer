@@ -57,8 +57,12 @@
 - `AURADESIGN.md` — дизайн-контракт.
 - `AURA_REPLICATION_TODO.md` — рабочий todo-list по словам пользователя и источнику.
 - `AURA_SOURCE_ANALYSIS.md` — разбор композиции, слоев, ассетов, сетки, hero и motion.
+- `AURA_SHAPE_MAP.json` — машинная карта форм: кляксы, blobs, круги, капсулы, линии, рамки, тени и запреты на замену формы.
+- `AURA_FONT_MATCH.md` — shortlist Google Fonts пар с поддержкой кириллицы и выбранная пара под источник.
 - `AURA_BRAND_KIT_IMAGE_PROMPT.md` — prompt для генерации brand-kit картинки через MCP.
 - `AURA_COLOR_PSYCHOLOGY.md` — психология цвета и рекомендации.
+- `AURA_VISUAL_DIFF.md` — visual-diff gate для side-by-side проверки на 1440/768/375px.
+- `AURA_REVIEWER_PASS.md` — обязательный второй проход `aura-design-reviewer`.
 
 Команда:
 
