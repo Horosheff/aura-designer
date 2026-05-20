@@ -45,31 +45,30 @@
             overflow-x: hidden;
         }
 
-        /* Brutalist Shadows and borders */
+        /* Soft, elegant design instead of neobrutalism */
         .brutal-border {
-            border: 2px solid #141414;
+            border: 1px solid rgba(20, 20, 20, 0.06);
         }
         .brutal-shadow {
-            box-shadow: 4px 4px 0px 0px #141414;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.02), 0 2px 8px rgba(0, 0, 0, 0.01);
         }
         .brutal-shadow-sm {
-            box-shadow: 2px 2px 0px 0px #141414;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.01);
         }
         .brutal-shadow-lg {
-            box-shadow: 6px 6px 0px 0px #141414;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.03);
         }
 
         /* Hover effects */
         .brutal-btn {
-            transition: transform 0.1s ease, box-shadow 0.1s ease;
+            transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.15s ease, opacity 0.15s ease;
         }
         .brutal-btn:hover {
-            transform: translate(-2px, -2px);
-            box-shadow: 6px 6px 0px 0px #141414;
+            transform: scale(1.03);
+            opacity: 0.95;
         }
         .brutal-btn:active {
-            transform: translate(2px, 2px);
-            box-shadow: 2px 2px 0px 0px #141414;
+            transform: scale(0.97);
         }
 
         /* Floating animations */
@@ -223,7 +222,7 @@
                 <div class="flex flex-col">
                     <h1 class="font-sans font-black text-5xl sm:text-6xl md:text-7xl leading-[1.05] tracking-tight lowercase">
                         alessandra <br>
-                        <span class="inline-block bg-brutal-lavender brutal-border rounded-3xl px-4 py-1 mt-1 transform -rotate-1 brutal-shadow-sm">
+                        <span class="inline-block bg-brutal-lavender rounded-3xl px-4 py-1 mt-1 transform -rotate-1">
                             nicole
                         </span>
                     </h1>
@@ -263,13 +262,13 @@
                 <div class="flex flex-wrap gap-3 pt-2 items-center">
                     
                     <!-- 1. Emphatic (Blue Capsule) -->
-                    <button class="brutal-btn px-4 py-2 bg-brutal-blue rounded-full brutal-border brutal-shadow-sm font-extrabold text-xs tracking-wider uppercase">
+                    <button class="brutal-btn px-4 py-2 bg-brutal-blue text-brutal-dark rounded-full font-extrabold text-xs tracking-wider uppercase">
                         emphatic
                     </button>
 
                     <!-- 2. Creative (Green Capsule + Wave below in container) -->
                     <div class="flex flex-col items-center">
-                        <button class="brutal-btn px-4 py-2 bg-brutal-green rounded-full brutal-border brutal-shadow-sm font-extrabold text-xs tracking-wider uppercase">
+                        <button class="brutal-btn px-4 py-2 bg-brutal-green text-brutal-dark rounded-full font-extrabold text-xs tracking-wider uppercase">
                             creative
                         </button>
                         <!-- Wavy Arrow SVG beneath -->
@@ -279,10 +278,10 @@
                     </div>
 
                     <!-- 3. Team Player (Lavender Spiky Star/Badge Sticker) -->
-                    <button class="brutal-btn relative w-[104px] h-[104px] flex items-center justify-center group focus:outline-none hover:scale-105 active:scale-95 transition-transform">
+                    <button class="brutal-btn relative w-24 h-24 flex items-center justify-center group focus:outline-none hover:scale-105 active:scale-95 transition-transform">
                         <!-- Symmetrical 16-pointed Lavender Star SVG background -->
-                        <svg viewBox="0 0 100 100" class="absolute inset-0 w-full h-full text-[#b584d4] filter drop-shadow-[2px_2px_0px_#141414]">
-                            <path d="M 50.0,4.0 L 57.0,14.7 L 67.6,7.5 L 70.0,20.1 L 82.5,17.5 L 79.9,30.0 L 92.5,32.4 L 85.3,43.0 L 96.0,50.0 L 85.3,57.0 L 92.5,67.6 L 79.9,70.0 L 82.5,82.5 L 70.0,79.9 L 67.6,92.5 L 57.0,85.3 L 50.0,96.0 L 43.0,85.3 L 32.4,92.5 L 30.0,79.9 L 17.5,82.5 L 20.1,70.0 L 7.5,67.6 L 14.7,57.0 L 4.0,50.0 L 14.7,43.0 L 7.5,32.4 L 20.1,30.0 L 17.5,17.5 L 30.0,20.1 L 32.4,7.5 L 43.0,14.7 Z" fill="currentColor" stroke="#141414" stroke-width="4" stroke-linejoin="round"/>
+                        <svg viewBox="0 0 100 100" class="absolute inset-0 w-full h-full text-[#b584d4]">
+                            <path d="M 50.0,4.0 L 57.0,14.7 L 67.6,7.5 L 70.0,20.1 L 82.5,17.5 L 79.9,30.0 L 92.5,32.4 L 85.3,43.0 L 96.0,50.0 L 85.3,57.0 L 92.5,67.6 L 79.9,70.0 L 82.5,82.5 L 70.0,79.9 L 67.6,92.5 L 57.0,85.3 L 50.0,96.0 L 43.0,85.3 L 32.4,92.5 L 30.0,79.9 L 17.5,82.5 L 20.1,70.0 L 7.5,67.6 L 14.7,57.0 L 4.0,50.0 L 14.7,43.0 L 7.5,32.4 L 20.1,30.0 L 17.5,17.5 L 30.0,20.1 L 32.4,7.5 L 43.0,14.7 Z" fill="currentColor"/>
                         </svg>
                         <!-- Centered text over star -->
                         <div class="relative z-10 flex flex-col items-center justify-center text-brutal-dark font-black text-[10px] leading-tight select-none uppercase pointer-events-none">
@@ -292,19 +291,19 @@
                     </button>
 
                     <!-- 4. Detail-Oriented (Pink Slanted Capsule) -->
-                    <button class="brutal-btn px-4 py-2 bg-brutal-pink rounded-full brutal-border brutal-shadow-sm font-extrabold text-xs tracking-wider uppercase transform rotate-[-3deg]">
+                    <button class="brutal-btn px-4 py-2 bg-brutal-pink text-brutal-dark rounded-full font-extrabold text-xs tracking-wider uppercase transform rotate-[-3deg]">
                         detail-oriented
                     </button>
 
                     <!-- 5. Insightful (Orange Box/Capsule) -->
-                    <button class="brutal-btn px-4 py-2 bg-brutal-orange rounded-lg brutal-border brutal-shadow-sm font-extrabold text-xs tracking-wider uppercase">
+                    <button class="brutal-btn px-4 py-2 bg-brutal-orange text-brutal-dark rounded-lg font-extrabold text-xs tracking-wider uppercase">
                         insightful
                     </button>
 
                     <!-- 6. Gold Sparkle Star Sticker -->
-                    <div class="w-10 h-10 text-[#ebd065] hover:scale-110 active:scale-95 transition-transform cursor-pointer filter drop-shadow-[2px_2px_0px_#141414]">
+                    <div class="w-10 h-10 text-[#ebd065] hover:scale-110 active:scale-95 transition-transform cursor-pointer">
                         <svg viewBox="0 0 24 24" fill="currentColor" class="w-full h-full">
-                            <path d="M 12 2 Q 12 12, 22 12 Q 12 12, 12 22 Q 12 12, 2 12 Q 12 12, 12 2 Z" stroke="#141414" stroke-width="2" stroke-linejoin="round"/>
+                            <path d="M 12 2 Q 12 12, 22 12 Q 12 12, 12 22 Q 12 12, 2 12 Q 12 12, 12 2 Z"/>
                         </svg>
                     </div>
                 </div>
@@ -312,7 +311,7 @@
         </section>
 
         <!-- DASHED HR DIVIDER -->
-        <hr class="border-dashed border-2 border-brutal-dark/30 my-8">
+        <hr class="border-dashed border-2 border-brutal-dark/15 my-8">
 
         <!-- BOTTOM BLOCK: TWO COLUMNS (Grid 12 cols) -->
         <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 pt-4">
@@ -322,25 +321,26 @@
                 
                 <!-- EDUCATION SECTION -->
                 <div class="flex flex-col gap-4">
-                    <h2 class="font-sans font-black text-2xl tracking-tight uppercase border-b-2 border-brutal-dark pb-1 text-brutal-dark flex items-center gap-2">
-                        <span class="w-3.5 h-3.5 bg-brutal-pink rounded-full border border-brutal-dark"></span>
+                    <h2 class="font-sans font-black text-2xl tracking-tight lowercase text-brutal-dark">
                         education
                     </h2>
                     
-                    <div class="flex flex-col gap-4">
+                    <div class="flex flex-col gap-6 mt-2">
                         <!-- Degree 1 -->
-                        <div class="p-4 bg-white brutal-border brutal-shadow rounded-xl hover:translate-y-[-1px] transition-transform">
-                            <div class="flex items-center gap-1.5 text-xs font-black text-brutal-blue uppercase tracking-wider mb-2">
-                                <svg viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5 text-brutal-blue shrink-0">
-                                    <path d="M 12 2 Q 12 12, 22 12 Q 12 12, 12 22 Q 12 12, 2 12 Q 12 12, 12 2 Z"/>
-                                </svg>
-                                <span>2020 - 2024</span>
+                        <div class="flex flex-col gap-2">
+                            <div class="flex items-center">
+                                <span class="px-3 py-1 bg-white text-brutal-dark rounded-full border border-brutal-dark/10 font-extrabold text-[10px] tracking-wider uppercase flex items-center gap-1.5">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" class="w-3 h-3 text-brutal-blue">
+                                        <path d="M 12 2 Q 12 12, 22 12 Q 12 12, 12 22 Q 12 12, 2 12 Q 12 12, 12 2 Z"/>
+                                    </svg>
+                                    2020 - 2024
+                                </span>
                             </div>
-                            <h4 class="font-sans font-black text-base text-brutal-dark uppercase">
+                            <h4 class="font-sans font-black text-base text-brutal-dark uppercase mt-1">
                                 Bachelor of Fine Arts in Multimedia Arts
                             </h4>
-                            <p class="font-sans font-bold text-xs text-brutal-dark/50 mt-1 uppercase">De La Salle-College of Saint Benilde</p>
-                            <p class="font-sans text-sm text-brutal-dark/75 mt-2 font-medium">
+                            <p class="font-sans font-bold text-xs text-brutal-dark/50 uppercase">De La Salle-College of Saint Benilde</p>
+                            <p class="font-sans text-sm text-brutal-dark/75 mt-1 font-medium leading-relaxed">
                                 Specialized in graphic design, layouting, and interactive digital experiences. Graduated with honors.
                             </p>
                         </div>
@@ -349,50 +349,64 @@
 
                 <!-- EXPERIENCE SECTION -->
                 <div class="flex flex-col gap-4">
-                    <h2 class="font-sans font-black text-2xl tracking-tight uppercase border-b-2 border-brutal-dark pb-1 text-brutal-dark flex items-center gap-2">
-                        <span class="w-3.5 h-3.5 bg-brutal-green rounded-full border border-brutal-dark"></span>
+                    <h2 class="font-sans font-black text-2xl tracking-tight lowercase text-brutal-dark">
                         experience
                     </h2>
                     
-                    <div class="flex flex-col gap-4">
+                    <div class="flex flex-col gap-8 mt-2">
                         <!-- Exp 1 -->
-                        <div class="p-4 bg-white brutal-border brutal-shadow rounded-xl hover:translate-y-[-1px] transition-transform">
-                            <div class="flex justify-between items-start gap-2 mb-2">
-                                <span class="px-2 py-0.5 bg-brutal-lavender text-brutal-dark rounded-full font-extrabold text-[10px] uppercase brutal-border">2024 - PRESENT</span>
+                        <div class="flex flex-col gap-2">
+                            <div class="flex items-center">
+                                <span class="px-3 py-1 bg-white text-brutal-dark rounded-full border border-brutal-dark/10 font-extrabold text-[10px] tracking-wider uppercase flex items-center gap-1.5">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" class="w-3 h-3 text-brutal-lavender">
+                                        <path d="M 12 2 Q 12 12, 22 12 Q 12 12, 12 22 Q 12 12, 2 12 Q 12 12, 12 2 Z"/>
+                                    </svg>
+                                    2024 - Present
+                                </span>
                             </div>
-                            <h4 class="font-sans font-black text-base text-brutal-dark uppercase">
+                            <h4 class="font-sans font-black text-base text-brutal-dark uppercase mt-1">
                                 Junior Brand Designer
                             </h4>
-                            <p class="font-sans font-bold text-xs text-brutal-dark/50 uppercase mt-0.5">Pixel Pulse Agency</p>
-                            <p class="font-sans text-sm text-brutal-dark/75 mt-2 font-medium">
+                            <p class="font-sans font-bold text-xs text-brutal-dark/50 uppercase">Pixel Pulse Agency</p>
+                            <p class="font-sans text-sm text-brutal-dark/75 mt-1 font-medium leading-relaxed">
                                 Developing brand systems, packaging layouts, and digital campaign collateral for design-forward retail startups.
                             </p>
                         </div>
 
                         <!-- Exp 2 -->
-                        <div class="p-4 bg-white brutal-border brutal-shadow rounded-xl hover:translate-y-[-1px] transition-transform">
-                            <div class="flex justify-between items-start gap-2 mb-2">
-                                <span class="px-2 py-0.5 bg-brutal-pink text-brutal-dark rounded-full font-extrabold text-[10px] uppercase brutal-border">2022 - 2024</span>
+                        <div class="flex flex-col gap-2">
+                            <div class="flex items-center">
+                                <span class="px-3 py-1 bg-white text-brutal-dark rounded-full border border-brutal-dark/10 font-extrabold text-[10px] tracking-wider uppercase flex items-center gap-1.5">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" class="w-3 h-3 text-brutal-pink">
+                                        <path d="M 12 2 Q 12 12, 22 12 Q 12 12, 12 22 Q 12 12, 2 12 Q 12 12, 12 2 Z"/>
+                                    </svg>
+                                    2022 - 2024
+                                </span>
                             </div>
-                            <h4 class="font-sans font-black text-base text-brutal-dark uppercase">
+                            <h4 class="font-sans font-black text-base text-brutal-dark uppercase mt-1">
                                 Freelance Multimedia Artist
                             </h4>
-                            <p class="font-sans font-bold text-xs text-brutal-dark/50 uppercase mt-0.5">Independent Practice</p>
-                            <p class="font-sans text-sm text-brutal-dark/75 mt-2 font-medium">
+                            <p class="font-sans font-bold text-xs text-brutal-dark/50 uppercase">Independent Practice</p>
+                            <p class="font-sans text-sm text-brutal-dark/75 mt-1 font-medium leading-relaxed">
                                 Crafted distinct graphic elements, print material, and motion graphics for independent musicians and local brands.
                             </p>
                         </div>
 
                         <!-- Exp 3 -->
-                        <div class="p-4 bg-white brutal-border brutal-shadow rounded-xl hover:translate-y-[-1px] transition-transform">
-                            <div class="flex justify-between items-start gap-2 mb-2">
-                                <span class="px-2 py-0.5 bg-brutal-green text-brutal-dark rounded-full font-extrabold text-[10px] uppercase brutal-border">2021 - 2022</span>
+                        <div class="flex flex-col gap-2">
+                            <div class="flex items-center">
+                                <span class="px-3 py-1 bg-white text-brutal-dark rounded-full border border-brutal-dark/10 font-extrabold text-[10px] tracking-wider uppercase flex items-center gap-1.5">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" class="w-3 h-3 text-brutal-green">
+                                        <path d="M 12 2 Q 12 12, 22 12 Q 12 12, 12 22 Q 12 12, 2 12 Q 12 12, 12 2 Z"/>
+                                    </svg>
+                                    2021 - 2022
+                                </span>
                             </div>
-                            <h4 class="font-sans font-black text-base text-brutal-dark uppercase">
+                            <h4 class="font-sans font-black text-base text-brutal-dark uppercase mt-1">
                                 Design Intern
                             </h4>
-                            <p class="font-sans font-bold text-xs text-brutal-dark/50 uppercase mt-0.5">Prism Editorial Studio</p>
-                            <p class="font-sans text-sm text-brutal-dark/75 mt-2 font-medium">
+                            <p class="font-sans font-bold text-xs text-brutal-dark/50 uppercase">Prism Editorial Studio</p>
+                            <p class="font-sans text-sm text-brutal-dark/75 mt-1 font-medium leading-relaxed">
                                 Supported layout creation for quarterly lifestyle magazines, catalog prepress, and social media layout formatting.
                             </p>
                         </div>
@@ -401,18 +415,17 @@
 
                 <!-- LANGUAGE SECTION -->
                 <div class="flex flex-col gap-4">
-                    <h2 class="font-sans font-black text-2xl tracking-tight uppercase border-b-2 border-brutal-dark pb-1 text-brutal-dark flex items-center gap-2">
-                        <span class="w-3.5 h-3.5 bg-brutal-orange rounded-full border border-brutal-dark"></span>
+                    <h2 class="font-sans font-black text-2xl tracking-tight lowercase text-brutal-dark">
                         language
                     </h2>
                     
                     <div class="flex flex-wrap gap-3 mt-2">
                         <!-- Tag Filipino -->
-                        <div class="px-4 py-2 bg-brutal-dark text-white rounded-full brutal-border font-extrabold text-xs uppercase tracking-wider">
+                        <div class="px-4 py-2 bg-brutal-dark text-white rounded-full font-extrabold text-xs uppercase tracking-wider">
                             Filipino: Native
                         </div>
                         <!-- Tag English -->
-                        <div class="px-4 py-2 bg-white text-brutal-dark rounded-full brutal-border brutal-shadow-sm font-extrabold text-xs uppercase tracking-wider">
+                        <div class="px-4 py-2 bg-white text-brutal-dark rounded-full border border-brutal-dark/10 font-extrabold text-xs uppercase tracking-wider">
                             English: Advanced
                         </div>
                     </div>
@@ -424,34 +437,33 @@
                 
                 <!-- SKILLS SECTION -->
                 <div class="flex flex-col gap-4">
-                    <h2 class="font-sans font-black text-2xl tracking-tight uppercase border-b-2 border-brutal-dark pb-1 text-brutal-dark flex items-center gap-2">
-                        <span class="w-3.5 h-3.5 bg-brutal-blue rounded-full border border-brutal-dark"></span>
+                    <h2 class="font-sans font-black text-2xl tracking-tight lowercase text-brutal-dark">
                         skills
                     </h2>
                     
                     <div class="flex flex-wrap gap-3 mt-2">
                         <!-- Layout Design (Filled) -->
-                        <span class="px-4 py-2 bg-brutal-dark text-white rounded-full brutal-border font-extrabold text-xs uppercase tracking-wider cursor-default hover:scale-105 transition-transform">
+                        <span class="px-4 py-2 bg-brutal-dark text-white rounded-full font-bold text-xs uppercase tracking-wider cursor-default hover:scale-105 transition-transform">
                             Layout Design
                         </span>
                         <!-- Branding (Outline) -->
-                        <span class="px-4 py-2 bg-white text-brutal-dark rounded-full brutal-border brutal-shadow-sm font-extrabold text-xs uppercase tracking-wider cursor-default hover:scale-105 transition-transform">
+                        <span class="px-4 py-2 bg-white text-brutal-dark rounded-full border border-brutal-dark/10 font-bold text-xs uppercase tracking-wider cursor-default hover:scale-105 transition-transform">
                             Branding
                         </span>
                         <!-- Digital Illustration (Filled) -->
-                        <span class="px-4 py-2 bg-brutal-dark text-white rounded-full brutal-border font-extrabold text-xs uppercase tracking-wider cursor-default hover:scale-105 transition-transform">
+                        <span class="px-4 py-2 bg-brutal-dark text-white rounded-full font-bold text-xs uppercase tracking-wider cursor-default hover:scale-105 transition-transform">
                             Digital Illustration
                         </span>
                         <!-- Print Design (Outline) -->
-                        <span class="px-4 py-2 bg-white text-brutal-dark rounded-full brutal-border brutal-shadow-sm font-extrabold text-xs uppercase tracking-wider cursor-default hover:scale-105 transition-transform">
+                        <span class="px-4 py-2 bg-white text-brutal-dark rounded-full border border-brutal-dark/10 font-bold text-xs uppercase tracking-wider cursor-default hover:scale-105 transition-transform">
                             Print Design
                         </span>
                         <!-- Motion Graphics (Outline) -->
-                        <span class="px-4 py-2 bg-white text-brutal-dark rounded-full brutal-border brutal-shadow-sm font-extrabold text-xs uppercase tracking-wider cursor-default hover:scale-105 transition-transform">
+                        <span class="px-4 py-2 bg-white text-brutal-dark rounded-full border border-brutal-dark/10 font-bold text-xs uppercase tracking-wider cursor-default hover:scale-105 transition-transform">
                             Motion Graphics
                         </span>
                         <!-- UI/UX Design (Filled) -->
-                        <span class="px-4 py-2 bg-brutal-dark text-white rounded-full brutal-border font-extrabold text-xs uppercase tracking-wider cursor-default hover:scale-105 transition-transform">
+                        <span class="px-4 py-2 bg-brutal-dark text-white rounded-full font-bold text-xs uppercase tracking-wider cursor-default hover:scale-105 transition-transform">
                             UI/UX Design
                         </span>
                     </div>
@@ -459,18 +471,17 @@
 
                 <!-- SOFTWARES SECTION (6 Custom Geometric SVG icons) -->
                 <div class="flex flex-col gap-4">
-                    <h2 class="font-sans font-black text-2xl tracking-tight uppercase border-b-2 border-brutal-dark pb-1 text-brutal-dark flex items-center gap-2">
-                        <span class="w-3.5 h-3.5 bg-brutal-lavender rounded-full border border-brutal-dark"></span>
+                    <h2 class="font-sans font-black text-2xl tracking-tight lowercase text-brutal-dark">
                         softwares
                     </h2>
                     
-                    <!-- Card enclosing the 6 icons -->
-                    <div class="p-6 bg-white brutal-border brutal-shadow rounded-2xl">
+                    <!-- Card enclosing the 6 icons (Soft shadow and thin border) -->
+                    <div class="p-6 bg-white border border-brutal-dark/5 shadow-sm rounded-2xl">
                         <div class="grid grid-cols-3 gap-6">
                             
                             <!-- 1. Ps (Photoshop): Dusty Pink Circle -->
                             <div class="software-icon-container flex flex-col items-center justify-center cursor-pointer group">
-                                <div class="w-14 h-14 bg-brutal-pink brutal-border rounded-full flex items-center justify-center shadow-none hover:scale-105 active:scale-95 transition-transform">
+                                <div class="w-14 h-14 bg-brutal-pink rounded-full flex items-center justify-center shadow-none hover:scale-105 active:scale-95 transition-transform">
                                     <span class="font-sans font-black text-xl text-brutal-dark">Ps</span>
                                 </div>
                                 <span class="font-sans font-extrabold text-[10px] text-brutal-dark/70 mt-2 uppercase tracking-wide">Photoshop</span>
@@ -480,8 +491,8 @@
                             <div class="software-icon-container flex flex-col items-center justify-center cursor-pointer group">
                                 <div class="w-14 h-14 relative flex items-center justify-center hover:scale-105 active:scale-95 transition-transform">
                                     <!-- 4-lobed Flower SVG background (Puffy and curved lobes) -->
-                                    <svg viewBox="0 0 100 100" class="absolute inset-0 w-full h-full text-brutal-blue filter drop-shadow-[1px_1px_0px_#141414]">
-                                        <path d="M50,32 C54,20 64,15 78,20 C92,25 88,40 72,50 C90,60 92,75 78,80 C64,85 54,80 50,68 C46,80 36,85 22,80 C8,75 12,60 30,50 C10,38 8,25 22,20 C36,15 46,20 50,32 Z" fill="currentColor" stroke="#141414" stroke-width="4" stroke-linejoin="round"/>
+                                    <svg viewBox="0 0 100 100" class="absolute inset-0 w-full h-full text-brutal-blue">
+                                        <path d="M50,32 C54,20 64,15 78,20 C92,25 88,40 72,50 C90,60 92,75 78,80 C64,85 54,80 50,68 C46,80 36,85 22,80 C8,75 12,60 30,50 C10,38 8,25 22,20 C36,15 46,20 50,32 Z" fill="currentColor"/>
                                     </svg>
                                     <span class="font-sans font-black text-xl text-brutal-dark relative z-10">Ai</span>
                                 </div>
@@ -492,8 +503,8 @@
                             <div class="software-icon-container flex flex-col items-center justify-center cursor-pointer group">
                                 <div class="w-14 h-14 relative flex items-center justify-center hover:scale-105 active:scale-95 transition-transform">
                                     <!-- Hexagon SVG background -->
-                                    <svg viewBox="0 0 100 100" class="absolute inset-0 w-full h-full text-brutal-green filter drop-shadow-[1px_1px_0px_#141414]">
-                                        <polygon points="50,6 90,28 90,72 50,94 10,72 10,28" fill="currentColor" stroke="#141414" stroke-width="4" stroke-linejoin="round"/>
+                                    <svg viewBox="0 0 100 100" class="absolute inset-0 w-full h-full text-brutal-green">
+                                        <polygon points="50,6 90,28 90,72 50,94 10,72 10,28" fill="currentColor"/>
                                     </svg>
                                     <span class="font-sans font-black text-xl text-brutal-dark relative z-10">Id</span>
                                 </div>
@@ -502,7 +513,7 @@
 
                             <!-- 4. Pr (Premiere): Purple Rounded Square -->
                             <div class="software-icon-container flex flex-col items-center justify-center cursor-pointer group">
-                                <div class="w-14 h-14 bg-brutal-lavender brutal-border rounded-xl flex items-center justify-center shadow-none hover:scale-105 active:scale-95 transition-transform">
+                                <div class="w-14 h-14 bg-brutal-lavender rounded-xl flex items-center justify-center shadow-none hover:scale-105 active:scale-95 transition-transform">
                                     <span class="font-sans font-black text-xl text-brutal-dark">Pr</span>
                                 </div>
                                 <span class="font-sans font-extrabold text-[10px] text-brutal-dark/70 mt-2 uppercase tracking-wide">Premiere</span>
@@ -512,8 +523,8 @@
                             <div class="software-icon-container flex flex-col items-center justify-center cursor-pointer group">
                                 <div class="w-14 h-14 relative flex items-center justify-center hover:scale-105 active:scale-95 transition-transform">
                                     <!-- Multi-ray Star/Flower SVG background -->
-                                    <svg viewBox="0 0 100 100" class="absolute inset-0 w-full h-full text-brutal-pink filter drop-shadow-[1px_1px_0px_#141414]">
-                                        <path d="M 50.0,4.0 L 57.0,14.7 L 67.6,7.5 L 70.0,20.1 L 82.5,17.5 L 79.9,30.0 L 92.5,32.4 L 85.3,43.0 L 96.0,50.0 L 85.3,57.0 L 92.5,67.6 L 79.9,70.0 L 82.5,82.5 L 70.0,79.9 L 67.6,92.5 L 57.0,85.3 L 50.0,96.0 L 43.0,85.3 L 32.4,92.5 L 30.0,79.9 L 17.5,82.5 L 20.1,70.0 L 7.5,67.6 L 14.7,57.0 L 4.0,50.0 L 14.7,43.0 L 7.5,32.4 L 20.1,30.0 L 17.5,17.5 L 30.0,20.1 L 32.4,7.5 L 43.0,14.7 Z" fill="currentColor" stroke="#141414" stroke-width="4" stroke-linejoin="round"/>
+                                    <svg viewBox="0 0 100 100" class="absolute inset-0 w-full h-full text-brutal-pink">
+                                        <path d="M 50.0,4.0 L 57.0,14.7 L 67.6,7.5 L 70.0,20.1 L 82.5,17.5 L 79.9,30.0 L 92.5,32.4 L 85.3,43.0 L 96.0,50.0 L 85.3,57.0 L 92.5,67.6 L 79.9,70.0 L 82.5,82.5 L 70.0,79.9 L 67.6,92.5 L 57.0,85.3 L 50.0,96.0 L 43.0,85.3 L 32.4,92.5 L 30.0,79.9 L 17.5,82.5 L 20.1,70.0 L 7.5,67.6 L 14.7,57.0 L 4.0,50.0 L 14.7,43.0 L 7.5,32.4 L 20.1,30.0 L 17.5,17.5 L 30.0,20.1 L 32.4,7.5 L 43.0,14.7 Z" fill="currentColor"/>
                                     </svg>
                                     <span class="font-sans font-black text-xl text-brutal-dark relative z-10">Ae</span>
                                 </div>
@@ -524,8 +535,8 @@
                             <div class="software-icon-container flex flex-col items-center justify-center cursor-pointer group">
                                 <div class="w-14 h-14 relative flex items-center justify-center hover:scale-105 active:scale-95 transition-transform">
                                     <!-- Rhombus/Diamond SVG background (Sparkle Star with concave sides) -->
-                                    <svg viewBox="0 0 100 100" class="absolute inset-0 w-full h-full text-[#ebd065] filter drop-shadow-[1px_1px_0px_#141414]">
-                                        <path d="M 50 4 Q 50 50, 96 50 Q 50 50, 50 96 Q 50 50, 4 50 Q 50 50, 50 4 Z" fill="currentColor" stroke="#141414" stroke-width="4" stroke-linejoin="round"/>
+                                    <svg viewBox="0 0 100 100" class="absolute inset-0 w-full h-full text-[#ebd065]">
+                                        <path d="M 50 4 Q 50 50, 96 50 Q 50 50, 50 96 Q 50 50, 4 50 Q 50 50, 50 4 Z" fill="currentColor"/>
                                     </svg>
                                     <span class="font-sans font-black text-xl text-brutal-dark relative z-10">Fg</span>
                                 </div>
@@ -537,8 +548,7 @@
 
                 <!-- INTERESTS SECTION -->
                 <div class="flex flex-col gap-4">
-                    <h2 class="font-sans font-black text-2xl tracking-tight uppercase border-b-2 border-brutal-dark pb-1 text-brutal-dark flex items-center gap-2">
-                        <span class="w-3.5 h-3.5 bg-brutal-pink rounded-full border border-brutal-dark"></span>
+                    <h2 class="font-sans font-black text-2xl tracking-tight lowercase text-brutal-dark">
                         interests
                     </h2>
                     
@@ -573,7 +583,7 @@
         </section>
 
         <!-- FOOTER -->
-        <footer class="mt-20 pt-8 border-t-2 border-brutal-dark/20 flex flex-col sm:flex-row items-center justify-between gap-4 text-center">
+        <footer class="mt-20 pt-8 border-t border-brutal-dark/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-center">
             <span class="font-sans font-black text-sm text-brutal-dark uppercase tracking-wider">Alessandra Nicole &copy; 2026</span>
             <span class="font-sans font-medium text-xs text-brutal-dark/40">Handcrafted strictly to AuraDesign system standards</span>
         </footer>
