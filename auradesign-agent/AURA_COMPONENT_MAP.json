@@ -1,55 +1,17 @@
 {
-  "source": "assets/c__Users_mrrut_AppData_Roaming_Cursor_User_workspaceStorage_empty-window_images_a5e0597df6eb796fe0870877297bcf9f-67eb6b50-0cb7-4a9f-8b16-31247ce5124a.png",
+  "source": "assets/c__Users_mrrut_AppData_Roaming_Cursor_User_workspaceStorage_empty-window_images_6cb7528a15e37b8afeae3991a0ad6b47-00891b14-2bfe-43dc-aa91-09743c073341.png",
   "components": [
     {
-      "type": "hero",
-      "confidence": "input"
-    },
-    {
-      "type": "education",
-      "confidence": "input"
-    },
-    {
-      "type": "experience",
-      "confidence": "input"
-    },
-    {
-      "type": "software",
-      "confidence": "input"
-    },
-    {
-      "type": "contact",
-      "confidence": "input"
-    },
-    {
-      "type": "technical-skills",
-      "confidence": "input"
-    },
-    {
-      "type": "personal-skills",
+      "type": "image-reference",
       "confidence": "input"
     }
   ],
-  "headings": [
-    { "tag": "h1", "text": "PORTFOLIO" },
-    { "tag": "h2", "text": "EDUCATION" },
-    { "tag": "h2", "text": "EXPERIENCE" },
-    { "tag": "h2", "text": "SOFTWARE" },
-    { "tag": "h2", "text": "CONTACT" },
-    { "tag": "h2", "text": "TECHNICAL SKILLS" },
-    { "tag": "h2", "text": "PERSONAL SKILLS" }
-  ],
-  "buttons": [
-    "Willing to learn",
-    "Time management",
-    "Communication",
-    "Attention to detail",
-    "Flexible design styles"
-  ],
+  "headings": [],
+  "buttons": [],
   "images": [
     {
-      "src": "https://tempfile.aiquickdraw.com/r/459ca3084f2e29ac680b83c7537d6e3b_1779316891_m62b39v8.png",
-      "alt": "MCP KV generated transparent hero designers",
+      "src": "assets/c__Users_mrrut_AppData_Roaming_Cursor_User_workspaceStorage_empty-window_images_6cb7528a15e37b8afeae3991a0ad6b47-00891b14-2bfe-43dc-aa91-09743c073341.png",
+      "alt": "c__Users_mrrut_AppData_Roaming_Cursor_User_workspaceStorage_empty-window_images_6cb7528a15e37b8afeae3991a0ad6b47-00891b14-2bfe-43dc-aa91-09743c073341.png",
       "class": "",
       "style": ""
     }

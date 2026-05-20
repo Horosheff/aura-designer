@@ -2,13 +2,13 @@
   "replicationMode": "copy-in-copy",
   "sourceIsLaw": true,
   "hero": {
-    "headline": "PORTFOLIO",
-    "headlineLayer": "behind-image",
+    "headline": "",
+    "headlineLayer": "requires-visual-analysis",
     "primaryImage": {
-      "src": "https://tempfile.aiquickdraw.com/r/459ca3084f2e29ac680b83c7537d6e3b_1779316891_m62b39v8.png",
-      "alt": "MCP KV generated transparent hero designers"
+      "src": "assets/c__Users_mrrut_AppData_Roaming_Cursor_User_workspaceStorage_empty-window_images_6cb7528a15e37b8afeae3991a0ad6b47-00891b14-2bfe-43dc-aa91-09743c073341.png",
+      "alt": "c__Users_mrrut_AppData_Roaming_Cursor_User_workspaceStorage_empty-window_images_6cb7528a15e37b8afeae3991a0ad6b47-00891b14-2bfe-43dc-aa91-09743c073341.png"
     },
-    "imagePosition": "center",
+    "imagePosition": "requires-visual-analysis",
     "mustPreserveLayering": true,
     "mustNotChangeThemeWithoutUserRequest": true
   }

@@ -1,14 +1,15 @@
 <!DOCTYPE html>
+<!-- Source Image: assets/c__Users_mrrut_AppData_Roaming_Cursor_User_workspaceStorage_empty-window_images_6cb7528a15e37b8afeae3991a0ad6b47-00891b14-2bfe-43dc-aa91-09743c073341.png -->
 <html lang="ru" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Duong Minh Thanh aka. WXLF — Graphic Designer Portfolio</title>
+    <title>alessandra nicole — multimedia artist portfolio</title>
     
-    <!-- Подключаем необходимые шрифты -->
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -18,23 +19,17 @@
                 extend: {
                     fontFamily: {
                         sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-                        display: ['"Unbounded"', 'sans-serif'],
                     },
                     colors: {
-                        brand: {
-                            primary: '#1153fc',
-                            'primary-hover': '#0a45d0',
-                            'on-primary': '#ffffff',
-                            secondary: '#facc15',
-                            'on-secondary': '#09122c',
-                            tertiary: '#9333ea',
-                            'on-tertiary': '#ffffff',
-                            background: '#1153fc',
-                            'on-background': '#ffffff',
-                            'surface-lowest': '#ffffff',
-                            'surface-low': '#09122c',
-                            outline: '#09122c',
-                            'outline-variant': '#e2e8f0',
+                        brutal: {
+                            dark: '#141414',
+                            gray: '#f3f2f1',
+                            darkGray: '#eaeae8',
+                            lavender: '#dcd1f0',
+                            pink: '#f59b90',
+                            green: '#a4d4a2',
+                            orange: '#ff9f80',
+                            blue: '#88a3e0',
                         }
                     }
                 }
@@ -43,407 +38,546 @@
     </script>
     
     <style>
-        /* CSS Переменные AuraDesign */
-        :root {
-            --radius-sm: 6px;
-            --radius-default: 12px;
-            --radius-md: 20px;
-            --radius-lg: 30px;
-            --radius-xl: 40px;
-            
-            --brand-primary: #1153fc;
-            --brand-background: #1153fc;
-            --brand-on-background: #ffffff;
-            --brand-surface-lowest: #ffffff;
-            --brand-surface-low: #09122c;
-        }
-
         body {
-            background-color: #247dff;
-            color: #09122c;
+            background-color: #f3f2f1;
+            color: #141414;
             font-family: 'Plus Jakarta Sans', sans-serif;
             overflow-x: hidden;
         }
 
-        /* Анимации парения для элементов */
-        @keyframes float-gentle {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
+        /* Brutalist Shadows and borders */
+        .brutal-border {
+            border: 2px solid #141414;
+        }
+        .brutal-shadow {
+            box-shadow: 4px 4px 0px 0px #141414;
+        }
+        .brutal-shadow-sm {
+            box-shadow: 2px 2px 0px 0px #141414;
+        }
+        .brutal-shadow-lg {
+            box-shadow: 6px 6px 0px 0px #141414;
+        }
+
+        /* Hover effects */
+        .brutal-btn {
+            transition: transform 0.1s ease, box-shadow 0.1s ease;
+        }
+        .brutal-btn:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px 0px #141414;
+        }
+        .brutal-btn:active {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px 0px #141414;
+        }
+
+        /* Floating animations */
+        @keyframes float-1 {
+            0%, 100% { transform: translateY(0px) rotate(3deg); }
             50% { transform: translateY(-8px) rotate(1deg); }
         }
-        @keyframes float-reverse {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(8px) rotate(-1deg); }
+        @keyframes float-2 {
+            0%, 100% { transform: translateY(0px) rotate(-6deg); }
+            50% { transform: translateY(6px) rotate(-4deg); }
         }
-        @keyframes pencil-float {
-            0%, 100% { transform: translateY(0px) rotate(-15deg); }
-            50% { transform: translateY(-10px) rotate(-13deg); }
+        @keyframes float-3 {
+            0%, 100% { transform: translateY(0px) rotate(-1deg); }
+            50% { transform: translateY(-10px) rotate(2deg); }
         }
-        @keyframes text-glow {
-            0%, 100% { opacity: 0.9; }
-            50% { opacity: 1; filter: drop-shadow(0 0 15px rgba(255,255,255,0.2)); }
+        @keyframes float-virgo {
+            0%, 100% { transform: translate(0px, 0px) rotate(0deg); }
+            50% { transform: translate(-5px, -5px) rotate(15deg); }
         }
-
-        .animate-float-1 {
-            animation: float-gentle 6s ease-in-out infinite;
+        @keyframes float-2001 {
+            0%, 100% { transform: translate(0px, 0px) rotate(-10deg); }
+            50% { transform: translate(6px, -4px) rotate(5deg); }
         }
-        .animate-float-2 {
-            animation: float-reverse 7s ease-in-out infinite;
+        @keyframes float-star {
+            0%, 100% { transform: translate(0px, 0px) scale(1) rotate(0deg); }
+            50% { transform: translate(-4px, 4px) scale(1.1) rotate(45deg); }
         }
-        .animate-float-3 {
-            animation: float-gentle 5s ease-in-out infinite 1s;
-        }
-        .animate-pencil {
-            animation: pencil-float 5s ease-in-out infinite;
-        }
-        
-        /* Стилизация для интерактивных капсул */
-        .badge-interactive {
-            transition: all 250ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-        }
-        .badge-interactive:hover {
-            transform: scale(1.05) translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        @keyframes shine {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
         }
 
-        /* Стилизация софта */
-        .software-card {
-            transition: all 200ms ease-out;
-            border: 2px solid #09122c;
-            box-shadow: 4px 4px 0px #09122c;
+        .animate-polaroid {
+            animation: float-3 8s ease-in-out infinite;
         }
-        .software-card:hover {
-            transform: translate(-2px, -2px);
-            box-shadow: 6px 6px 0px #09122c;
+        .animate-virgo {
+            animation: float-virgo 5s ease-in-out infinite;
+        }
+        .animate-badge-2001 {
+            animation: float-2001 6s ease-in-out infinite 1s;
+        }
+        .animate-star-fly {
+            animation: float-star 7s ease-in-out infinite 0.5s;
+        }
+
+        /* Software Icons Custom Hover */
+        .software-icon-container {
+            transition: all 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .software-icon-container:hover {
+            transform: translate(-3px, -3px);
+            filter: drop-shadow(4px 4px 0px #141414);
+        }
+        .software-icon-container:active {
+            transform: translate(1px, 1px);
+            filter: drop-shadow(1px 1px 0px #141414);
+        }
+
+        /* Diagonal shiny gradient for Zip Lock packet */
+        .plastic-gloss {
+            background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 40%, rgba(255,255,255,0.15) 60%, rgba(255,255,255,0.3) 100%);
+            mix-blend-mode: overlay;
         }
     </style>
 </head>
-<body class="bg-[#247dff] min-h-screen flex flex-col justify-between">
+<body class="bg-brutal-gray text-brutal-dark min-h-screen px-4 py-8 md:py-12 flex flex-col justify-between selection:bg-brutal-lavender">
 
-    <!-- ВЕРХНИЙ БЛОК: HERO SECTION -->
-    <section class="relative w-full overflow-x-hidden overflow-y-visible pt-8 pb-0 md:pt-10 md:pb-0 flex flex-col items-center justify-center bg-[#247dff] z-0 min-h-[520px] md:min-h-[620px]">
+    <!-- MAIN CONTAINER -->
+    <main class="w-full max-w-5xl mx-auto bg-transparent">
         
-        <!-- Фоновый бруталистский заголовок 'PORTFOLIO' (z-index: 10, за ребятами) -->
-        <div class="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-10 pt-4 pb-20">
-            <h1 class="font-display font-black text-[#ffffff] tracking-[-0.05em] uppercase text-center text-[13vw] leading-none opacity-95" style="animation: text-glow 4s ease-in-out infinite;">
-                PORTFOLIO
-            </h1>
-        </div>
-
-        <!-- Центральный слой: Ребята спина к спине (z-index: 20) -->
-        <div class="relative w-full max-w-[1100px] px-4 flex justify-center z-20 mt-4 md:mt-8 translate-y-16 md:translate-y-24">
-            <!-- Изображение ребят: сгенерировано через MCP KV gpt-image-2 и очищено через recraft_remove_background -->
-            <img src="https://tempfile.aiquickdraw.com/r/459ca3084f2e29ac680b83c7537d6e3b_1779316891_m62b39v8.png" class="w-full max-w-[760px] md:max-w-[830px] h-auto select-none pointer-events-none block drop-shadow-[0_20px_50px_rgba(0,0,0,0.15)]" alt="Duong Minh Thanh Profile">
+        <!-- TOP BLOCK: HERO SECTION (Grid or Flex split) -->
+        <section class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center pb-8">
             
-            <!-- ОВЕРЛЕЙ-ПЛАШКИ (Выстраиваем интерактивные HTML-копии поверх прозрачного изображения) -->
-            
-            <!-- Слева: Приветствие I'M DUONG MINH THANH (Glassmorphism) -->
-            <div class="absolute left-[2%] md:left-[5%] top-[15%] md:top-[25%] max-w-[180px] sm:max-w-[240px] md:max-w-[320px] backdrop-blur-md bg-white/20 border border-white/30 p-3 md:p-5 rounded-2xl md:rounded-3xl shadow-lg hover:bg-white/25 transition-all duration-300 pointer-events-auto cursor-default group animate-float-1">
-                <span class="text-white/80 font-sans font-semibold text-xs md:text-sm uppercase tracking-wider block mb-1">Welcome to my world</span>
-                <h3 class="font-display font-extrabold text-white text-sm sm:text-base md:text-lg lg:text-xl leading-snug">
-                    I'M DUONG MINH THANH AKA. WXLF
-                </h3>
-            </div>
-
-            <!-- Справа вверху: Open to work с волнистой стрелочкой -->
-            <div class="absolute right-[4%] md:right-[8%] top-[8%] md:top-[12%] bg-white border-2 border-[#09122c] py-2 px-3 md:py-3 md:px-5 rounded-full shadow-[4px_4px_0px_#09122c] flex items-center gap-2 md:gap-3 badge-interactive cursor-pointer animate-float-2 pointer-events-auto">
-                <span class="w-2.5 h-2.5 md:w-3.5 md:h-3.5 bg-green-500 rounded-full animate-ping absolute"></span>
-                <span class="w-2.5 h-2.5 md:w-3.5 md:h-3.5 bg-green-500 rounded-full relative"></span>
-                <span class="font-display font-extrabold text-xs md:text-sm tracking-tight text-[#09122c] uppercase">open to work</span>
-                <!-- Волнистая стрелка SVG -->
-                <svg class="w-4 h-4 md:w-6 md:h-6 text-[#1153fc] transform rotate-12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
-                </svg>
-            </div>
-
-            <!-- Справа посередине: Graphic Designer с иконкой пера -->
-            <div class="absolute right-[1%] md:right-[3%] top-[30%] md:top-[40%] bg-white border-2 border-[#09122c] py-2 px-3 md:py-3 md:px-5 rounded-full shadow-[4px_4px_0px_#09122c] flex items-center gap-2 md:gap-3 badge-interactive cursor-pointer animate-float-3 pointer-events-auto">
-                <div class="p-1 bg-[#1153fc] rounded-full text-white">
-                    <!-- Иконка Пера SVG -->
-                    <svg class="w-3 h-3 md:w-5 md:h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
-                    </svg>
-                </div>
-                <span class="font-display font-extrabold text-xs md:text-sm tracking-tight text-[#09122c] uppercase">Graphic Designer</span>
-            </div>
-
-            <!-- Слева внизу (на границе перехода блоков): 6 Years Experience -->
-            <div class="absolute left-[8%] md:left-[10%] bottom-[44%] md:bottom-[38%] bg-[#facc15] border-2 border-[#09122c] w-20 h-24 sm:w-24 sm:h-28 md:w-32 md:h-36 rounded-full shadow-[6px_6px_0px_#09122c] flex flex-col items-center justify-center p-2 text-center transform -rotate-12 hover:rotate-0 transition-transform duration-300 cursor-pointer pointer-events-auto z-40">
-                <span class="font-display font-black text-lg sm:text-2xl md:text-3xl text-[#09122c] leading-none">6</span>
-                <span class="font-display font-extrabold text-[8px] sm:text-[10px] md:text-xs text-[#09122c] uppercase tracking-tighter leading-tight mt-0.5">Years Experience</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- НИЖНИЙ БЛОК: ИНФОРМАЦИОННАЯ ПАНЕЛЬ С БЕЛОЙ ПОДЛОЖКОЙ -->
-    <section class="relative w-full bg-white rounded-t-[40px] md:rounded-t-[60px] border-t-4 border-[#09122c] px-4 sm:px-6 md:px-12 pt-24 md:pt-28 pb-16 md:pb-24 z-30 mt-[-120px] md:mt-[-150px] shadow-[0_-12px_0_rgba(36,125,255,0.08)]">
-        <div class="max-w-6xl mx-auto">
-            
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+            <!-- LEFT: POLAROID CARD + Ambient Glow (Col 1 to 5) -->
+            <div class="md:col-span-5 flex justify-center items-center relative min-h-[380px] md:min-h-[440px]">
                 
-                <!-- ЛЕВАЯ КОЛОНКА -->
-                <div class="flex flex-col gap-12">
+                <!-- Ambient Glow Behind Polaroid -->
+                <div class="absolute w-[240px] h-[240px] rounded-full bg-gradient-to-tr from-brutal-lavender to-brutal-pink blur-3xl opacity-60 pointer-events-none z-0"></div>
+                
+                <!-- Polaroid Wrapper with float animation -->
+                <div class="relative z-10 animate-polaroid pointer-events-auto">
                     
-                    <!-- EDUCATION SECTION -->
-                    <div class="flex flex-col gap-4">
-                        <div class="flex items-center gap-3 border-b-2 border-[#09122c] pb-2">
-                            <h2 class="font-display font-extrabold text-xl md:text-2xl text-[#09122c] tracking-tight uppercase">
-                                Education
-                            </h2>
+                    <!-- ZIP-LOCK BAG WRAPPER (Bordered, reflecting light) -->
+                    <div class="relative p-4 brutal-border bg-white/40 backdrop-blur-[2px] rounded-2xl brutal-shadow shadow-lg overflow-hidden flex flex-col items-center">
+                        
+                        <!-- Zip lock seal strip at the top -->
+                        <div class="w-full h-4 border-b border-brutal-dark/20 flex items-center justify-between px-2 mb-3 bg-white/60">
+                            <!-- Zip Slider slider element -->
+                            <div class="h-2.5 w-6 bg-brutal-lavender brutal-border rounded-sm brutal-shadow-sm flex items-center justify-center">
+                                <div class="w-1 h-1.5 bg-brutal-dark rounded-full"></div>
+                            </div>
+                            <!-- Small lines for sealing texture -->
+                            <div class="flex-grow border-t border-dashed border-brutal-dark/40 mx-2 h-0"></div>
+                            <div class="w-2 h-2 rounded-full bg-brutal-pink"></div>
                         </div>
-                        <div class="p-5 bg-gray-50 rounded-2xl border border-gray-100 flex flex-col gap-1">
-                            <span class="font-sans font-bold text-xs text-[#1153fc] uppercase tracking-wider">2018 - 2021</span>
-                            <h4 class="font-display font-black text-sm md:text-base text-[#09122c] uppercase">
-                                FPT Arena Multimedia
+
+                        <!-- Glossy plastic overlay reflection on top of everything inside -->
+                        <div class="absolute inset-0 plastic-gloss pointer-events-none z-20"></div>
+
+                        <!-- ACTUAL POLAROID CARD INSIDE -->
+                        <div class="bg-white p-3 brutal-border brutal-shadow-sm flex flex-col items-center max-w-[230px] rotate-[-2deg]">
+                            
+                            <!-- Card Picture Area -->
+                            <div class="relative w-[200px] h-[200px] bg-gray-200 overflow-hidden brutal-border">
+                                <img src="https://tempfile.aiquickdraw.com/images/chatgpt/file_000000004a30720cadf47eaabe9d4982.png" 
+                                     alt="Alessandra Nicole" 
+                                     class="w-full h-full object-cover select-none pointer-events-none">
+                            </div>
+                            
+                            <!-- Polaroid Bottom Space for signature -->
+                            <div class="w-full pt-4 pb-2 flex flex-col items-center justify-center">
+                                <div class="flex items-center gap-1.5 text-sm font-extrabold text-brutal-dark/60 tracking-wider">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5 text-brutal-dark/60 shrink-0">
+                                        <path d="M 12 2 Q 12 12, 22 12 Q 12 12, 12 22 Q 12 12, 2 12 Q 12 12, 12 2 Z"/>
+                                    </svg>
+                                    <span>2026 Studio</span>
+                                </div>
+                                <span class="font-serif italic text-xs text-brutal-dark/40 mt-1">alessandra nicole</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FLOATING FLYING ITEMS AROUND POLAROID -->
+                    
+                    <!-- 1. Virgo Sign (Left side) -->
+                    <div class="absolute -left-6 top-[20%] w-12 h-12 rounded-full bg-brutal-lavender brutal-border brutal-shadow-sm flex items-center justify-center animate-virgo z-30 group cursor-default hover:rotate-12 transition-transform">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-brutal-dark select-none">
+                            <path d="M4 18V8.5C4 7 5.5 5.5 7 5.5S10 7 10 8.5V18 M10 8.5C10 7 11.5 5.5 13 5.5S16 7 16 8.5V20C16 21.5 17.5 22.5 19 22.5S22 21 22 19.5C22 18 20.5 16.5 19 16.5H16"/>
+                        </svg>
+                    </div>
+
+                    <!-- 2. Pink round badge '2001' (Right side) -->
+                    <div class="absolute -right-6 top-[35%] w-14 h-14 rounded-full bg-brutal-pink brutal-border brutal-shadow-sm flex flex-col items-center justify-center animate-badge-2001 z-30 hover:-rotate-12 transition-transform cursor-default">
+                        <span class="text-[10px] font-black tracking-widest text-brutal-dark/50 uppercase leading-none">est.</span>
+                        <span class="text-sm font-black text-brutal-dark mt-0.5">2001</span>
+                    </div>
+
+                    <!-- 3. Four-pointed blue star (Bottom Right side) -->
+                    <div class="absolute -right-4 bottom-[15%] w-10 h-10 animate-star-fly z-30 text-brutal-blue">
+                        <svg viewBox="0 0 24 24" fill="currentColor" class="w-full h-full filter drop-shadow-[2px_2px_0px_rgba(20,20,20,1)]">
+                            <path d="M 12 2 Q 12 12, 22 12 Q 12 12, 12 22 Q 12 12, 2 12 Q 12 12, 12 2 Z" stroke="#141414" stroke-width="2" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- RIGHT: NAME + HEADLINE + BUTTONS (Col 6 to 12) -->
+            <div class="md:col-span-7 flex flex-col gap-6">
+                
+                <!-- Main Header: Lowercase alessandra nicole -->
+                <div class="flex flex-col">
+                    <h1 class="font-sans font-black text-5xl sm:text-6xl md:text-7xl leading-[1.05] tracking-tight lowercase">
+                        alessandra <br>
+                        <span class="inline-block bg-brutal-lavender brutal-border rounded-3xl px-4 py-1 mt-1 transform -rotate-1 brutal-shadow-sm">
+                            nicole
+                        </span>
+                    </h1>
+                </div>
+
+                <!-- Bio description -->
+                <div class="max-w-xl">
+                    <p class="font-sans text-base md:text-lg text-brutal-dark/80 leading-relaxed font-medium">
+                        I'm a 23-year-old multimedia artist specializing in building tactile, playful visual experiences. Currently combining pastel aesthetics with heavy-ink brutalist roots to tell organic digital stories.
+                    </p>
+                </div>
+
+                <!-- Contact list with inline SVG -->
+                <div class="flex flex-wrap gap-x-6 gap-y-3 items-center text-sm font-bold text-brutal-dark/90">
+                    <!-- Telephone -->
+                    <a href="tel:+63912345678" class="flex items-center gap-2 hover:text-brutal-blue transition-colors group">
+                        <div class="p-1.5 bg-white brutal-border rounded-lg brutal-shadow-sm group-hover:translate-y-[-1px] transition-transform">
+                            <svg class="w-4 h-4 text-brutal-dark" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                            </svg>
+                        </div>
+                        <span class="tracking-tight font-extrabold">+63 912 345 678</span>
+                    </a>
+
+                    <!-- Email -->
+                    <a href="mailto:alessandranicolenaldo@gmail.com" class="flex items-center gap-2 hover:text-brutal-pink transition-colors group">
+                        <div class="p-1.5 bg-white brutal-border rounded-lg brutal-shadow-sm group-hover:translate-y-[-1px] transition-transform">
+                            <svg class="w-4 h-4 text-brutal-dark" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
+                        </div>
+                        <span class="tracking-tight font-extrabold lowercase">alessandranicolenaldo@gmail.com</span>
+                    </a>
+                </div>
+
+                <!-- Capsule Buttons Section -->
+                <div class="flex flex-wrap gap-3 pt-2 items-center">
+                    
+                    <!-- 1. Emphatic (Blue Capsule) -->
+                    <button class="brutal-btn px-4 py-2 bg-brutal-blue rounded-full brutal-border brutal-shadow-sm font-extrabold text-xs tracking-wider uppercase">
+                        emphatic
+                    </button>
+
+                    <!-- 2. Creative (Green Capsule + Wave below in container) -->
+                    <div class="flex flex-col items-center">
+                        <button class="brutal-btn px-4 py-2 bg-brutal-green rounded-full brutal-border brutal-shadow-sm font-extrabold text-xs tracking-wider uppercase">
+                            creative
+                        </button>
+                        <!-- Wavy Arrow SVG beneath -->
+                        <svg class="w-8 h-2.5 text-brutal-green mt-1" viewBox="0 0 50 15" fill="none" stroke="currentColor" stroke-width="3">
+                            <path d="M2 10C8 2 12 2 18 10C24 18 28 18 34 10C40 2 44 2 48 10" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+
+                    <!-- 3. Team Player (Lavender Spiky Star/Badge Sticker) -->
+                    <button class="brutal-btn relative w-[104px] h-[104px] flex items-center justify-center group focus:outline-none hover:scale-105 active:scale-95 transition-transform">
+                        <!-- Symmetrical 16-pointed Lavender Star SVG background -->
+                        <svg viewBox="0 0 100 100" class="absolute inset-0 w-full h-full text-[#b584d4] filter drop-shadow-[2px_2px_0px_#141414]">
+                            <path d="M 50.0,4.0 L 57.0,14.7 L 67.6,7.5 L 70.0,20.1 L 82.5,17.5 L 79.9,30.0 L 92.5,32.4 L 85.3,43.0 L 96.0,50.0 L 85.3,57.0 L 92.5,67.6 L 79.9,70.0 L 82.5,82.5 L 70.0,79.9 L 67.6,92.5 L 57.0,85.3 L 50.0,96.0 L 43.0,85.3 L 32.4,92.5 L 30.0,79.9 L 17.5,82.5 L 20.1,70.0 L 7.5,67.6 L 14.7,57.0 L 4.0,50.0 L 14.7,43.0 L 7.5,32.4 L 20.1,30.0 L 17.5,17.5 L 30.0,20.1 L 32.4,7.5 L 43.0,14.7 Z" fill="currentColor" stroke="#141414" stroke-width="4" stroke-linejoin="round"/>
+                        </svg>
+                        <!-- Centered text over star -->
+                        <div class="relative z-10 flex flex-col items-center justify-center text-brutal-dark font-black text-[10px] leading-tight select-none uppercase pointer-events-none">
+                            <span>team</span>
+                            <span>player</span>
+                        </div>
+                    </button>
+
+                    <!-- 4. Detail-Oriented (Pink Slanted Capsule) -->
+                    <button class="brutal-btn px-4 py-2 bg-brutal-pink rounded-full brutal-border brutal-shadow-sm font-extrabold text-xs tracking-wider uppercase transform rotate-[-3deg]">
+                        detail-oriented
+                    </button>
+
+                    <!-- 5. Insightful (Orange Box/Capsule) -->
+                    <button class="brutal-btn px-4 py-2 bg-brutal-orange rounded-lg brutal-border brutal-shadow-sm font-extrabold text-xs tracking-wider uppercase">
+                        insightful
+                    </button>
+
+                    <!-- 6. Gold Sparkle Star Sticker -->
+                    <div class="w-10 h-10 text-[#ebd065] hover:scale-110 active:scale-95 transition-transform cursor-pointer filter drop-shadow-[2px_2px_0px_#141414]">
+                        <svg viewBox="0 0 24 24" fill="currentColor" class="w-full h-full">
+                            <path d="M 12 2 Q 12 12, 22 12 Q 12 12, 12 22 Q 12 12, 2 12 Q 12 12, 12 2 Z" stroke="#141414" stroke-width="2" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DASHED HR DIVIDER -->
+        <hr class="border-dashed border-2 border-brutal-dark/30 my-8">
+
+        <!-- BOTTOM BLOCK: TWO COLUMNS (Grid 12 cols) -->
+        <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 pt-4">
+            
+            <!-- LEFT COLUMN (Cols 1 to 6) -->
+            <div class="lg:col-span-6 flex flex-col gap-10">
+                
+                <!-- EDUCATION SECTION -->
+                <div class="flex flex-col gap-4">
+                    <h2 class="font-sans font-black text-2xl tracking-tight uppercase border-b-2 border-brutal-dark pb-1 text-brutal-dark flex items-center gap-2">
+                        <span class="w-3.5 h-3.5 bg-brutal-pink rounded-full border border-brutal-dark"></span>
+                        education
+                    </h2>
+                    
+                    <div class="flex flex-col gap-4">
+                        <!-- Degree 1 -->
+                        <div class="p-4 bg-white brutal-border brutal-shadow rounded-xl hover:translate-y-[-1px] transition-transform">
+                            <div class="flex items-center gap-1.5 text-xs font-black text-brutal-blue uppercase tracking-wider mb-2">
+                                <svg viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5 text-brutal-blue shrink-0">
+                                    <path d="M 12 2 Q 12 12, 22 12 Q 12 12, 12 22 Q 12 12, 2 12 Q 12 12, 12 2 Z"/>
+                                </svg>
+                                <span>2020 - 2024</span>
+                            </div>
+                            <h4 class="font-sans font-black text-base text-brutal-dark uppercase">
+                                Bachelor of Fine Arts in Multimedia Arts
                             </h4>
-                            <p class="font-sans font-medium text-xs sm:text-sm text-gray-500 leading-relaxed">
-                                Профессиональное образование в сфере графического дизайна, анимации, веб-дизайна и мультимедийных технологий.
+                            <p class="font-sans font-bold text-xs text-brutal-dark/50 mt-1 uppercase">De La Salle-College of Saint Benilde</p>
+                            <p class="font-sans text-sm text-brutal-dark/75 mt-2 font-medium">
+                                Specialized in graphic design, layouting, and interactive digital experiences. Graduated with honors.
                             </p>
                         </div>
                     </div>
-
-                    <!-- EXPERIENCE SECTION -->
-                    <div class="flex flex-col gap-4">
-                        <div class="flex items-center gap-3 border-b-2 border-[#09122c] pb-2">
-                            <h2 class="font-display font-extrabold text-xl md:text-2xl text-[#09122c] tracking-tight uppercase">
-                                Experience
-                            </h2>
-                        </div>
-                        
-                        <div class="flex flex-col gap-3">
-                            <!-- EVB Record -->
-                            <div class="p-4 bg-gray-50 hover:bg-gray-100/70 border border-gray-100 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-2 transition-colors duration-200">
-                                <div>
-                                    <h4 class="font-display font-bold text-sm md:text-base text-[#09122c] uppercase">EVB Record</h4>
-                                    <p class="font-sans font-semibold text-xs text-gray-400 uppercase">Graphic Designer & Brand Identity</p>
-                                </div>
-                                <span class="px-3 py-1 bg-[#facc15]/20 text-[#09122c] border border-[#facc15]/30 rounded-full font-display font-extrabold text-[10px] uppercase self-start sm:self-auto">2023 - 2025</span>
-                            </div>
-
-                            <!-- JUP TEA -->
-                            <div class="p-4 bg-gray-50 hover:bg-gray-100/70 border border-gray-100 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-2 transition-colors duration-200">
-                                <div>
-                                    <h4 class="font-display font-bold text-sm md:text-base text-[#09122c] uppercase">JUP TEA</h4>
-                                    <p class="font-sans font-semibold text-xs text-gray-400 uppercase">Packaging Designer & Illustrator</p>
-                                </div>
-                                <span class="px-3 py-1 bg-[#facc15]/20 text-[#09122c] border border-[#facc15]/30 rounded-full font-display font-extrabold text-[10px] uppercase self-start sm:self-auto">2022 - 2023</span>
-                            </div>
-
-                            <!-- GEARVN -->
-                            <div class="p-4 bg-gray-50 hover:bg-gray-100/70 border border-gray-100 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-2 transition-colors duration-200">
-                                <div>
-                                    <h4 class="font-display font-bold text-sm md:text-base text-[#09122c] uppercase">GEARVN</h4>
-                                    <p class="font-sans font-semibold text-xs text-gray-400 uppercase">Senior Banner & Marketing Designer</p>
-                                </div>
-                                <span class="px-3 py-1 bg-[#facc15]/20 text-[#09122c] border border-[#facc15]/30 rounded-full font-display font-extrabold text-[10px] uppercase self-start sm:self-auto">2021 - 2022</span>
-                            </div>
-
-                            <!-- INCA AGENCY -->
-                            <div class="p-4 bg-gray-50 hover:bg-gray-100/70 border border-gray-100 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-2 transition-colors duration-200">
-                                <div>
-                                    <h4 class="font-display font-bold text-sm md:text-base text-[#09122c] uppercase">INCA AGENCY</h4>
-                                    <p class="font-sans font-semibold text-xs text-gray-400 uppercase">2D Lead Illustrator & Visual Designer</p>
-                                </div>
-                                <span class="px-3 py-1 bg-[#facc15]/20 text-[#09122c] border border-[#facc15]/30 rounded-full font-display font-extrabold text-[10px] uppercase self-start sm:self-auto">2020 - 2021</span>
-                            </div>
-
-                            <!-- MOMO -->
-                            <div class="p-4 bg-gray-50 hover:bg-gray-100/70 border border-gray-100 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-2 transition-colors duration-200">
-                                <div>
-                                    <h4 class="font-display font-bold text-sm md:text-base text-[#09122c] uppercase">MOMO</h4>
-                                    <p class="font-sans font-semibold text-xs text-gray-400 uppercase">UI/UX Illustrator & Assets Designer</p>
-                                </div>
-                                <span class="px-3 py-1 bg-[#facc15]/20 text-[#09122c] border border-[#facc15]/30 rounded-full font-display font-extrabold text-[10px] uppercase self-start sm:self-auto">2019 - 2020</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- SOFTWARE SECTION (Красивые квадратные иконки с фирменными цветами) -->
-                    <div class="flex flex-col gap-4">
-                        <div class="flex items-center gap-3 border-b-2 border-[#09122c] pb-2">
-                            <h2 class="font-display font-extrabold text-xl md:text-2xl text-[#09122c] tracking-tight uppercase">
-                                Software
-                            </h2>
-                        </div>
-                        <div class="flex flex-wrap gap-4 mt-2">
-                            
-                            <!-- Photoshop (Ps) - Синий -->
-                            <div class="software-card w-16 h-16 bg-[#001d26] rounded-xl flex flex-col items-center justify-center text-center cursor-pointer group" title="Adobe Photoshop">
-                                <span class="font-display font-black text-lg text-[#00c8ff] tracking-tighter group-hover:scale-110 transition-transform">Ps</span>
-                            </div>
-
-                            <!-- Illustrator (Ai) - Оранжевый -->
-                            <div class="software-card w-16 h-16 bg-[#261300] rounded-xl flex flex-col items-center justify-center text-center cursor-pointer group" title="Adobe Illustrator">
-                                <span class="font-display font-black text-lg text-[#ff9a00] tracking-tighter group-hover:scale-110 transition-transform">Ai</span>
-                            </div>
-
-                            <!-- After Effects (Ae) - Фиолетовый -->
-                            <div class="software-card w-16 h-16 bg-[#16002b] rounded-xl flex flex-col items-center justify-center text-center cursor-pointer group" title="Adobe After Effects">
-                                <span class="font-display font-black text-lg text-[#d9a5ff] tracking-tighter group-hover:scale-110 transition-transform">Ae</span>
-                            </div>
-
-                            <!-- InDesign (Id) - Розовый -->
-                            <div class="software-card w-16 h-16 bg-[#2b0010] rounded-xl flex flex-col items-center justify-center text-center cursor-pointer group" title="Adobe InDesign">
-                                <span class="font-display font-black text-lg text-[#ff4da2] tracking-tighter group-hover:scale-110 transition-transform">Id</span>
-                            </div>
-
-                            <!-- Procreate - Градиентный мазок -->
-                            <div class="software-card w-16 h-16 bg-white rounded-xl flex flex-col items-center justify-center text-center cursor-pointer group" title="Procreate">
-                                <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-[#ff3366] via-[#ae33ff] to-[#33c8ff] blur-[1px] flex items-center justify-center group-hover:scale-110 transition-transform shadow-inner">
-                                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536"></path>
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- CONTACT SECTION -->
-                    <div class="flex flex-col gap-4">
-                        <div class="flex items-center gap-3 border-b-2 border-[#09122c] pb-2">
-                            <h2 class="font-display font-extrabold text-xl md:text-2xl text-[#09122c] tracking-tight uppercase">
-                                Contact
-                            </h2>
-                        </div>
-                        
-                        <div class="bg-[#1153fc] text-white p-6 rounded-3xl border-2 border-[#09122c] shadow-[6px_6px_0px_#09122c] flex flex-col gap-4">
-                            <!-- Телефон -->
-                            <a href="tel:+84900000000" class="flex items-center gap-4 hover:translate-x-2 transition-transform duration-200">
-                                <div class="p-2 bg-white/20 rounded-xl">
-                                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-                                    </svg>
-                                </div>
-                                <span class="font-display font-extrabold text-xs sm:text-sm uppercase tracking-wide">+84 (0) 900-000-000</span>
-                            </a>
-
-                            <!-- Почта -->
-                            <a href="mailto:realwxlf@gmail.com" class="flex items-center gap-4 hover:translate-x-2 transition-transform duration-200">
-                                <div class="p-2 bg-white/20 rounded-xl">
-                                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                                    </svg>
-                                </div>
-                                <span class="font-display font-extrabold text-xs sm:text-sm tracking-wide lowercase">realwxlf@gmail.com</span>
-                            </a>
-
-                            <!-- Behance & Dribbble -->
-                            <div class="grid grid-cols-2 gap-4 mt-2">
-                                <a href="https://behance.net" target="_blank" class="flex items-center justify-center gap-2 p-3 bg-white/10 hover:bg-white/20 rounded-2xl transition-colors duration-200">
-                                    <span class="font-display font-black text-[10px] sm:text-xs uppercase">Behance</span>
-                                </a>
-                                <a href="https://dribbble.com" target="_blank" class="flex items-center justify-center gap-2 p-3 bg-white/10 hover:bg-white/20 rounded-2xl transition-colors duration-200">
-                                    <span class="font-display font-black text-[10px] sm:text-xs uppercase">Dribbble</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
-                <!-- ПРАВАЯ КОЛОНКА -->
-                <div class="flex flex-col gap-12">
+                <!-- EXPERIENCE SECTION -->
+                <div class="flex flex-col gap-4">
+                    <h2 class="font-sans font-black text-2xl tracking-tight uppercase border-b-2 border-brutal-dark pb-1 text-brutal-dark flex items-center gap-2">
+                        <span class="w-3.5 h-3.5 bg-brutal-green rounded-full border border-brutal-dark"></span>
+                        experience
+                    </h2>
                     
-                    <!-- TECHNICAL SKILLS SECTION -->
                     <div class="flex flex-col gap-4">
-                        <div class="flex items-center gap-3 border-b-2 border-[#09122c] pb-2">
-                            <h2 class="font-display font-extrabold text-xl md:text-2xl text-[#09122c] tracking-tight uppercase">
-                                Technical Skills
-                            </h2>
+                        <!-- Exp 1 -->
+                        <div class="p-4 bg-white brutal-border brutal-shadow rounded-xl hover:translate-y-[-1px] transition-transform">
+                            <div class="flex justify-between items-start gap-2 mb-2">
+                                <span class="px-2 py-0.5 bg-brutal-lavender text-brutal-dark rounded-full font-extrabold text-[10px] uppercase brutal-border">2024 - PRESENT</span>
+                            </div>
+                            <h4 class="font-sans font-black text-base text-brutal-dark uppercase">
+                                Junior Brand Designer
+                            </h4>
+                            <p class="font-sans font-bold text-xs text-brutal-dark/50 uppercase mt-0.5">Pixel Pulse Agency</p>
+                            <p class="font-sans text-sm text-brutal-dark/75 mt-2 font-medium">
+                                Developing brand systems, packaging layouts, and digital campaign collateral for design-forward retail startups.
+                            </p>
                         </div>
-                        
-                        <!-- Креативная композиция с карандашом и навыками -->
-                        <div class="relative w-full h-[320px] sm:h-[400px] bg-gray-50 border-2 border-[#09122c] rounded-3xl p-6 overflow-hidden mt-2 flex flex-col justify-center items-center select-none shadow-inner">
-                            
-                            <!-- Фоновая сетка миллиметровки для бруталистского чертежного стиля -->
-                            <div class="absolute inset-0 opacity-[0.03]" style="background-image: linear-gradient(#09122c 1.5px, transparent 1.5px), linear-gradient(90deg, #09122c 1.5px, transparent 1.5px); background-size: 20px 20px;"></div>
 
-                            <!-- Парящие облака навыков (Капсулы) -->
-                            <!-- Branding -->
-                            <div class="absolute left-[10%] top-[12%] bg-white border-2 border-[#09122c] py-2 px-4 rounded-full shadow-[3px_3px_0px_#09122c] hover:scale-105 transition-transform duration-200 font-display font-extrabold text-[10px] sm:text-xs uppercase tracking-tight cursor-default z-10 animate-float-1">
-                                Branding
+                        <!-- Exp 2 -->
+                        <div class="p-4 bg-white brutal-border brutal-shadow rounded-xl hover:translate-y-[-1px] transition-transform">
+                            <div class="flex justify-between items-start gap-2 mb-2">
+                                <span class="px-2 py-0.5 bg-brutal-pink text-brutal-dark rounded-full font-extrabold text-[10px] uppercase brutal-border">2022 - 2024</span>
                             </div>
-
-                            <!-- Mascot Design -->
-                            <div class="absolute right-[8%] top-[18%] bg-[#facc15] border-2 border-[#09122c] py-2 px-4 rounded-full shadow-[3px_3px_0px_#09122c] hover:scale-105 transition-transform duration-200 font-display font-extrabold text-[10px] sm:text-xs uppercase tracking-tight cursor-default z-10 animate-float-2">
-                                Mascot Design
-                            </div>
-
-                            <!-- Logo Design -->
-                            <div class="absolute left-[8%] bottom-[16%] bg-white border-2 border-[#09122c] py-2 px-4 rounded-full shadow-[3px_3px_0px_#09122c] hover:scale-105 transition-transform duration-200 font-display font-extrabold text-[10px] sm:text-xs uppercase tracking-tight cursor-default z-10 animate-float-2">
-                                Logo Design
-                            </div>
-
-                            <!-- Manipulation -->
-                            <div class="absolute right-[12%] bottom-[12%] bg-[#1153fc] text-white border-2 border-[#09122c] py-2 px-4 rounded-full shadow-[3px_3px_0px_#09122c] hover:scale-105 transition-transform duration-200 font-display font-extrabold text-[10px] sm:text-xs uppercase tracking-tight cursor-default z-10 animate-float-1">
-                                Manipulation
-                            </div>
-
-                            <!-- Graphic Design -->
-                            <div class="absolute left-[40%] top-[8%] bg-white border-2 border-[#09122c] py-1.5 px-3 rounded-full shadow-[2px_2px_0px_#09122c] hover:scale-105 transition-transform duration-200 font-display font-extrabold text-[9px] uppercase tracking-tighter cursor-default z-10 animate-float-3">
-                                Graphic Design
-                            </div>
-
-                            <!-- ЦЕНТРАЛЬНЫЙ КАРАНДАШ С 2D ILLUSTRATION -->
-                            <div class="relative w-full max-w-[280px] sm:max-w-[340px] transform -rotate-12 select-none pointer-events-none animate-pencil">
-                                <div class="relative bg-gradient-to-r from-orange-400 via-yellow-400 to-yellow-300 h-10 sm:h-12 border-2 border-[#09122c] rounded-md shadow-[6px_6px_0px_#09122c] flex items-center justify-center px-6">
-                                    <!-- Текст на теле карандаша -->
-                                    <span class="font-display font-black text-xs sm:text-sm text-[#09122c] uppercase tracking-wider whitespace-nowrap">
-                                        2D Illustration
-                                    </span>
-                                    
-                                    <!-- Острие карандаша (Деревянная часть + Грифель) -->
-                                    <div class="absolute left-[-26px] top-[-1px] w-0 h-0 border-y-[19px] sm:border-y-[23px] border-y-transparent border-r-[26px] border-r-orange-200 filter drop-shadow-[-2px_0_0_#09122c]">
-                                        <!-- Черный грифель на кончике -->
-                                        <div class="absolute right-[-26px] top-[-4px] sm:top-[-5px] w-0 h-0 border-y-[4px] sm:border-y-[5px] border-y-transparent border-r-[6px] border-r-[#09122c]"></div>
-                                    </div>
-                                    
-                                    <!-- Ластик на конце карандаша -->
-                                    <div class="absolute right-[-14px] top-[-1px] w-12 sm:w-14 h-[42px] sm:h-[50px] bg-red-400 border-2 border-l-0 border-[#09122c] rounded-r-md flex items-center justify-center">
-                                        <!-- Металлическое кольцо ластика -->
-                                        <div class="absolute left-0 top-[-1px] bottom-[-1px] w-3 bg-gray-300 border-r-2 border-[#09122c]"></div>
-                                    </div>
-                                </div>
-                            </div>
+                            <h4 class="font-sans font-black text-base text-brutal-dark uppercase">
+                                Freelance Multimedia Artist
+                            </h4>
+                            <p class="font-sans font-bold text-xs text-brutal-dark/50 uppercase mt-0.5">Independent Practice</p>
+                            <p class="font-sans text-sm text-brutal-dark/75 mt-2 font-medium">
+                                Crafted distinct graphic elements, print material, and motion graphics for independent musicians and local brands.
+                            </p>
                         </div>
-                    </div>
 
-                    <!-- PERSONAL SKILLS SECTION -->
-                    <div class="flex flex-col gap-4">
-                        <div class="flex items-center gap-3 border-b-2 border-[#09122c] pb-2">
-                            <h2 class="font-display font-extrabold text-xl md:text-2xl text-[#09122c] tracking-tight uppercase">
-                                Personal Skills
-                            </h2>
-                        </div>
-                        
-                        <div class="flex flex-wrap gap-3 mt-2">
-                            <div class="px-5 py-3 bg-gray-50 text-[#09122c] rounded-full border border-gray-200 hover:bg-[#1153fc] hover:text-white hover:border-[#1153fc] transition-colors duration-200 cursor-default text-xs sm:text-sm font-display font-extrabold uppercase">
-                                Willing to learn
+                        <!-- Exp 3 -->
+                        <div class="p-4 bg-white brutal-border brutal-shadow rounded-xl hover:translate-y-[-1px] transition-transform">
+                            <div class="flex justify-between items-start gap-2 mb-2">
+                                <span class="px-2 py-0.5 bg-brutal-green text-brutal-dark rounded-full font-extrabold text-[10px] uppercase brutal-border">2021 - 2022</span>
                             </div>
-                            <div class="px-5 py-3 bg-gray-50 text-[#09122c] rounded-full border border-gray-200 hover:bg-[#1153fc] hover:text-white hover:border-[#1153fc] transition-colors duration-200 cursor-default text-xs sm:text-sm font-display font-extrabold uppercase">
-                                Time management
-                            </div>
-                            <div class="px-5 py-3 bg-gray-50 text-[#09122c] rounded-full border border-gray-200 hover:bg-[#1153fc] hover:text-white hover:border-[#1153fc] transition-colors duration-200 cursor-default text-xs sm:text-sm font-display font-extrabold uppercase">
-                                Communication
-                            </div>
-                            <div class="px-5 py-3 bg-gray-50 text-[#09122c] rounded-full border border-gray-200 hover:bg-[#1153fc] hover:text-white hover:border-[#1153fc] transition-colors duration-200 cursor-default text-xs sm:text-sm font-display font-extrabold uppercase">
-                                Attention to detail
-                            </div>
-                            <div class="px-5 py-3 bg-gray-50 text-[#09122c] rounded-full border border-gray-200 hover:bg-[#1153fc] hover:text-white hover:border-[#1153fc] transition-colors duration-200 cursor-default text-xs sm:text-sm font-display font-extrabold uppercase">
-                                Flexible design styles
-                            </div>
+                            <h4 class="font-sans font-black text-base text-brutal-dark uppercase">
+                                Design Intern
+                            </h4>
+                            <p class="font-sans font-bold text-xs text-brutal-dark/50 uppercase mt-0.5">Prism Editorial Studio</p>
+                            <p class="font-sans text-sm text-brutal-dark/75 mt-2 font-medium">
+                                Supported layout creation for quarterly lifestyle magazines, catalog prepress, and social media layout formatting.
+                            </p>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Подвал страницы -->
-            <div class="mt-20 pt-8 border-t border-gray-100 flex flex-col sm:flex-row items-center justify-between gap-4 text-center">
-                <span class="font-display font-black text-xs text-[#09122c] tracking-tight">WXLF &copy; 2026</span>
-                <span class="font-sans font-medium text-xs text-gray-400">Собрано с любовью по спецификации AuraDesign</span>
+                <!-- LANGUAGE SECTION -->
+                <div class="flex flex-col gap-4">
+                    <h2 class="font-sans font-black text-2xl tracking-tight uppercase border-b-2 border-brutal-dark pb-1 text-brutal-dark flex items-center gap-2">
+                        <span class="w-3.5 h-3.5 bg-brutal-orange rounded-full border border-brutal-dark"></span>
+                        language
+                    </h2>
+                    
+                    <div class="flex flex-wrap gap-3 mt-2">
+                        <!-- Tag Filipino -->
+                        <div class="px-4 py-2 bg-brutal-dark text-white rounded-full brutal-border font-extrabold text-xs uppercase tracking-wider">
+                            Filipino: Native
+                        </div>
+                        <!-- Tag English -->
+                        <div class="px-4 py-2 bg-white text-brutal-dark rounded-full brutal-border brutal-shadow-sm font-extrabold text-xs uppercase tracking-wider">
+                            English: Advanced
+                        </div>
+                    </div>
+                </div>
             </div>
             
-        </div>
-    </section>
+            <!-- RIGHT COLUMN (Cols 7 to 12) -->
+            <div class="lg:col-span-6 flex flex-col gap-10">
+                
+                <!-- SKILLS SECTION -->
+                <div class="flex flex-col gap-4">
+                    <h2 class="font-sans font-black text-2xl tracking-tight uppercase border-b-2 border-brutal-dark pb-1 text-brutal-dark flex items-center gap-2">
+                        <span class="w-3.5 h-3.5 bg-brutal-blue rounded-full border border-brutal-dark"></span>
+                        skills
+                    </h2>
+                    
+                    <div class="flex flex-wrap gap-3 mt-2">
+                        <!-- Layout Design (Filled) -->
+                        <span class="px-4 py-2 bg-brutal-dark text-white rounded-full brutal-border font-extrabold text-xs uppercase tracking-wider cursor-default hover:scale-105 transition-transform">
+                            Layout Design
+                        </span>
+                        <!-- Branding (Outline) -->
+                        <span class="px-4 py-2 bg-white text-brutal-dark rounded-full brutal-border brutal-shadow-sm font-extrabold text-xs uppercase tracking-wider cursor-default hover:scale-105 transition-transform">
+                            Branding
+                        </span>
+                        <!-- Digital Illustration (Filled) -->
+                        <span class="px-4 py-2 bg-brutal-dark text-white rounded-full brutal-border font-extrabold text-xs uppercase tracking-wider cursor-default hover:scale-105 transition-transform">
+                            Digital Illustration
+                        </span>
+                        <!-- Print Design (Outline) -->
+                        <span class="px-4 py-2 bg-white text-brutal-dark rounded-full brutal-border brutal-shadow-sm font-extrabold text-xs uppercase tracking-wider cursor-default hover:scale-105 transition-transform">
+                            Print Design
+                        </span>
+                        <!-- Motion Graphics (Outline) -->
+                        <span class="px-4 py-2 bg-white text-brutal-dark rounded-full brutal-border brutal-shadow-sm font-extrabold text-xs uppercase tracking-wider cursor-default hover:scale-105 transition-transform">
+                            Motion Graphics
+                        </span>
+                        <!-- UI/UX Design (Filled) -->
+                        <span class="px-4 py-2 bg-brutal-dark text-white rounded-full brutal-border font-extrabold text-xs uppercase tracking-wider cursor-default hover:scale-105 transition-transform">
+                            UI/UX Design
+                        </span>
+                    </div>
+                </div>
 
+                <!-- SOFTWARES SECTION (6 Custom Geometric SVG icons) -->
+                <div class="flex flex-col gap-4">
+                    <h2 class="font-sans font-black text-2xl tracking-tight uppercase border-b-2 border-brutal-dark pb-1 text-brutal-dark flex items-center gap-2">
+                        <span class="w-3.5 h-3.5 bg-brutal-lavender rounded-full border border-brutal-dark"></span>
+                        softwares
+                    </h2>
+                    
+                    <!-- Card enclosing the 6 icons -->
+                    <div class="p-6 bg-white brutal-border brutal-shadow rounded-2xl">
+                        <div class="grid grid-cols-3 gap-6">
+                            
+                            <!-- 1. Ps (Photoshop): Dusty Pink Circle -->
+                            <div class="software-icon-container flex flex-col items-center justify-center cursor-pointer group">
+                                <div class="w-14 h-14 bg-brutal-pink brutal-border rounded-full flex items-center justify-center shadow-none hover:scale-105 active:scale-95 transition-transform">
+                                    <span class="font-sans font-black text-xl text-brutal-dark">Ps</span>
+                                </div>
+                                <span class="font-sans font-extrabold text-[10px] text-brutal-dark/70 mt-2 uppercase tracking-wide">Photoshop</span>
+                            </div>
+
+                            <!-- 2. Ai (Illustrator): Blue 4-leaved flower/star -->
+                            <div class="software-icon-container flex flex-col items-center justify-center cursor-pointer group">
+                                <div class="w-14 h-14 relative flex items-center justify-center hover:scale-105 active:scale-95 transition-transform">
+                                    <!-- 4-lobed Flower SVG background (Puffy and curved lobes) -->
+                                    <svg viewBox="0 0 100 100" class="absolute inset-0 w-full h-full text-brutal-blue filter drop-shadow-[1px_1px_0px_#141414]">
+                                        <path d="M50,32 C54,20 64,15 78,20 C92,25 88,40 72,50 C90,60 92,75 78,80 C64,85 54,80 50,68 C46,80 36,85 22,80 C8,75 12,60 30,50 C10,38 8,25 22,20 C36,15 46,20 50,32 Z" fill="currentColor" stroke="#141414" stroke-width="4" stroke-linejoin="round"/>
+                                    </svg>
+                                    <span class="font-sans font-black text-xl text-brutal-dark relative z-10">Ai</span>
+                                </div>
+                                <span class="font-sans font-extrabold text-[10px] text-brutal-dark/70 mt-2 uppercase tracking-wide">Illustrator</span>
+                            </div>
+
+                            <!-- 3. Id (InDesign): Green Hexagon -->
+                            <div class="software-icon-container flex flex-col items-center justify-center cursor-pointer group">
+                                <div class="w-14 h-14 relative flex items-center justify-center hover:scale-105 active:scale-95 transition-transform">
+                                    <!-- Hexagon SVG background -->
+                                    <svg viewBox="0 0 100 100" class="absolute inset-0 w-full h-full text-brutal-green filter drop-shadow-[1px_1px_0px_#141414]">
+                                        <polygon points="50,6 90,28 90,72 50,94 10,72 10,28" fill="currentColor" stroke="#141414" stroke-width="4" stroke-linejoin="round"/>
+                                    </svg>
+                                    <span class="font-sans font-black text-xl text-brutal-dark relative z-10">Id</span>
+                                </div>
+                                <span class="font-sans font-extrabold text-[10px] text-brutal-dark/70 mt-2 uppercase tracking-wide">InDesign</span>
+                            </div>
+
+                            <!-- 4. Pr (Premiere): Purple Rounded Square -->
+                            <div class="software-icon-container flex flex-col items-center justify-center cursor-pointer group">
+                                <div class="w-14 h-14 bg-brutal-lavender brutal-border rounded-xl flex items-center justify-center shadow-none hover:scale-105 active:scale-95 transition-transform">
+                                    <span class="font-sans font-black text-xl text-brutal-dark">Pr</span>
+                                </div>
+                                <span class="font-sans font-extrabold text-[10px] text-brutal-dark/70 mt-2 uppercase tracking-wide">Premiere</span>
+                            </div>
+
+                            <!-- 5. Ae (After Effects): Red Multi-ray Star -->
+                            <div class="software-icon-container flex flex-col items-center justify-center cursor-pointer group">
+                                <div class="w-14 h-14 relative flex items-center justify-center hover:scale-105 active:scale-95 transition-transform">
+                                    <!-- Multi-ray Star/Flower SVG background -->
+                                    <svg viewBox="0 0 100 100" class="absolute inset-0 w-full h-full text-brutal-pink filter drop-shadow-[1px_1px_0px_#141414]">
+                                        <path d="M 50.0,4.0 L 57.0,14.7 L 67.6,7.5 L 70.0,20.1 L 82.5,17.5 L 79.9,30.0 L 92.5,32.4 L 85.3,43.0 L 96.0,50.0 L 85.3,57.0 L 92.5,67.6 L 79.9,70.0 L 82.5,82.5 L 70.0,79.9 L 67.6,92.5 L 57.0,85.3 L 50.0,96.0 L 43.0,85.3 L 32.4,92.5 L 30.0,79.9 L 17.5,82.5 L 20.1,70.0 L 7.5,67.6 L 14.7,57.0 L 4.0,50.0 L 14.7,43.0 L 7.5,32.4 L 20.1,30.0 L 17.5,17.5 L 30.0,20.1 L 32.4,7.5 L 43.0,14.7 Z" fill="currentColor" stroke="#141414" stroke-width="4" stroke-linejoin="round"/>
+                                    </svg>
+                                    <span class="font-sans font-black text-xl text-brutal-dark relative z-10">Ae</span>
+                                </div>
+                                <span class="font-sans font-extrabold text-[10px] text-brutal-dark/70 mt-2 uppercase tracking-wide">After Effects</span>
+                            </div>
+
+                            <!-- 6. Fg (Figma): Gold Rhombus -->
+                            <div class="software-icon-container flex flex-col items-center justify-center cursor-pointer group">
+                                <div class="w-14 h-14 relative flex items-center justify-center hover:scale-105 active:scale-95 transition-transform">
+                                    <!-- Rhombus/Diamond SVG background (Sparkle Star with concave sides) -->
+                                    <svg viewBox="0 0 100 100" class="absolute inset-0 w-full h-full text-[#ebd065] filter drop-shadow-[1px_1px_0px_#141414]">
+                                        <path d="M 50 4 Q 50 50, 96 50 Q 50 50, 50 96 Q 50 50, 4 50 Q 50 50, 50 4 Z" fill="currentColor" stroke="#141414" stroke-width="4" stroke-linejoin="round"/>
+                                    </svg>
+                                    <span class="font-sans font-black text-xl text-brutal-dark relative z-10">Fg</span>
+                                </div>
+                                <span class="font-sans font-extrabold text-[10px] text-brutal-dark/70 mt-2 uppercase tracking-wide">Figma</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- INTERESTS SECTION -->
+                <div class="flex flex-col gap-4">
+                    <h2 class="font-sans font-black text-2xl tracking-tight uppercase border-b-2 border-brutal-dark pb-1 text-brutal-dark flex items-center gap-2">
+                        <span class="w-3.5 h-3.5 bg-brutal-pink rounded-full border border-brutal-dark"></span>
+                        interests
+                    </h2>
+                    
+                    <ul class="flex flex-col gap-3 font-sans font-bold text-sm text-brutal-dark/80 pl-1">
+                        <li class="flex items-center gap-2.5">
+                            <svg viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5 text-brutal-pink shrink-0">
+                                <path d="M 12 2 Q 12 12, 22 12 Q 12 12, 12 22 Q 12 12, 2 12 Q 12 12, 12 2 Z"/>
+                            </svg>
+                            <span>Analog photography & zines</span>
+                        </li>
+                        <li class="flex items-center gap-2.5">
+                            <svg viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5 text-brutal-green shrink-0">
+                                <path d="M 12 2 Q 12 12, 22 12 Q 12 12, 12 22 Q 12 12, 2 12 Q 12 12, 12 2 Z"/>
+                            </svg>
+                            <span>Collectible card and sticker layouting</span>
+                        </li>
+                        <li class="flex items-center gap-2.5">
+                            <svg viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5 text-brutal-blue shrink-0">
+                                <path d="M 12 2 Q 12 12, 22 12 Q 12 12, 12 22 Q 12 12, 2 12 Q 12 12, 12 2 Z"/>
+                            </svg>
+                            <span>Indie publication production</span>
+                        </li>
+                        <li class="flex items-center gap-2.5">
+                            <svg viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5 text-brutal-orange shrink-0">
+                                <path d="M 12 2 Q 12 12, 22 12 Q 12 12, 12 22 Q 12 12, 2 12 Q 12 12, 12 2 Z"/>
+                            </svg>
+                            <span>3D character design & clay rendering</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="mt-20 pt-8 border-t-2 border-brutal-dark/20 flex flex-col sm:flex-row items-center justify-between gap-4 text-center">
+            <span class="font-sans font-black text-sm text-brutal-dark uppercase tracking-wider">Alessandra Nicole &copy; 2026</span>
+            <span class="font-sans font-medium text-xs text-brutal-dark/40">Handcrafted strictly to AuraDesign system standards</span>
+        </footer>
+        
+    </main>
 </body>
 </html>

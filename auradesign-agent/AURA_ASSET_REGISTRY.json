@@ -3,15 +3,26 @@
   "policy": "MCP_KV_ONLY_FOR_GENERATED_IMAGES",
   "assets": [
     {
-      "id": "hero-designers-cutout",
-      "role": "hero foreground people",
+      "id": "hero-portrait",
+      "role": "hero polaroid image of Alessandra Nicole",
       "status": "ready",
       "generationTool": "user-mcp-kv/gpt-image-2",
-      "backgroundRemovalTool": "user-mcp-kv/recraft_remove_background",
-      "generatedImageUrl": "https://tempfile.aiquickdraw.com/images/chatgpt/bb7d88cdc63e15b75d50cc40b836e9ba_a1809f050f524ae1a131a23f109f62a1.png",
-      "transparentImageUrl": "https://tempfile.aiquickdraw.com/r/459ca3084f2e29ac680b83c7537d6e3b_1779316891_m62b39v8.png",
-      "prompt": "Create a high-quality website hero cutout image of two young Asian/Vietnamese male graphic designers standing back-to-back, one seen from behind with short dyed gray hair, one facing camera with short dark hair. Both wear black varsity bomber jackets with subtle white embroidered patches. Studio fashion portfolio style, confident, clean lighting, full upper body from waist up, centered composition, no text, no logo, no UI elements, plain bright electric blue background (#247dff) for easy background removal. Match a modern graphic designer portfolio aesthetic. Sharp details, realistic photo, 4K quality.",
+      "backgroundRemovalTool": null,
+      "generatedImageUrl": "https://tempfile.aiquickdraw.com/images/chatgpt/file_000000004a30720cadf47eaabe9d4982.png",
+      "transparentImageUrl": "https://tempfile.aiquickdraw.com/images/chatgpt/file_000000004a30720cadf47eaabe9d4982.png",
+      "prompt": "A highly detailed, professional studio portrait of a beautiful 23-year-old Filipino-Spanish young woman multimedia artist. She has warm, soft, voluminous curly hair. She is wearing a modern lavender top. The background is a clean, minimal professional photography studio with warm and soft ambient lighting. Soft shadows, shallow depth of field, sharp focus, hyperrealistic skin texture, studio lighting.",
       "mustUseInHtml": true
+    },
+    {
+      "id": "brand-kit",
+      "role": "brand kit image showcasing design system style",
+      "status": "ready",
+      "generationTool": "user-mcp-kv/gpt-image-2",
+      "backgroundRemovalTool": null,
+      "generatedImageUrl": "https://tempfile.aiquickdraw.com/images/chatgpt/file_00000000a0f07230929ac0c19ebc6aca.png",
+      "transparentImageUrl": null,
+      "prompt": "A professional design brand-kit dashboard layout presenting the design system of a pastel brutalist portfolio. It is divided into multiple visual sections on a single canvas, including: 1. Palette section showing pastel colors: lavender, dusty pink, soft green, orange, muted blue, with charcoal black outlines. 2. Typography section showcasing beautiful clean typography and headings. 3. UI components section displaying organic capsule buttons, icons, card shadows. 4. Hero composition slide showing polaroid card mockups and ambient light overlays. 5. Assets slide and mobile preview mockup. The design style is soft brutalism, extremely clean presentation, professional vector look, beautiful soft color harmony.",
+      "mustUseInHtml": false
     }
   ]
 }
