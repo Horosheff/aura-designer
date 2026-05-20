@@ -1,25 +1,25 @@
-# Aura Designer Prompt Examples
+# Примеры промптов для Aura Designer
 
-## Generate From URL
+## Генерация по ссылке
 
 ```text
-/aura-designer scan https://example.com, create a deep AURADESIGN.md, generate transparent hero assets if tools are available, and build a complete landing page.
+/aura-designer просканируй https://example.com, создай глубокий AURADESIGN.md, сгенерируй прозрачные hero-ассеты если инструменты доступны, и собери полноценную landing page.
 ```
 
-## Generate From Screenshot
+## Генерация по скриншоту
 
 ```text
-/aura-designer use this screenshot as the visual source. Extract the palette, layout logic, typography, motion rules, and component system into AURADESIGN.md, then rebuild the page.
+/aura-designer используй этот скриншот как визуальный источник. Вытащи палитру, логику сетки, типографику, motion rules и компоненты в AURADESIGN.md, затем пересобери страницу.
 ```
 
-## Improve Existing Page
+## Улучшение существующей страницы
 
 ```text
-/aura-designer improve this hero block. Fix hierarchy, CTA contrast, responsive behavior, and generated image placement while preserving the current stack.
+/aura-designer улучши этот hero-блок. Исправь иерархию, контраст CTA, адаптив и размещение сгенерированного изображения, сохрани текущий стек.
 ```
 
-## Review Final Work
+## Финальное ревью
 
 ```text
-/aura-design-reviewer review the generated page. Prioritize contrast bugs, transparent buttons, broken images, shallow AURADESIGN.md sections, mobile overflow, and visual inconsistency.
+/aura-design-reviewer проверь сгенерированную страницу. В первую очередь ищи баги контраста, прозрачные кнопки, сломанные изображения, слишком короткий AURADESIGN.md, mobile overflow и визуальную несогласованность.
 ```

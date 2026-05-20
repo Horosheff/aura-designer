@@ -1,95 +1,120 @@
-# Aura Designer
+# Aura Designer от Kovcheg
 
-Aura Designer is a reusable Cursor subagent and Python CLI for turning a website URL, screenshot, or design idea into a deep `AURADESIGN.md` contract and a complete responsive website page.
+**Aura Designer** — устанавливаемый sub-agent для Cursor, Claude Code и Codex, который превращает ссылку на сайт, скриншот, изображение или идею в глубокий `AURADESIGN.md` и полноценную адаптивную веб-страницу.
 
-Built by Kovcheg for high-quality AI-assisted interface generation.
+Агент создан для задач, где обычный AI-кодер делает «демо» или визуальный мусор: прозрачные кнопки, черное на черном, случайные картинки, короткий дизайн-файл и слабый hero-блок. Aura Designer фиксирует это через подробный дизайн-контракт, генерацию ассетов, правила контрастности и визуальное QA.
 
-## What Is Included
+<p>
+  <a href="docs/install.md#установка-в-cursor"><img alt="Установить в Cursor" src="https://img.shields.io/badge/Установить%20в-Cursor-000000?style=for-the-badge"></a>
+  <a href="docs/install.md#установка-в-claude-code"><img alt="Установить в Claude Code" src="https://img.shields.io/badge/Установить%20в-Claude%20Code-5B35D5?style=for-the-badge"></a>
+  <a href="docs/install.md#установка-в-codex"><img alt="Установить в Codex" src="https://img.shields.io/badge/Установить%20в-Codex-1F6FEB?style=for-the-badge"></a>
+</p>
 
-- `auradesign-agent/` — Python CLI runtime: scanner, contract generator, asset coordinator, HTML generator, presets.
-- `.cursor/agents/aura-designer.md` — installable Cursor subagent that can edit UI code and generate Aura pages.
-- `.cursor/agents/aura-design-reviewer.md` — readonly visual QA subagent for checking design quality and production readiness.
-- `.claude/agents/` and `.codex/agents/` — compatibility copies for environments that read Claude/Codex-style agent folders.
-- `.cursor/rules/aura-design.mdc` — project rule that keeps Cursor aligned with Aura Designer standards while developing the agent itself.
-- `AURADESIGN.md` — current working design contract example.
+## Что делает агент
 
-## Install In Cursor
+- Сканирует сайт или изображение и собирает стиль в `AURADESIGN.md`.
+- Пишет не короткий «конспект», а глубокую дизайн-систему: цвета, типографика, сетка, компоненты, motion, ассеты, адаптив, accessibility, запреты и QA.
+- Генерирует полноценную HTML-страницу, а не макет-превью.
+- Координирует генерацию hero/case-study изображений через `gpt-image-2`, если инструмент доступен.
+- Удаляет фон у ассетов через `recraft_remove_background`, если инструмент доступен.
+- Проверяет визуальные провалы: черное на черном, белое на белом, прозрачные CTA, плохие ленты, случайные картинки, слабый hero.
 
-Project-level install:
+## Карта агента
+
+```text
+Aura Designer
+├─ Sub-agents
+│  ├─ .cursor/agents/aura-designer.md          # основной агент-создатель
+│  ├─ .cursor/agents/aura-design-reviewer.md   # readonly визуальный QA
+│  ├─ .claude/agents/                          # копии для Claude Code
+│  └─ .codex/agents/                           # копии для Codex
+├─ CLI-ядро
+│  └─ auradesign-agent/
+│     ├─ aura.py                               # единая CLI-команда
+│     ├─ aura_scanner.py                       # сканирование URL/изображений
+│     ├─ aura_asset_manager.py                 # ассеты и прозрачные PNG fallback
+│     ├─ aura_generator.py                     # HTML/CSS генератор
+│     ├─ AURADESIGN_SPEC.md                    # спецификация формата
+│     └─ presets/                              # библиотека дизайн-пресетов
+├─ Документация
+│  ├─ docs/install.md                          # установка в IDE
+│  ├─ docs/agent-map.md                        # подробная карта агента
+│  ├─ docs/capabilities.md                     # список возможностей
+│  └─ docs/mcp-tools.md                        # инструменты изображений
+└─ Примеры
+   └─ examples/prompt-examples.md              # готовые промпты
+```
+
+Подробная карта: [`docs/agent-map.md`](docs/agent-map.md)  
+Все возможности: [`docs/capabilities.md`](docs/capabilities.md)
+
+## Быстрая установка
+
+### Cursor
+
+Скопируйте агентов в проект:
 
 ```bash
 mkdir -p .cursor/agents
-cp .cursor/agents/aura-designer.md your-project/.cursor/agents/aura-designer.md
-cp .cursor/agents/aura-design-reviewer.md your-project/.cursor/agents/aura-design-reviewer.md
+cp path/to/aura-designer/.cursor/agents/*.md .cursor/agents/
 ```
 
-Global install:
-
-```bash
-mkdir -p ~/.cursor/agents
-cp .cursor/agents/*.md ~/.cursor/agents/
-```
-
-Invoke in Cursor:
+И вызывайте:
 
 ```text
-/aura-designer create a landing page from this URL and produce AURADESIGN.md
-/aura-design-reviewer review the generated page for visual quality and contrast
+/aura-designer сделай страницу по этому сайту и создай AURADESIGN.md
+/aura-design-reviewer проверь итоговую страницу на визуальные ошибки
 ```
 
-## Run The CLI
-
-The CLI uses Python 3 and currently has no required third-party packages.
+### Claude Code
 
 ```bash
-cd auradesign-agent
-python aura.py preset bumaga --output AURADESIGN.md
-python aura.py generate --contract AURADESIGN.md --niche bumaga --output index.html
+mkdir -p .claude/agents
+cp path/to/aura-designer/.claude/agents/*.md .claude/agents/
 ```
 
-From the repository root:
+### Codex
+
+```bash
+mkdir -p .codex/agents
+cp path/to/aura-designer/.codex/agents/*.md .codex/agents/
+```
+
+Полная инструкция: [`docs/install.md`](docs/install.md)
+
+## Запуск CLI
+
+CLI написан на Python 3 и не требует сторонних библиотек.
 
 ```bash
 python "auradesign-agent/aura.py" preset bumaga --output "auradesign-agent/AURADESIGN.md"
 python "auradesign-agent/aura.py" generate --contract "auradesign-agent/AURADESIGN.md" --niche bumaga --output "auradesign-agent/index.html"
 ```
 
-## Cursor Subagent Format
+Сквозной pipeline:
 
-Aura Designer follows the official Cursor subagent format:
-
-```markdown
----
-name: aura-designer
-description: Aura Designer by Kovcheg. Use proactively when creating or improving websites and AURADESIGN.md contracts.
-model: inherit
-readonly: false
-is_background: false
----
-
-Subagent prompt...
+```bash
+python "auradesign-agent/aura.py" pipeline --url "https://example.com" --output "auradesign-agent/index.html"
 ```
 
-Project agents live in `.cursor/agents/`. User-global agents live in `~/.cursor/agents/`.
+## Что такое AURADESIGN.md
 
-## Asset Tools
+`AURADESIGN.md` — главный контракт дизайна для ИИ-агента. Он состоит из двух слоев:
 
-When running inside Cursor with MCP tools available, Aura Designer can coordinate:
+- YAML frontmatter: точные токены для цветов, типографики, spacing, radii, компонентов и motion.
+- Markdown body: дизайнерская логика, настроение, правила композиции, доступность, поведение компонентов, asset policy и запреты.
 
-- `gpt-image-2` for generated hero and case-study images.
-- `recraft_remove_background` for transparent PNG assets.
+Пример хорошего контракта лежит в [`AURADESIGN.md`](AURADESIGN.md), а эталон BUMAGA — в [`auradesign-agent/presets/bumaga.md`](auradesign-agent/presets/bumaga.md).
 
-The Python CLI includes high-quality transparent fallbacks so it can still run without MCP access.
+## Строгие правила Aura
 
-## Design Rules
+- Никаких emoji в интерфейсе. Только SVG, CSS-формы или сгенерированные ассеты.
+- Никаких прозрачных primary-кнопок, если это не осознанное решение с нормальной рамкой и контрастом.
+- Никакого черного текста на черном фоне и белого текста на белом фоне.
+- Hero-блок должен быть полноценным: композиция, заголовок, CTA, ассет, адаптив.
+- Картинки должны быть сгенерированы или осознанно выбраны. Нельзя вставлять случайные плейсхолдеры.
+- Если нужен объект в hero, фон должен быть удален.
 
-- No emojis in generated UI. Use inline SVG, CSS shapes, or generated assets.
-- `AURADESIGN.md` must be detailed enough for another agent to reproduce the design.
-- Full website pages only. Do not ship unfinished demo frames.
-- Primary buttons must be readable, filled or intentionally outlined, and tested for contrast.
-- Hero blocks require real composition, headline hierarchy, CTA pair, asset placement, and responsive behavior.
-- Generated images must be intentional. Do not use random placeholder images when the user requested generated assets.
+## Лицензия
 
-## Repository Hygiene
-
-This repository intentionally excludes research dumps, cloned reference repositories, screenshots, local caches, and generated request files. The distributable package is the Aura Designer code, subagent definitions, rules, presets, docs, and example output.
+MIT. См. [`LICENSE`](LICENSE).

@@ -1,10 +1,8 @@
-# Installing Aura Designer As A Cursor Subagent
+# Установка Aura Designer как sub-agent
 
-Aura Designer is distributed as Markdown subagent files.
+Aura Designer распространяется как Markdown-файлы sub-agent. Их можно поставить в Cursor, Claude Code или Codex.
 
-## Project Install
-
-Copy the agents into a project:
+## Установка в проект
 
 ```bash
 mkdir -p your-project/.cursor/agents
@@ -12,45 +10,45 @@ cp .cursor/agents/aura-designer.md your-project/.cursor/agents/
 cp .cursor/agents/aura-design-reviewer.md your-project/.cursor/agents/
 ```
 
-Use:
+Вызов в Cursor:
 
 ```text
-/aura-designer scan this URL and create AURADESIGN.md plus the page
-/aura-design-reviewer check the final page for contrast, responsiveness, and design quality
+/aura-designer просканируй URL, создай AURADESIGN.md и собери страницу
+/aura-design-reviewer проверь финальную страницу на контраст, адаптив и качество дизайна
 ```
 
-## Global Install
+## Глобальная установка
 
-Copy the agents into the Cursor user folder:
+Скопируйте агентов в пользовательскую папку Cursor:
 
 ```bash
 mkdir -p ~/.cursor/agents
 cp .cursor/agents/*.md ~/.cursor/agents/
 ```
 
-Global agents are available in every Cursor project for the current user.
+Глобальные агенты доступны во всех проектах текущего пользователя.
 
-## Compatibility Folders
+## Совместимые папки
 
-The repository also includes:
+В репозитории также есть:
 
 ```text
 .claude/agents/
 .codex/agents/
 ```
 
-These mirror the Cursor subagent definitions for environments that support Claude/Codex-style agent folders.
+Это копии agent-файлов для сред, которые читают Claude/Codex-style директории.
 
-## Frontmatter Fields
+## Поля frontmatter
 
-Aura Designer uses the official Cursor fields:
+Aura Designer использует официальный формат Cursor:
 
 ```yaml
 name: aura-designer
-description: Short routing description used by Cursor for delegation
+description: Короткое описание, по которому IDE понимает, когда запускать агента
 model: inherit
 readonly: false
 is_background: false
 ```
 
-Use `aura-designer` for implementation and `aura-design-reviewer` for readonly critique.
+Используйте `aura-designer` для генерации и правок, а `aura-design-reviewer` для readonly-критики и QA.

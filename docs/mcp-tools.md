@@ -1,41 +1,41 @@
-# MCP Tools Used By Aura Designer
+# MCP-инструменты Aura Designer
 
-Aura Designer can run without MCP tools by using fallback assets, but its best workflow is inside Cursor with image and background-removal tools available.
+Aura Designer может работать без MCP-инструментов за счет fallback-ассетов, но лучший режим работы — внутри Cursor, где доступны генерация изображений и удаление фона.
 
-## Expected Tools
+## Ожидаемые инструменты
 
 ### `gpt-image-2`
 
-Used for:
+Используется для:
 
-- Hero images.
-- Case-study images.
-- Product objects.
-- 3D or editorial visual assets.
-- Style-specific visual motifs.
+- Hero-изображений.
+- Изображений для кейсов.
+- Продуктовых объектов.
+- 3D или editorial ассетов.
+- Визуальных мотивов под конкретный стиль.
 
-Rules:
+Правила:
 
-- Generate assets from the current `AURADESIGN.md` style, not from generic prompts.
-- Keep image prompts concrete: subject, composition, material, lighting, camera angle, color palette, background requirements.
-- Review output before inserting it into the page.
+- Генерировать ассеты из текущего стиля `AURADESIGN.md`, а не из generic-промптов.
+- Делать промпты конкретными: объект, композиция, материал, свет, камера, палитра, требования к фону.
+- Проверять результат перед вставкой на страницу.
 
 ### `recraft_remove_background`
 
-Used for:
+Используется для:
 
-- Transparent hero PNGs.
-- Floating product or object assets.
-- Case-study cards where the object should sit on colored panels.
+- Прозрачных hero PNG.
+- Парящих продуктовых или предметных ассетов.
+- Карточек кейсов, где объект должен лежать на цветной панели.
 
-Rules:
+Правила:
 
-- Remove background before placing hero objects on complex layouts.
-- Do not place dark uncut images on dark sections.
-- Prefer transparent PNG assets for neo-brutalist, glassmorphism, and editorial hero compositions.
+- Удалять фон перед размещением объекта на сложной композиции.
+- Не ставить темные неочищенные изображения на темные секции.
+- Для нео-брутализма, glassmorphism и editorial hero-композиций предпочитать прозрачные PNG.
 
-## Cursor Subagent Behavior
+## Поведение sub-agent
 
-Subagents inherit the parent agent's MCP tools. If a local environment has different MCP names, adapt the subagent prompt or parent instruction to the available tool names.
+Sub-agent наследует MCP-инструменты родительского агента. Если в локальной среде инструменты называются иначе, нужно адаптировать prompt или инструкцию под реальные имена инструментов.
 
-When calling MCP tools, first inspect the tool schema in the local Cursor MCP descriptors and then call the exact tool name with valid arguments.
+Перед вызовом MCP-инструмента нужно прочитать его schema/descriptor в локальных Cursor MCP descriptors и вызывать точное имя инструмента с валидными аргументами.
