@@ -143,11 +143,13 @@ def handle_generate(args):
             print("[Error] Ошибка: Нет файлов спецификации для сборки!", file=sys.stderr)
             sys.exit(1)
 
-    # 1. Сначала подбираем/генерируем безфоновый ассет через Asset Manager
-    print("[Generate] Поиск и оптимизация графических ассетов...")
+    # 1. Получаем только реальный MCP KV ассет. Фоллбеки запрещены.
+    print("[Generate] Проверка MCP KV ассета...")
     asset_args = ["--niche", args.niche]
     if args.prompt:
         asset_args += ["--prompt", args.prompt]
+    if getattr(args, "asset_url", None):
+        asset_args += ["--mcp-asset-url", args.asset_url]
         
     success, asset_output = run_script("aura_asset_manager.py", asset_args)
     
@@ -160,7 +162,8 @@ def handle_generate(args):
                 break
                 
     if not asset_url:
-        print("[Generate] Предупреждение: Ссылка на ассет не получена. Будет использован стандартный плейсхолдер.")
+        print("[Generate][BLOCKED] Ссылка на MCP KV ассет не получена. Нельзя собирать страницу с картинкой-заглушкой.", file=sys.stderr)
+        sys.exit(2)
         
     # 2. Передаём ассет генератору и собираем страницу
     print("[Generate] Генерация и сборка адаптивного HTML/CSS кода...")
@@ -329,6 +332,7 @@ def main():
     generate_parser.add_argument("--contract", help="Файл дизайн-контракта (по умолчанию AURADESIGN.md)")
     generate_parser.add_argument("--niche", default="saas", help="Ниша подбора ассета (saas, fintech, glassmorphism, pets, cosmic, alpinism, bumaga)")
     generate_parser.add_argument("--prompt", help="Кастомный ИИ-промпт для генерации картинки")
+    generate_parser.add_argument("--asset-url", help="URL прозрачного ассета, полученный через MCP KV recraft_remove_background")
     generate_parser.add_argument("--output", help="Файл сохранения сайта (по умолчанию index.html)")
 
     # Команда replicate

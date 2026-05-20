@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DIGITAL БЮРО BUMAGA — Интеллектуальный веб-интерфейс</title>
+    <title>Duong Minh Thanh aka. WXLF — Graphic Designer Portfolio</title>
     
     <!-- Подключаем необходимые шрифты -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,28 +19,22 @@
                     fontFamily: {
                         sans: ['"Plus Jakarta Sans"', 'sans-serif'],
                         display: ['"Unbounded"', 'sans-serif'],
-                        mono: ['"IBM Plex Mono"', 'monospace'],
-                        serif: ['"Georgia"', 'serif']
                     },
                     colors: {
                         brand: {
-                            primary: '#ff33a0',
-                            'primary-hover': '#e6228f',
+                            primary: '#1153fc',
+                            'primary-hover': '#0a45d0',
                             'on-primary': '#ffffff',
-                            secondary: '#3bee33',
-                            'on-secondary': '#0c0e13',
-                            tertiary: '#0066ff',
+                            secondary: '#facc15',
+                            'on-secondary': '#09122c',
+                            tertiary: '#9333ea',
                             'on-tertiary': '#ffffff',
-                            background: '#ffffff',
-                            'on-background': '#0c0e13',
+                            background: '#1153fc',
+                            'on-background': '#ffffff',
                             'surface-lowest': '#ffffff',
-                            'surface-low': '#0c0e13',
-                            'surface-container': '#ffee11',
-                            'surface-high': '#ff7700',
-                            outline: '#0c0e13',
+                            'surface-low': '#09122c',
+                            outline: '#09122c',
                             'outline-variant': '#e2e8f0',
-                            container: '#ffee11',
-                            high: '#ff7700',
                         }
                     }
                 }
@@ -51,535 +45,405 @@
     <style>
         /* CSS Переменные AuraDesign */
         :root {
-            --radius-sm: 4px;
-            --radius-default: 8px;
-            --radius-md: 16px;
-            --radius-lg: 24px;
-            --radius-xl: 32px;
+            --radius-sm: 6px;
+            --radius-default: 12px;
+            --radius-md: 20px;
+            --radius-lg: 30px;
+            --radius-xl: 40px;
             
-            --brand-primary: #ff33a0;
-            --brand-primary-hover: #e6228f;
-            --brand-on-primary: #ffffff;
-            --brand-tertiary: #0066ff;
-            --brand-on-tertiary: #ffffff;
-            --brand-background: #ffffff;
-            --brand-on-background: #0c0e13;
+            --brand-primary: #1153fc;
+            --brand-background: #1153fc;
+            --brand-on-background: #ffffff;
+            --brand-surface-lowest: #ffffff;
+            --brand-surface-low: #09122c;
         }
 
-        /* Custom scrollbar none */
-        .scrollbar-none::-webkit-scrollbar {
-            display: none;
-        }
-        .scrollbar-none {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-
-        
         body {
-            background-color: #ffffff;
-            color: #0c0e13;
+            background-color: #247dff;
+            color: #09122c;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
         }
-        /* Neo-brutalist buttons override */
-        .btn-primary {
-            background-color: var(--brand-primary) !important;
-            color: var(--brand-on-primary) !important;
-            border: 3px solid #0c0e13 !important;
-            border-radius: var(--radius-md) !important;
-            box-shadow: 4px 4px 0px #0c0e13 !important;
-            transition: all 100ms ease-out !important;
+
+        /* Анимации парения для элементов */
+        @keyframes float-gentle {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(1deg); }
         }
-        .btn-primary:hover {
-            background-color: var(--brand-primary-hover) !important;
-            transform: translate(2px, 2px) !important;
-            box-shadow: 2px 2px 0px #0c0e13 !important;
+        @keyframes float-reverse {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(8px) rotate(-1deg); }
         }
-        .btn-primary:active {
-            transform: translate(4px, 4px) !important;
-            box-shadow: 0px 0px 0px #0c0e13 !important;
+        @keyframes pencil-float {
+            0%, 100% { transform: translateY(0px) rotate(-15deg); }
+            50% { transform: translateY(-10px) rotate(-13deg); }
         }
-        
-        .card-interactive {
-            background-color: #ffffff !important;
-            border: 3px solid #0c0e13 !important;
-            border-radius: var(--radius-xl) !important;
-            box-shadow: 6px 6px 0px #0c0e13 !important;
-            transition: all 150ms ease-out !important;
+        @keyframes text-glow {
+            0%, 100% { opacity: 0.9; }
+            50% { opacity: 1; filter: drop-shadow(0 0 15px rgba(255,255,255,0.2)); }
         }
-        .card-interactive:hover {
-            transform: translate(3px, 3px) !important;
-            box-shadow: 3px 3px 0px #0c0e13 !important;
-            border-color: #0c0e13 !important;
+
+        .animate-float-1 {
+            animation: float-gentle 6s ease-in-out infinite;
         }
-        
-        /* Ticker ticker animations */
-        @keyframes ticker-slide {
-            0% { transform: translate3d(0, 0, 0); }
-            100% { transform: translate3d(-50%, 0, 0); }
+        .animate-float-2 {
+            animation: float-reverse 7s ease-in-out infinite;
         }
-        .ticker-wrap {
-            overflow: hidden;
-            white-space: nowrap;
+        .animate-float-3 {
+            animation: float-gentle 5s ease-in-out infinite 1s;
         }
-        .ticker-content {
-            display: inline-block;
-            animation: ticker-slide 25s linear infinite;
+        .animate-pencil {
+            animation: pencil-float 5s ease-in-out infinite;
         }
         
+        /* Стилизация для интерактивных капсул */
+        .badge-interactive {
+            transition: all 250ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+        .badge-interactive:hover {
+            transform: scale(1.05) translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Стилизация софта */
+        .software-card {
+            transition: all 200ms ease-out;
+            border: 2px solid #09122c;
+            box-shadow: 4px 4px 0px #09122c;
+        }
+        .software-card:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px #09122c;
+        }
     </style>
 </head>
-<body class="min-h-screen bg-[#f8fafc] font-sans overflow-x-hidden relative" style="background-image: radial-gradient(rgba(0,0,0,0.06) 1.5px, transparent 1.5px); background-size: 24px 24px;">
+<body class="bg-[#247dff] min-h-screen flex flex-col justify-between">
 
-    <!-- Top Navigation Bar -->
-    <header class="sticky top-0 bg-white/95 backdrop-blur-md border-b-4 border-black z-40">
-        <div class="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
-            <!-- Logo -->
-            <a href="#" class="flex items-center space-x-3">
-                <div class="w-12 h-12 rounded-xl bg-brand-primary border-3 border-black flex items-center justify-center text-white shadow-[3px_3px_0px_#000]">
-                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/></svg>
-                </div>
-                <span class="text-lg font-black text-black tracking-tight font-display">BUMAGA</span>
-            </a>
-            <!-- Links -->
-            <nav class="hidden md:flex items-center space-x-10 text-sm font-black font-display uppercase tracking-tight text-black">
-                <a href="#features" class="hover:text-brand-primary transition-all">Кейсы</a>
-                <a href="#about" class="hover:text-brand-primary transition-all">Команда</a>
-                <a href="#contacts" class="hover:text-brand-primary transition-all font-bold">Контакты</a>
-                <a href="#demo" class="hover:text-brand-primary transition-all font-bold">Бриф</a>
-            </nav>
-            <!-- CTA -->
-            <a href="#demo" class="btn-primary px-6 py-3 text-xs font-black rounded-xl uppercase font-display inline-block">
-                Обсудить бриф
-            </a>
-        </div>
-    </header>
-
-    <!-- Vertical Page Content -->
-    <main class="w-full">
-        <!-- Hero Section -->
-        <section class="relative min-h-[85vh] bg-[#f8fafc] border-b-4 border-black overflow-hidden flex items-center py-20 lg:py-32" style="background-image: linear-gradient(#e2e8f0 1.5px, transparent 1.5px), linear-gradient(90deg, #e2e8f0 1.5px, transparent 1.5px); background-size: 36px 32px;">
-            <!-- Floating Decorative Paper Scrap Stickers -->
-            <div class="absolute top-10 left-8 bg-[#3bee33] text-black font-display font-black text-xs px-3 py-1.5 rounded border-2 border-black shadow-[3px_3px_0px_#000] rotate-[-8deg] hidden md:block animate-bounce select-none z-10" style="animation-duration: 4s;">
-                [ BUMAGA.DIGITAL ]
-            </div>
-            <div class="absolute bottom-16 left-12 bg-[#ffee11] text-black font-display font-black text-xs px-3 py-1.5 rounded border-2 border-black shadow-[3px_3px_0px_#000] rotate-[12deg] hidden md:block select-none z-10">
-                [ EMOTIONAL SMM ]
-            </div>
-            <div class="absolute top-20 right-16 bg-[#ff7700] text-white font-display font-black text-xs px-3 py-1.5 rounded border-2 border-black shadow-[3px_3px_0px_#000] rotate-[6deg] hidden md:block animate-bounce select-none z-10" style="animation-duration: 6s;">
-                [ 15+ CREATIVES ]
-            </div>
-
-            <!-- Main Layout Container -->
-            <div class="max-w-7xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-12 gap-16 items-center relative z-20">
-                <!-- Text Column -->
-                <div class="lg:col-span-7 space-y-8 text-left">
-                    <div class="inline-block px-4 py-2 bg-[#ff33a0]/10 border-3 border-[#ff33a0] text-[#ff33a0] text-xs font-black rounded-lg uppercase tracking-wider font-display rotate-[-1.5deg] shadow-[3px_3px_0px_#000]">
-                        ✦ [ DIGITAL BUREAU BUMAGA ] ✦
-                    </div>
-                    
-                    <h1 class="text-5xl md:text-8xl font-black text-black font-display uppercase tracking-tight leading-[0.95] relative">
-                        <span class="block relative z-10">КРЕАТИВНОЕ</span>
-                        <span class="block text-[#ff33a0] font-extrabold translate-x-1.5 rotate-[-1.5deg] relative z-20">БЮРО</span>
-                        <span class="block text-black relative z-30">BUMAGA</span>
-                    </h1>
-                    
-                    <p class="text-black text-lg md:text-xl font-sans font-black leading-relaxed max-w-2xl bg-white p-5 rounded-2xl border-3 border-black shadow-[6px_6px_0px_#0c0e13]">
-                        Делаем все, чтобы ваши цифровые бренды любили, замечали и выбирали. Креативный SMM, яркий видео-продакшн, спецпроекты и долгосрочные бренд-стратегии с бумажной душой.
-                    </p>
-                    
-                    <div class="flex flex-wrap gap-6 pt-4">
-                        <a href="#demo" class="btn-primary px-10 py-5 text-base font-black shadow-sm font-display uppercase inline-block transform hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-[0px_0px_0px_#0c0e13]">
-                            Начать проект
-                        </a>
-                        <a href="#features" class="px-10 py-5 bg-[#3bee33] text-black text-base font-black rounded-[var(--radius-md)] border-3 border-black shadow-[6px_6px_0px_#0c0e13] hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-[0px_0px_0px_#0c0e13] transition-all font-display uppercase inline-block">
-                            Смотреть кейсы
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Image Column -->
-                <div class="lg:col-span-5 flex justify-center relative">
-                    <!-- Layered Card Collage -->
-                    <div class="relative w-full max-w-[420px] aspect-square rounded-[32px] border-4 border-black bg-white shadow-[16px_16px_0px_#0c0e13] p-6 relative group overflow-hidden flex items-center justify-center transform rotate-[1deg] hover:rotate-0 transition-all">
-                        <div class="absolute inset-0 bg-gradient-to-tr from-[#ff33a0]/10 to-[#3bee33]/10 pointer-events-none"></div>
-                        <img src="https://tempfile.aiquickdraw.com/r/e693d4dd2cb169eb7929ba6e469730ff_1779311482_3qzc84uf.png" class="w-[90%] h-[90%] object-contain animate-float" alt="AuraDesign Central Asset">
-                        
-                        <!-- Floating paper scrap over image -->
-                        <div class="absolute bottom-4 left-4 bg-white text-black text-[10px] font-mono font-bold border-2 border-black px-2 py-1 rounded shadow-[2px_2px_0px_#000] rotate-[-3deg]">
-                            FILE_ID: BUMAGA_3D_ASSET
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
+    <!-- ВЕРХНИЙ БЛОК: HERO SECTION -->
+    <section class="relative w-full overflow-x-hidden overflow-y-visible pt-8 pb-0 md:pt-10 md:pb-0 flex flex-col items-center justify-center bg-[#247dff] z-0 min-h-[520px] md:min-h-[620px]">
         
-        <!-- Блок "ДЕЛАЕМ ВСЕ, ЧТОБЫ ВАС..." (Тёмная плита с парящими стикерами) -->
-        <section class="py-24 bg-[#0c0e13] border-b-4 border-black relative overflow-hidden" style="background-image: radial-gradient(rgba(255,255,255,0.05) 1.5px, transparent 1.5px); background-size: 16px 16px;">
-            <div class="max-w-7xl mx-auto px-6 text-center space-y-12">
-                <span class="text-xs font-black uppercase tracking-widest text-[#3bee33] font-display">[ BUREAU_CAPSULES ]</span>
-                <h2 class="text-4xl md:text-6xl font-black text-white font-display tracking-tight leading-none uppercase">
-                    ДЕЛАЕМ ВСЕ, ЧТОБЫ ВАС
-                </h2>
-                
-                <div class="relative min-h-[300px] max-w-4xl mx-auto mt-8 select-none">
-                    <!-- Blue Triangle SVG Floating -->
-                    <div class="absolute top-2 left-10 text-[#0066ff] animate-pulse">
-                        <svg class="w-12 h-12" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3l10 16H2L12 3z"/></svg>
-                    </div>
-                    <!-- Green Spiral Circle Floating -->
-                    <div class="absolute bottom-4 left-16 text-[#3bee33] animate-spin" style="animation-duration: 10s">
-                        <svg class="w-16 h-16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="8"/><path d="M12 8a4 4 0 11-4 4"/></svg>
-                    </div>
-                    <!-- Retro Yellow Heart Floating -->
-                    <div class="absolute bottom-6 right-20 text-[#ffee11] animate-bounce">
-                        <svg class="w-12 h-12" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-                    </div>
-                    <!-- Pink Star Floating -->
-                    <div class="absolute top-10 right-12 text-[#ff33a0] animate-pulse">
-                        <svg class="w-12 h-12" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.787 1.4 8.168L12 18.896l-7.334 3.857 1.4-8.168L.132 9.21l8.2-1.192z"/></svg>
-                    </div>
-
-                    <!-- Overlapping capsule text cards (Desktop responsive flex grid) -->
-                    <div class="flex flex-wrap justify-center gap-6 pt-12 relative z-10 max-w-3xl mx-auto">
-                        <!-- ЛЮБИЛИ -->
-                        <div class="px-8 py-4 bg-[#ff33a0] text-white text-xl md:text-3xl font-black rounded-full border-4 border-black shadow-[6px_6px_0px_#000] rotate-[-3deg] hover:rotate-0 hover:translate-y-1 hover:shadow-[2px_2px_0px_#000] transition-all cursor-pointer font-display uppercase">
-                            ЛЮБИЛИ
-                        </div>
-                        <!-- ЗАМЕЧАЛИ -->
-                        <div class="px-8 py-4 bg-[#0066ff] text-white text-xl md:text-3xl font-black rounded-full border-4 border-black shadow-[6px_6px_0px_#000] rotate-[4deg] hover:rotate-0 hover:translate-y-1 hover:shadow-[2px_2px_0px_#000] transition-all cursor-pointer font-display uppercase">
-                            ЗАМЕЧАЛИ
-                        </div>
-                        <!-- ЗАХОТЕЛИ -->
-                        <div class="px-8 py-4 bg-[#3bee33] text-black text-xl md:text-3xl font-black rounded-full border-4 border-black shadow-[6px_6px_0px_#000] rotate-[-5deg] hover:rotate-0 hover:translate-y-1 hover:shadow-[2px_2px_0px_#000] transition-all cursor-pointer font-display uppercase">
-                            ЗАХОТЕЛИ
-                        </div>
-                        <!-- ОБСУЖДАЛИ -->
-                        <div class="px-8 py-4 bg-[#ff7700] text-white text-xl md:text-3xl font-black rounded-full border-4 border-black shadow-[6px_6px_0px_#000] rotate-[3deg] hover:rotate-0 hover:translate-y-1 hover:shadow-[2px_2px_0px_#000] transition-all cursor-pointer font-display uppercase">
-                            ОБСУЖДАЛИ
-                        </div>
-                        <!-- ВЫБИРАЛИ -->
-                        <div class="px-8 py-4 bg-[#ffee11] text-black text-xl md:text-3xl font-black rounded-full border-4 border-black shadow-[6px_6px_0px_#000] rotate-[-2deg] hover:rotate-0 hover:translate-y-1 hover:shadow-[2px_2px_0px_#000] transition-all cursor-pointer font-display uppercase">
-                            ВЫБИРАЛИ
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Блок "ТОНКО ЧУВСТВУЕМ БРЕНДЫ" (Светлая бумажная основа) -->
-        <section class="py-24 bg-[#f8fafc] border-b-4 border-black relative">
-            <div class="max-w-7xl mx-auto px-6 text-center space-y-12">
-                <span class="text-xs font-black text-brand-primary uppercase tracking-widest font-display block">[ BRAND_EMPATHY ]</span>
-                <h2 class="text-4xl md:text-6xl font-black text-black font-display tracking-tight uppercase leading-none">
-                    ТОНКО ЧУВСТВУЕМ БРЕНДЫ
-                </h2>
-                
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 pt-8 max-w-5xl mx-auto">
-                    <div class="p-8 bg-brand-secondary text-black border-4 border-black rounded-[24px] shadow-[6px_6px_0px_#0c0e13] transform rotate-[-1.5deg] hover:rotate-0 transition-all animate-float" style="animation-duration: 4.5s">
-                        <span class="block text-4xl md:text-5xl font-black font-display mb-2">20+</span>
-                        <span class="text-sm font-bold uppercase tracking-wider font-mono">УСПЕШНЫХ ПРОЕКТОВ</span>
-                    </div>
-                    <div class="p-8 bg-brand-primary text-white border-4 border-black rounded-[24px] shadow-[6px_6px_0px_#0c0e13] transform rotate-[1deg] hover:rotate-0 transition-all animate-float" style="animation-duration: 5s">
-                        <span class="block text-4xl md:text-5xl font-black font-display mb-2">15</span>
-                        <span class="text-sm font-bold uppercase tracking-wider font-mono">ЧЕЛОВЕК В КОМАНДЕ</span>
-                    </div>
-                    <div class="p-8 bg-brand-container text-black border-4 border-black rounded-[24px] shadow-[6px_6px_0px_#0c0e13] transform rotate-[-1deg] hover:rotate-0 transition-all animate-float" style="animation-duration: 5.5s">
-                        <span class="block text-4xl md:text-5xl font-black font-display mb-2">5 ЛЕТ</span>
-                        <span class="text-sm font-bold uppercase tracking-wider font-mono">НА РЫНКЕ SMM</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Пересекающиеся диагональные сигнальные ленты-тикеры -->
-        <div class="relative w-full h-44 bg-white border-y-4 border-black overflow-hidden z-20 flex items-center justify-center" style="background-image: radial-gradient(rgba(0,0,0,0.06) 1px, transparent 1px); background-size: 16px 16px;">
-            <!-- Желтая сигнальная лента -->
-            <div class="absolute w-[140%] h-14 bg-[#ffee11] border-y-4 border-black flex items-center ticker-wrap rotate-[-3deg] shadow-[0_8px_0px_rgba(0,0,0,1)] z-10">
-                <div class="ticker-content text-base font-black text-black font-display tracking-wider uppercase py-2">
-                    Скрепка • Золотой Кубок • WURTH • FIFA • АК БАРС • Караван • Скрепка • Золотой Кубок • WURTH • FIFA • АК БАРС • Караван • Скрепка • Золотой Кубок • WURTH • FIFA • АК БАРС • Караван
-                </div>
-            </div>
-            <!-- Розовая сигнальная лента -->
-            <div class="absolute w-[140%] h-14 bg-[#ff33a0] border-y-4 border-black flex items-center ticker-wrap rotate-[2deg] shadow-[0_8px_0px_rgba(0,0,0,1)] z-20">
-                <div class="ticker-content text-base font-black text-white font-display tracking-wider uppercase py-2" style="animation-direction: reverse; animation-duration: 22s;">
-                    BUMAGA DIGITAL • SMM AGENCY • PRODUCTION TEAM • BRAND STRATEGY • EVENT MAKERS • BUMAGA DIGITAL • SMM AGENCY • PRODUCTION TEAM • BRAND STRATEGY • EVENT MAKERS
-                </div>
-            </div>
+        <!-- Фоновый бруталистский заголовок 'PORTFOLIO' (z-index: 10, за ребятами) -->
+        <div class="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-10 pt-4 pb-20">
+            <h1 class="font-display font-black text-[#ffffff] tracking-[-0.05em] uppercase text-center text-[13vw] leading-none opacity-95" style="animation: text-glow 4s ease-in-out infinite;">
+                PORTFOLIO
+            </h1>
         </div>
 
-        <!-- Раздел КЕЙСЫ -->
-        <section id="features" class="py-24 bg-white relative border-b-4 border-black">
-            <div class="max-w-7xl mx-auto px-6 space-y-12">
-                <div class="text-center space-y-4">
-                    <span class="text-xs font-black text-brand-primary uppercase tracking-widest block font-display">[ CASES_GALLERY ]</span>
-                    <h2 class="text-4xl md:text-5xl font-black text-black tracking-tight font-display uppercase leading-none">НАШИ КЕЙСЫ</h2>
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <!-- Кейс 1 -->
-                    <div class="card-interactive p-0 rounded-t-[32px] overflow-hidden flex flex-col justify-between" style="min-height: 380px;">
-                        <div class="bg-[#3bee33] h-52 border-b-3 border-black relative flex items-center justify-center p-4">
-                            <div class="absolute inset-3 border-3 border-dashed border-black/20 rounded-2xl"></div>
-                            <img src="https://tempfile.aiquickdraw.com/images/chatgpt/file_00000000e75071fd9fd1f9c4b7258abd.png" class="absolute w-28 h-28 object-contain z-10 animate-float" style="animation-duration: 5s">
-                            <span class="absolute bottom-2 text-xs font-black text-black uppercase font-display bg-white px-3 py-1 border-2 border-black rounded-lg shadow-[2px_2px_0px_#000] rotate-[-2deg] z-20">Караван</span>
-                        </div>
-                        <div class="p-6 bg-white border-t border-black flex-grow flex items-center justify-center">
-                            <h4 class="text-sm font-black text-black font-display tracking-tight text-center uppercase">Редизайн упаковки и мерча</h4>
-                        </div>
-                    </div>
-                    
-                    <!-- Кейс 2 -->
-                    <div class="card-interactive p-0 rounded-t-[32px] overflow-hidden flex flex-col justify-between" style="min-height: 380px;">
-                        <div class="bg-[#ff33a0] h-52 border-b-3 border-black relative flex items-center justify-center p-4">
-                            <div class="absolute inset-3 border-3 border-dashed border-black/20 rounded-2xl"></div>
-                            <img src="https://tempfile.aiquickdraw.com/images/chatgpt/file_0000000033471f7ae58711261f28d8d.png" class="absolute w-28 h-28 object-contain z-10 animate-float" style="animation-duration: 4s">
-                            <span class="absolute bottom-2 text-xs font-black text-white uppercase font-display bg-black px-3 py-1 border-2 border-[#ffee11] rounded-lg shadow-[2px_2px_0px_#fff] rotate-[3deg] z-20">Игристые Вина</span>
-                        </div>
-                        <div class="p-6 bg-white border-t border-black flex-grow flex items-center justify-center">
-                            <h4 class="text-sm font-black text-black font-display tracking-tight text-center uppercase">Креативный новогодний SMM</h4>
-                        </div>
-                    </div>
-
-                    <!-- Кейс 3 -->
-                    <div class="card-interactive p-0 rounded-t-[32px] overflow-hidden flex flex-col justify-between" style="min-height: 380px;">
-                        <div class="bg-[#ffee11] h-52 border-b-3 border-black relative flex items-center justify-center p-4">
-                            <div class="absolute inset-3 border-3 border-dashed border-black/20 rounded-2xl"></div>
-                            <img src="https://tempfile.aiquickdraw.com/images/chatgpt/file_000000009c4871fd89659ba12323bdd7.png" class="absolute w-28 h-28 object-contain z-10 animate-float" style="animation-duration: 6s">
-                            <span class="absolute bottom-2 text-xs font-black text-black uppercase font-display bg-white px-3 py-1 border-2 border-black rounded-lg shadow-[2px_2px_0px_#000] rotate-[-1deg] z-20">Тысяча Озёр</span>
-                        </div>
-                        <div class="p-6 bg-white border-t border-black flex-grow flex items-center justify-center">
-                            <h4 class="text-sm font-black text-black font-display tracking-tight text-center uppercase">Фермерский брендинг и SMM</h4>
-                        </div>
-                    </div>
-
-                    <!-- Кейс 4 -->
-                    <div class="card-interactive p-0 rounded-t-[32px] overflow-hidden flex flex-col justify-between" style="min-height: 380px;">
-                        <div class="bg-[#0066ff] h-52 border-b-3 border-black relative flex items-center justify-center p-4">
-                            <div class="absolute inset-3 border-3 border-dashed border-black/20 rounded-2xl"></div>
-                            <img src="https://tempfile.aiquickdraw.com/images/chatgpt/file_00000000d2e071fd928759dd666866cf.png" class="absolute w-28 h-28 object-contain z-10 animate-float" style="animation-duration: 5s">
-                            <span class="absolute bottom-2 text-xs font-black text-white uppercase font-display bg-black px-3 py-1 border-2 border-[#3bee33] rounded-lg shadow-[2px_2px_0px_#fff] rotate-[2deg] z-20">Серпак</span>
-                        </div>
-                        <div class="p-6 bg-white border-t border-black flex-grow flex items-center justify-center">
-                            <h4 class="text-sm font-black text-black font-display tracking-tight text-center uppercase">Рекламная кампания и спецпроект</h4>
-                        </div>
-                    </div>
-                </div>
+        <!-- Центральный слой: Ребята спина к спине (z-index: 20) -->
+        <div class="relative w-full max-w-[1100px] px-4 flex justify-center z-20 mt-4 md:mt-8 translate-y-16 md:translate-y-24">
+            <!-- Изображение ребят: сгенерировано через MCP KV gpt-image-2 и очищено через recraft_remove_background -->
+            <img src="https://tempfile.aiquickdraw.com/r/459ca3084f2e29ac680b83c7537d6e3b_1779316891_m62b39v8.png" class="w-full max-w-[760px] md:max-w-[830px] h-auto select-none pointer-events-none block drop-shadow-[0_20px_50px_rgba(0,0,0,0.15)]" alt="Duong Minh Thanh Profile">
+            
+            <!-- ОВЕРЛЕЙ-ПЛАШКИ (Выстраиваем интерактивные HTML-копии поверх прозрачного изображения) -->
+            
+            <!-- Слева: Приветствие I'M DUONG MINH THANH (Glassmorphism) -->
+            <div class="absolute left-[2%] md:left-[5%] top-[15%] md:top-[25%] max-w-[180px] sm:max-w-[240px] md:max-w-[320px] backdrop-blur-md bg-white/20 border border-white/30 p-3 md:p-5 rounded-2xl md:rounded-3xl shadow-lg hover:bg-white/25 transition-all duration-300 pointer-events-auto cursor-default group animate-float-1">
+                <span class="text-white/80 font-sans font-semibold text-xs md:text-sm uppercase tracking-wider block mb-1">Welcome to my world</span>
+                <h3 class="font-display font-extrabold text-white text-sm sm:text-base md:text-lg lg:text-xl leading-snug">
+                    I'M DUONG MINH THANH AKA. WXLF
+                </h3>
             </div>
-        </section>
 
-        <!-- Блок КЛАССНЫЙ SMM С ЧИСТОГО ЛИСТА -->
-        <section class="py-24 bg-[#0c0e13] border-b-4 border-black text-white" style="background-image: radial-gradient(rgba(255,255,255,0.03) 1.5px, transparent 1.5px); background-size: 16px 16px;">
-            <div class="max-w-7xl mx-auto px-6 text-center space-y-8">
-                <span class="text-xs font-black bg-brand-primary/10 text-brand-primary px-3 py-1 border-2 border-brand-primary rounded-full uppercase tracking-widest inline-block font-display">
-                    [ НАШИ УСЛУГИ ]
-                </span>
-                <h2 class="text-3xl md:text-5xl font-black text-white tracking-tight font-display uppercase leading-none">
-                    КЛАССНЫЙ SMM С ЧИСТОГО ЛИСТА
-                </h2>
-                
-                <div class="flex flex-wrap justify-center gap-4 pt-6 max-w-4xl mx-auto select-none">
-                    <span class="px-5 py-3 bg-[#1c1e23] text-white text-xs md:text-sm font-black border-2 border-black rounded-lg shadow-[3px_3px_0px_#000] uppercase font-display flex items-center"><span class="mr-2 text-brand-secondary">✦</span>SMM СТРАТЕГИЯ</span>
-                    <span class="px-5 py-3 bg-[#1c1e23] text-white text-xs md:text-sm font-black border-2 border-black rounded-lg shadow-[3px_3px_0px_#000] uppercase font-display flex items-center"><span class="mr-2 text-brand-primary">✦</span>ВИДЕО PRODUCTION</span>
-                    <span class="px-5 py-3 bg-[#1c1e23] text-white text-xs md:text-sm font-black border-2 border-black rounded-lg shadow-[3px_3px_0px_#000] uppercase font-display flex items-center"><span class="mr-2 text-brand-container">✦</span>PR & КРЕАТИВ</span>
-                    <span class="px-5 py-3 bg-[#1c1e23] text-white text-xs md:text-sm font-black border-2 border-black rounded-lg shadow-[3px_3px_0px_#000] uppercase font-display flex items-center"><span class="mr-2 text-brand-high">✦</span>ТАРГЕТ & РЕКЛАМА</span>
-                    <span class="px-5 py-3 bg-[#1c1e23] text-white text-xs md:text-sm font-black border-2 border-black rounded-lg shadow-[3px_3px_0px_#000] uppercase font-display flex items-center"><span class="mr-2 text-brand-secondary">✦</span>EVENTS</span>
-                    <span class="px-5 py-3 bg-[#1c1e23] text-white text-xs md:text-sm font-black border-2 border-black rounded-lg shadow-[3px_3px_0px_#000] uppercase font-display flex items-center"><span class="mr-2 text-brand-primary">✦</span>КРЕАТИВНЫЕ СПЕЦПРОЕКТЫ</span>
-                </div>
+            <!-- Справа вверху: Open to work с волнистой стрелочкой -->
+            <div class="absolute right-[4%] md:right-[8%] top-[8%] md:top-[12%] bg-white border-2 border-[#09122c] py-2 px-3 md:py-3 md:px-5 rounded-full shadow-[4px_4px_0px_#09122c] flex items-center gap-2 md:gap-3 badge-interactive cursor-pointer animate-float-2 pointer-events-auto">
+                <span class="w-2.5 h-2.5 md:w-3.5 md:h-3.5 bg-green-500 rounded-full animate-ping absolute"></span>
+                <span class="w-2.5 h-2.5 md:w-3.5 md:h-3.5 bg-green-500 rounded-full relative"></span>
+                <span class="font-display font-extrabold text-xs md:text-sm tracking-tight text-[#09122c] uppercase">open to work</span>
+                <!-- Волнистая стрелка SVG -->
+                <svg class="w-4 h-4 md:w-6 md:h-6 text-[#1153fc] transform rotate-12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                </svg>
             </div>
-        </section>
 
-        <!-- Блок НАША КОМАНДА -->
-        <section id="about" class="py-24 bg-white relative border-b-4 border-black">
-            <div class="max-w-7xl mx-auto px-6 space-y-12">
-                <div class="text-center space-y-4">
-                    <span class="text-xs font-black text-brand-primary uppercase tracking-widest block font-display">[ OUR_TEAM ]</span>
-                    <h2 class="text-4xl md:text-5xl font-black text-black tracking-tight font-display uppercase leading-none">НАША КОМАНДА</h2>
+            <!-- Справа посередине: Graphic Designer с иконкой пера -->
+            <div class="absolute right-[1%] md:right-[3%] top-[30%] md:top-[40%] bg-white border-2 border-[#09122c] py-2 px-3 md:py-3 md:px-5 rounded-full shadow-[4px_4px_0px_#09122c] flex items-center gap-2 md:gap-3 badge-interactive cursor-pointer animate-float-3 pointer-events-auto">
+                <div class="p-1 bg-[#1153fc] rounded-full text-white">
+                    <!-- Иконка Пера SVG -->
+                    <svg class="w-3 h-3 md:w-5 md:h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
+                    </svg>
                 </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <!-- Участник 1 -->
-                    <div class="border-4 border-black p-4 bg-[#f8fafc] rounded-3xl shadow-[6px_6px_0px_#0c0e13] flex flex-col space-y-4">
-                        <div class="w-full aspect-square bg-[#0c0e13] border-3 border-black rounded-2xl overflow-hidden relative flex items-center justify-center">
-                            <div class="absolute inset-0 bg-[#ffee11] flex items-center justify-center text-black font-black text-3xl font-display rotate-[-3deg] border-2 border-black">SASHA</div>
-                        </div>
-                        <div class="text-center space-y-1">
-                            <h4 class="text-lg font-black text-black uppercase font-display">Саша</h4>
-                            <span class="text-xs font-bold text-[#ff33a0] uppercase block font-mono">CEO / FOUNDER</span>
-                        </div>
-                    </div>
-                    
-                    <!-- Участник 2 -->
-                    <div class="border-4 border-black p-4 bg-[#f8fafc] rounded-3xl shadow-[6px_6px_0px_#0c0e13] flex flex-col space-y-4">
-                        <div class="w-full aspect-square bg-[#0c0e13] border-3 border-black rounded-2xl overflow-hidden relative flex items-center justify-center">
-                            <div class="absolute inset-0 bg-[#ff33a0] flex items-center justify-center text-white font-black text-3xl font-display rotate-[2deg] border-2 border-black">NATASHA</div>
-                        </div>
-                        <div class="text-center space-y-1">
-                            <h4 class="text-lg font-black text-black uppercase font-display">Наташа</h4>
-                            <span class="text-xs font-bold text-[#ff33a0] uppercase block font-mono">ART DIRECTOR</span>
-                        </div>
-                    </div>
-
-                    <!-- Участник 3 -->
-                    <div class="border-4 border-black p-4 bg-[#f8fafc] rounded-3xl shadow-[6px_6px_0px_#0c0e13] flex flex-col space-y-4">
-                        <div class="w-full aspect-square bg-[#0c0e13] border-3 border-black rounded-2xl overflow-hidden relative flex items-center justify-center">
-                            <div class="absolute inset-0 bg-[#3bee33] flex items-center justify-center text-black font-black text-3xl font-display rotate-[-1deg] border-2 border-black">IRA</div>
-                        </div>
-                        <div class="text-center space-y-1">
-                            <h4 class="text-lg font-black text-black uppercase font-display">Ира</h4>
-                            <span class="text-xs font-bold text-[#ff33a0] uppercase block font-mono">SMM LEAD</span>
-                        </div>
-                    </div>
-
-                    <!-- Участник 4 -->
-                    <div class="border-4 border-black p-4 bg-[#f8fafc] rounded-3xl shadow-[6px_6px_0px_#0c0e13] flex flex-col space-y-4">
-                        <div class="w-full aspect-square bg-[#0c0e13] border-3 border-black rounded-2xl overflow-hidden relative flex items-center justify-center">
-                            <div class="absolute inset-0 bg-[#0066ff] flex items-center justify-center text-white font-black text-3xl font-display rotate-[3deg] border-2 border-black">DANILA</div>
-                        </div>
-                        <div class="text-center space-y-1">
-                            <h4 class="text-lg font-black text-black uppercase font-display">Данила</h4>
-                            <span class="text-xs font-bold text-[#ff33a0] uppercase block font-mono">VIDEO PRODUCER</span>
-                        </div>
-                    </div>
-                </div>
+                <span class="font-display font-extrabold text-xs md:text-sm tracking-tight text-[#09122c] uppercase">Graphic Designer</span>
             </div>
-        </section>
-        
 
-        <!-- Блок КОНТАКТЫ (CONTACT CLUSTER) -->
-        <section id="contacts" class="py-24 bg-[#ffee11]/15 border-b-4 border-black relative overflow-hidden">
-            <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-                <div class="lg:col-span-6 space-y-6">
-                    <span class="text-xs font-black text-[#ff33a0] uppercase tracking-widest block font-display">[ CONTACT_CLUSTER ]</span>
-                    <h2 class="text-4xl md:text-5xl font-black text-black font-display uppercase leading-none tracking-tight">ОТВЕТИМ НА ВСЕ ВАШИ ВОПРОСЫ</h2>
-                    <p class="text-black/70 text-base md:text-lg font-sans font-medium">
-                        Мы всегда на связи в мессенджерах и соцсетях. Кликните на любую капсулу, чтобы начать диалог и получить сочную идею для вашего бренда!
-                    </p>
-                </div>
-                <div class="lg:col-span-6 flex justify-center">
-                    <div class="flex flex-col gap-6 w-full max-w-[380px] relative select-none">
-                        <!-- Capsule 1 (VK) -->
-                        <a href="https://vk.com" target="_blank" class="h-16 bg-[#0066ff] text-white flex items-center justify-center font-black rounded-full border-4 border-black shadow-[6px_6px_0px_#0c0e13] transform rotate-[-3deg] hover:rotate-0 hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[4px_4px_0px_#0c0e13] transition-all cursor-pointer font-display uppercase text-lg">
-                            ВКонтакте
-                        </a>
-                        <!-- Capsule 2 (Instagram) -->
-                        <a href="https://instagram.com" target="_blank" class="h-16 bg-[#ff33a0] text-white flex items-center justify-center font-black rounded-full border-4 border-black shadow-[6px_6px_0px_#0c0e13] transform rotate-[2deg] hover:rotate-0 hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[4px_4px_0px_#0c0e13] transition-all cursor-pointer font-display uppercase text-lg">
-                            Instagram
-                        </a>
-                        <!-- Capsule 3 (Telegram) -->
-                        <a href="https://t.me" target="_blank" class="h-16 bg-[#3bee33] text-black flex items-center justify-center font-black rounded-full border-4 border-black shadow-[6px_6px_0px_#0c0e13] transform rotate-[-1.5deg] hover:rotate-0 hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[4px_4px_0px_#0c0e13] transition-all cursor-pointer font-display uppercase text-lg">
-                            Telegram
-                        </a>
-                    </div>
-                </div>
+            <!-- Слева внизу (на границе перехода блоков): 6 Years Experience -->
+            <div class="absolute left-[8%] md:left-[10%] bottom-[44%] md:bottom-[38%] bg-[#facc15] border-2 border-[#09122c] w-20 h-24 sm:w-24 sm:h-28 md:w-32 md:h-36 rounded-full shadow-[6px_6px_0px_#09122c] flex flex-col items-center justify-center p-2 text-center transform -rotate-12 hover:rotate-0 transition-transform duration-300 cursor-pointer pointer-events-auto z-40">
+                <span class="font-display font-black text-lg sm:text-2xl md:text-3xl text-[#09122c] leading-none">6</span>
+                <span class="font-display font-extrabold text-[8px] sm:text-[10px] md:text-xs text-[#09122c] uppercase tracking-tighter leading-tight mt-0.5">Years Experience</span>
             </div>
-        </section>
-
-        <!-- Зигзаг разделитель -->
-        <div class="w-full bg-white h-4 flex overflow-hidden">
-            <svg class="w-full h-full text-[#0c0e13] fill-current" viewBox="0 0 100 10" preserveAspectRatio="none">
-                <polygon points="0,0 2.5,10 5,0 7.5,10 10,0 12.5,10 15,0 17.5,10 20,0 22.5,10 25,0 27.5,10 30,0 32.5,10 35,0 37.5,10 40,0 42.5,10 45,0 47.5,10 50,0 52.5,10 55,0 57.5,10 60,0 62.5,10 65,0 67.5,10 70,0 72.5,10 75,0 77.5,10 80,0 82.5,10 85,0 87.5,10 90,0 92.5,10 95,0 97.5,10 100,0 100,10 0,10"/>
-            </svg>
         </div>
+    </section>
 
-        <!-- СЕКЦИЯ С ФОРМОЙ И КАРТОЧКАМИ ДЕМОНСТРАЦИИ -->
-        <section id="demo" class="py-24 bg-[#0c0e13] text-white relative overflow-hidden" style="background-image: radial-gradient(rgba(255,255,255,0.03) 1.5px, transparent 1.5px); background-size: 16px 16px;">
-            <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
-                <div class="lg:col-span-5 space-y-6">
-                    <span class="text-xs font-black text-brand-secondary uppercase tracking-widest block font-display">[ TESTBENCH_CONTROL ]</span>
-                    <h2 class="text-4xl md:text-5xl font-black text-white font-display uppercase leading-none tracking-tight">ОБСУДИТЬ ПРОЕКТ С БЮРО</h2>
-                    <p class="text-white/60 text-base font-sans font-medium">Заполните краткий бриф, и мы вернемся к вам с готовой концепцией.</p>
+    <!-- НИЖНИЙ БЛОК: ИНФОРМАЦИОННАЯ ПАНЕЛЬ С БЕЛОЙ ПОДЛОЖКОЙ -->
+    <section class="relative w-full bg-white rounded-t-[40px] md:rounded-t-[60px] border-t-4 border-[#09122c] px-4 sm:px-6 md:px-12 pt-24 md:pt-28 pb-16 md:pb-24 z-30 mt-[-120px] md:mt-[-150px] shadow-[0_-12px_0_rgba(36,125,255,0.08)]">
+        <div class="max-w-6xl mx-auto">
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+                
+                <!-- ЛЕВАЯ КОЛОНКА -->
+                <div class="flex flex-col gap-12">
                     
-                    <!-- Интерактивный интерактор состояний -->
-                    <div class="card-interactive p-8 space-y-6 relative overflow-hidden bg-white border-4 border-black shadow-[8px_8px_0px_var(--brand-primary)] text-black">
-                        <h3 class="text-lg font-black text-black font-display uppercase tracking-tight">Тактильный отклик интерфейса</h3>
-                        <p class="text-black/70 text-sm font-sans font-medium">Попробуйте нажать на кнопки и навести курсор на карточки ниже, чтобы прочувствовать плоские тени и пружинистую физику нео-брутализма.</p>
+                    <!-- EDUCATION SECTION -->
+                    <div class="flex flex-col gap-4">
+                        <div class="flex items-center gap-3 border-b-2 border-[#09122c] pb-2">
+                            <h2 class="font-display font-extrabold text-xl md:text-2xl text-[#09122c] tracking-tight uppercase">
+                                Education
+                            </h2>
+                        </div>
+                        <div class="p-5 bg-gray-50 rounded-2xl border border-gray-100 flex flex-col gap-1">
+                            <span class="font-sans font-bold text-xs text-[#1153fc] uppercase tracking-wider">2018 - 2021</span>
+                            <h4 class="font-display font-black text-sm md:text-base text-[#09122c] uppercase">
+                                FPT Arena Multimedia
+                            </h4>
+                            <p class="font-sans font-medium text-xs sm:text-sm text-gray-500 leading-relaxed">
+                                Профессиональное образование в сфере графического дизайна, анимации, веб-дизайна и мультимедийных технологий.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- EXPERIENCE SECTION -->
+                    <div class="flex flex-col gap-4">
+                        <div class="flex items-center gap-3 border-b-2 border-[#09122c] pb-2">
+                            <h2 class="font-display font-extrabold text-xl md:text-2xl text-[#09122c] tracking-tight uppercase">
+                                Experience
+                            </h2>
+                        </div>
                         
-                        <div class="grid grid-cols-1 gap-6 pt-2">
-                            <div class="p-6 bg-brand-surface-low border-3 border-black rounded-2xl space-y-4 relative">
-                                <span class="text-xs text-black/50 font-bold uppercase tracking-widest block font-mono">BUTTON_STATES</span>
-                                <div class="flex flex-wrap gap-3">
-                                    <button class="px-6 py-3 bg-brand-primary text-white text-xs font-black rounded-xl border-3 border-black shadow-[4px_4px_0px_#000] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[3px_3px_0px_#000] transition-all uppercase font-display">Активна</button>
-                                    <button class="px-6 py-3 bg-brand-primary text-white text-xs font-black rounded-xl border-3 border-black opacity-30 cursor-not-allowed uppercase font-display" disabled>Блокирована</button>
+                        <div class="flex flex-col gap-3">
+                            <!-- EVB Record -->
+                            <div class="p-4 bg-gray-50 hover:bg-gray-100/70 border border-gray-100 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-2 transition-colors duration-200">
+                                <div>
+                                    <h4 class="font-display font-bold text-sm md:text-base text-[#09122c] uppercase">EVB Record</h4>
+                                    <p class="font-sans font-semibold text-xs text-gray-400 uppercase">Graphic Designer & Brand Identity</p>
                                 </div>
+                                <span class="px-3 py-1 bg-[#facc15]/20 text-[#09122c] border border-[#facc15]/30 rounded-full font-display font-extrabold text-[10px] uppercase self-start sm:self-auto">2023 - 2025</span>
                             </div>
-                            <div class="p-6 bg-brand-surface-low border-3 border-black rounded-2xl space-y-4 relative">
-                                <span class="text-xs text-black/50 font-bold uppercase tracking-widest block font-mono">AURA_INDICATORS</span>
-                                <div class="flex flex-wrap gap-3">
-                                    <span class="px-4 py-2 bg-brand-secondary text-black text-xs font-black rounded-full border-3 border-black uppercase font-display">STATE_ACTIVE</span>
-                                    <span class="px-4 py-2 bg-brand-primary text-white text-xs font-black rounded-full border-3 border-black uppercase font-display">STATE_PENDING</span>
+
+                            <!-- JUP TEA -->
+                            <div class="p-4 bg-gray-50 hover:bg-gray-100/70 border border-gray-100 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-2 transition-colors duration-200">
+                                <div>
+                                    <h4 class="font-display font-bold text-sm md:text-base text-[#09122c] uppercase">JUP TEA</h4>
+                                    <p class="font-sans font-semibold text-xs text-gray-400 uppercase">Packaging Designer & Illustrator</p>
                                 </div>
+                                <span class="px-3 py-1 bg-[#facc15]/20 text-[#09122c] border border-[#facc15]/30 rounded-full font-display font-extrabold text-[10px] uppercase self-start sm:self-auto">2022 - 2023</span>
+                            </div>
+
+                            <!-- GEARVN -->
+                            <div class="p-4 bg-gray-50 hover:bg-gray-100/70 border border-gray-100 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-2 transition-colors duration-200">
+                                <div>
+                                    <h4 class="font-display font-bold text-sm md:text-base text-[#09122c] uppercase">GEARVN</h4>
+                                    <p class="font-sans font-semibold text-xs text-gray-400 uppercase">Senior Banner & Marketing Designer</p>
+                                </div>
+                                <span class="px-3 py-1 bg-[#facc15]/20 text-[#09122c] border border-[#facc15]/30 rounded-full font-display font-extrabold text-[10px] uppercase self-start sm:self-auto">2021 - 2022</span>
+                            </div>
+
+                            <!-- INCA AGENCY -->
+                            <div class="p-4 bg-gray-50 hover:bg-gray-100/70 border border-gray-100 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-2 transition-colors duration-200">
+                                <div>
+                                    <h4 class="font-display font-bold text-sm md:text-base text-[#09122c] uppercase">INCA AGENCY</h4>
+                                    <p class="font-sans font-semibold text-xs text-gray-400 uppercase">2D Lead Illustrator & Visual Designer</p>
+                                </div>
+                                <span class="px-3 py-1 bg-[#facc15]/20 text-[#09122c] border border-[#facc15]/30 rounded-full font-display font-extrabold text-[10px] uppercase self-start sm:self-auto">2020 - 2021</span>
+                            </div>
+
+                            <!-- MOMO -->
+                            <div class="p-4 bg-gray-50 hover:bg-gray-100/70 border border-gray-100 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-2 transition-colors duration-200">
+                                <div>
+                                    <h4 class="font-display font-bold text-sm md:text-base text-[#09122c] uppercase">MOMO</h4>
+                                    <p class="font-sans font-semibold text-xs text-gray-400 uppercase">UI/UX Illustrator & Assets Designer</p>
+                                </div>
+                                <span class="px-3 py-1 bg-[#facc15]/20 text-[#09122c] border border-[#facc15]/30 rounded-full font-display font-extrabold text-[10px] uppercase self-start sm:self-auto">2019 - 2020</span>
                             </div>
                         </div>
                     </div>
-                </div>
-                
-                <!-- Форма -->
-                <div class="lg:col-span-7 w-full">
-                    <div class="card-interactive p-8 md:p-12 space-y-6 relative bg-white border-4 border-black shadow-[10px_10px_0px_#fff] text-black">
-                        <h3 class="text-2xl font-black text-black font-display uppercase tracking-tight">Бриф на проект</h3>
-                        
-                        <form onsubmit="alert('Запрос получен! BUMAGA уже готовит сочную концепцию.'); return false;" class="space-y-6">
-                            <div class="space-y-2">
-                                <label class="block text-xs font-black text-black font-mono">BRAND_NAME:</label>
-                                <input type="text" placeholder="Bumaga Client" required class="w-full px-4 py-3 bg-brand-surface-lowest border-3 border-black rounded-xl text-sm focus:outline-none focus:border-brand-primary text-black font-medium">
-                            </div>
-                            <div class="space-y-2">
-                                <label class="block text-xs font-black text-black font-mono">VISUAL_ARCHETYPE:</label>
-                                <select class="w-full px-4 py-3 bg-brand-surface-lowest border-3 border-black rounded-xl text-sm focus:outline-none focus:border-brand-primary text-black font-medium">
-                                    <option>SaaS Premium (Light Minimalist)</option>
-                                    <option>FinTech Slate (Dark Monospace)</option>
-                                    <option>Atmospheric Glass (Glassmorphism)</option>
-                                    <option>Friendly Organic (Paws & Paths)</option>
-                                    <option>Cosmic Totality (Solar Eclipse)</option>
-                                    <option>Scientific Alpinism (Victorian Navy)</option>
-                                    <option selected>BUMAGA Creative (Neo-Brutalist)</option>
-                                </select>
-                            </div>
-                            <div class="space-y-2">
-                                <label class="block text-xs font-black text-black font-mono">EMAIL_ADDRESS:</label>
-                                <input type="email" placeholder="client@bumaga-bureau.ru" required class="w-full px-4 py-3 bg-brand-surface-lowest border-3 border-black rounded-xl text-sm focus:outline-none focus:border-brand-primary text-black font-medium">
-                            </div>
+
+                    <!-- SOFTWARE SECTION (Красивые квадратные иконки с фирменными цветами) -->
+                    <div class="flex flex-col gap-4">
+                        <div class="flex items-center gap-3 border-b-2 border-[#09122c] pb-2">
+                            <h2 class="font-display font-extrabold text-xl md:text-2xl text-[#09122c] tracking-tight uppercase">
+                                Software
+                            </h2>
+                        </div>
+                        <div class="flex flex-wrap gap-4 mt-2">
                             
-                            <button type="submit" class="w-full py-4 btn-primary text-sm font-black font-display shadow-sm uppercase">
-                                Отправить бриф в BUMAGA
-                            </button>
-                        </form>
+                            <!-- Photoshop (Ps) - Синий -->
+                            <div class="software-card w-16 h-16 bg-[#001d26] rounded-xl flex flex-col items-center justify-center text-center cursor-pointer group" title="Adobe Photoshop">
+                                <span class="font-display font-black text-lg text-[#00c8ff] tracking-tighter group-hover:scale-110 transition-transform">Ps</span>
+                            </div>
+
+                            <!-- Illustrator (Ai) - Оранжевый -->
+                            <div class="software-card w-16 h-16 bg-[#261300] rounded-xl flex flex-col items-center justify-center text-center cursor-pointer group" title="Adobe Illustrator">
+                                <span class="font-display font-black text-lg text-[#ff9a00] tracking-tighter group-hover:scale-110 transition-transform">Ai</span>
+                            </div>
+
+                            <!-- After Effects (Ae) - Фиолетовый -->
+                            <div class="software-card w-16 h-16 bg-[#16002b] rounded-xl flex flex-col items-center justify-center text-center cursor-pointer group" title="Adobe After Effects">
+                                <span class="font-display font-black text-lg text-[#d9a5ff] tracking-tighter group-hover:scale-110 transition-transform">Ae</span>
+                            </div>
+
+                            <!-- InDesign (Id) - Розовый -->
+                            <div class="software-card w-16 h-16 bg-[#2b0010] rounded-xl flex flex-col items-center justify-center text-center cursor-pointer group" title="Adobe InDesign">
+                                <span class="font-display font-black text-lg text-[#ff4da2] tracking-tighter group-hover:scale-110 transition-transform">Id</span>
+                            </div>
+
+                            <!-- Procreate - Градиентный мазок -->
+                            <div class="software-card w-16 h-16 bg-white rounded-xl flex flex-col items-center justify-center text-center cursor-pointer group" title="Procreate">
+                                <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-[#ff3366] via-[#ae33ff] to-[#33c8ff] blur-[1px] flex items-center justify-center group-hover:scale-110 transition-transform shadow-inner">
+                                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CONTACT SECTION -->
+                    <div class="flex flex-col gap-4">
+                        <div class="flex items-center gap-3 border-b-2 border-[#09122c] pb-2">
+                            <h2 class="font-display font-extrabold text-xl md:text-2xl text-[#09122c] tracking-tight uppercase">
+                                Contact
+                            </h2>
+                        </div>
+                        
+                        <div class="bg-[#1153fc] text-white p-6 rounded-3xl border-2 border-[#09122c] shadow-[6px_6px_0px_#09122c] flex flex-col gap-4">
+                            <!-- Телефон -->
+                            <a href="tel:+84900000000" class="flex items-center gap-4 hover:translate-x-2 transition-transform duration-200">
+                                <div class="p-2 bg-white/20 rounded-xl">
+                                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                                    </svg>
+                                </div>
+                                <span class="font-display font-extrabold text-xs sm:text-sm uppercase tracking-wide">+84 (0) 900-000-000</span>
+                            </a>
+
+                            <!-- Почта -->
+                            <a href="mailto:realwxlf@gmail.com" class="flex items-center gap-4 hover:translate-x-2 transition-transform duration-200">
+                                <div class="p-2 bg-white/20 rounded-xl">
+                                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                    </svg>
+                                </div>
+                                <span class="font-display font-extrabold text-xs sm:text-sm tracking-wide lowercase">realwxlf@gmail.com</span>
+                            </a>
+
+                            <!-- Behance & Dribbble -->
+                            <div class="grid grid-cols-2 gap-4 mt-2">
+                                <a href="https://behance.net" target="_blank" class="flex items-center justify-center gap-2 p-3 bg-white/10 hover:bg-white/20 rounded-2xl transition-colors duration-200">
+                                    <span class="font-display font-black text-[10px] sm:text-xs uppercase">Behance</span>
+                                </a>
+                                <a href="https://dribbble.com" target="_blank" class="flex items-center justify-center gap-2 p-3 bg-white/10 hover:bg-white/20 rounded-2xl transition-colors duration-200">
+                                    <span class="font-display font-black text-[10px] sm:text-xs uppercase">Dribbble</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ПРАВАЯ КОЛОНКА -->
+                <div class="flex flex-col gap-12">
+                    
+                    <!-- TECHNICAL SKILLS SECTION -->
+                    <div class="flex flex-col gap-4">
+                        <div class="flex items-center gap-3 border-b-2 border-[#09122c] pb-2">
+                            <h2 class="font-display font-extrabold text-xl md:text-2xl text-[#09122c] tracking-tight uppercase">
+                                Technical Skills
+                            </h2>
+                        </div>
+                        
+                        <!-- Креативная композиция с карандашом и навыками -->
+                        <div class="relative w-full h-[320px] sm:h-[400px] bg-gray-50 border-2 border-[#09122c] rounded-3xl p-6 overflow-hidden mt-2 flex flex-col justify-center items-center select-none shadow-inner">
+                            
+                            <!-- Фоновая сетка миллиметровки для бруталистского чертежного стиля -->
+                            <div class="absolute inset-0 opacity-[0.03]" style="background-image: linear-gradient(#09122c 1.5px, transparent 1.5px), linear-gradient(90deg, #09122c 1.5px, transparent 1.5px); background-size: 20px 20px;"></div>
+
+                            <!-- Парящие облака навыков (Капсулы) -->
+                            <!-- Branding -->
+                            <div class="absolute left-[10%] top-[12%] bg-white border-2 border-[#09122c] py-2 px-4 rounded-full shadow-[3px_3px_0px_#09122c] hover:scale-105 transition-transform duration-200 font-display font-extrabold text-[10px] sm:text-xs uppercase tracking-tight cursor-default z-10 animate-float-1">
+                                Branding
+                            </div>
+
+                            <!-- Mascot Design -->
+                            <div class="absolute right-[8%] top-[18%] bg-[#facc15] border-2 border-[#09122c] py-2 px-4 rounded-full shadow-[3px_3px_0px_#09122c] hover:scale-105 transition-transform duration-200 font-display font-extrabold text-[10px] sm:text-xs uppercase tracking-tight cursor-default z-10 animate-float-2">
+                                Mascot Design
+                            </div>
+
+                            <!-- Logo Design -->
+                            <div class="absolute left-[8%] bottom-[16%] bg-white border-2 border-[#09122c] py-2 px-4 rounded-full shadow-[3px_3px_0px_#09122c] hover:scale-105 transition-transform duration-200 font-display font-extrabold text-[10px] sm:text-xs uppercase tracking-tight cursor-default z-10 animate-float-2">
+                                Logo Design
+                            </div>
+
+                            <!-- Manipulation -->
+                            <div class="absolute right-[12%] bottom-[12%] bg-[#1153fc] text-white border-2 border-[#09122c] py-2 px-4 rounded-full shadow-[3px_3px_0px_#09122c] hover:scale-105 transition-transform duration-200 font-display font-extrabold text-[10px] sm:text-xs uppercase tracking-tight cursor-default z-10 animate-float-1">
+                                Manipulation
+                            </div>
+
+                            <!-- Graphic Design -->
+                            <div class="absolute left-[40%] top-[8%] bg-white border-2 border-[#09122c] py-1.5 px-3 rounded-full shadow-[2px_2px_0px_#09122c] hover:scale-105 transition-transform duration-200 font-display font-extrabold text-[9px] uppercase tracking-tighter cursor-default z-10 animate-float-3">
+                                Graphic Design
+                            </div>
+
+                            <!-- ЦЕНТРАЛЬНЫЙ КАРАНДАШ С 2D ILLUSTRATION -->
+                            <div class="relative w-full max-w-[280px] sm:max-w-[340px] transform -rotate-12 select-none pointer-events-none animate-pencil">
+                                <div class="relative bg-gradient-to-r from-orange-400 via-yellow-400 to-yellow-300 h-10 sm:h-12 border-2 border-[#09122c] rounded-md shadow-[6px_6px_0px_#09122c] flex items-center justify-center px-6">
+                                    <!-- Текст на теле карандаша -->
+                                    <span class="font-display font-black text-xs sm:text-sm text-[#09122c] uppercase tracking-wider whitespace-nowrap">
+                                        2D Illustration
+                                    </span>
+                                    
+                                    <!-- Острие карандаша (Деревянная часть + Грифель) -->
+                                    <div class="absolute left-[-26px] top-[-1px] w-0 h-0 border-y-[19px] sm:border-y-[23px] border-y-transparent border-r-[26px] border-r-orange-200 filter drop-shadow-[-2px_0_0_#09122c]">
+                                        <!-- Черный грифель на кончике -->
+                                        <div class="absolute right-[-26px] top-[-4px] sm:top-[-5px] w-0 h-0 border-y-[4px] sm:border-y-[5px] border-y-transparent border-r-[6px] border-r-[#09122c]"></div>
+                                    </div>
+                                    
+                                    <!-- Ластик на конце карандаша -->
+                                    <div class="absolute right-[-14px] top-[-1px] w-12 sm:w-14 h-[42px] sm:h-[50px] bg-red-400 border-2 border-l-0 border-[#09122c] rounded-r-md flex items-center justify-center">
+                                        <!-- Металлическое кольцо ластика -->
+                                        <div class="absolute left-0 top-[-1px] bottom-[-1px] w-3 bg-gray-300 border-r-2 border-[#09122c]"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PERSONAL SKILLS SECTION -->
+                    <div class="flex flex-col gap-4">
+                        <div class="flex items-center gap-3 border-b-2 border-[#09122c] pb-2">
+                            <h2 class="font-display font-extrabold text-xl md:text-2xl text-[#09122c] tracking-tight uppercase">
+                                Personal Skills
+                            </h2>
+                        </div>
+                        
+                        <div class="flex flex-wrap gap-3 mt-2">
+                            <div class="px-5 py-3 bg-gray-50 text-[#09122c] rounded-full border border-gray-200 hover:bg-[#1153fc] hover:text-white hover:border-[#1153fc] transition-colors duration-200 cursor-default text-xs sm:text-sm font-display font-extrabold uppercase">
+                                Willing to learn
+                            </div>
+                            <div class="px-5 py-3 bg-gray-50 text-[#09122c] rounded-full border border-gray-200 hover:bg-[#1153fc] hover:text-white hover:border-[#1153fc] transition-colors duration-200 cursor-default text-xs sm:text-sm font-display font-extrabold uppercase">
+                                Time management
+                            </div>
+                            <div class="px-5 py-3 bg-gray-50 text-[#09122c] rounded-full border border-gray-200 hover:bg-[#1153fc] hover:text-white hover:border-[#1153fc] transition-colors duration-200 cursor-default text-xs sm:text-sm font-display font-extrabold uppercase">
+                                Communication
+                            </div>
+                            <div class="px-5 py-3 bg-gray-50 text-[#09122c] rounded-full border border-gray-200 hover:bg-[#1153fc] hover:text-white hover:border-[#1153fc] transition-colors duration-200 cursor-default text-xs sm:text-sm font-display font-extrabold uppercase">
+                                Attention to detail
+                            </div>
+                            <div class="px-5 py-3 bg-gray-50 text-[#09122c] rounded-full border border-gray-200 hover:bg-[#1153fc] hover:text-white hover:border-[#1153fc] transition-colors duration-200 cursor-default text-xs sm:text-sm font-display font-extrabold uppercase">
+                                Flexible design styles
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
 
-        <!-- Зигзаг разделитель -->
-        <div class="w-full bg-[#0c0e13] h-4 flex overflow-hidden">
-            <svg class="w-full h-full text-white fill-current" viewBox="0 0 100 10" preserveAspectRatio="none">
-                <polygon points="0,0 2.5,10 5,0 7.5,10 10,0 12.5,10 15,0 17.5,10 20,0 22.5,10 25,0 27.5,10 30,0 32.5,10 35,0 37.5,10 40,0 42.5,10 45,0 47.5,10 50,0 52.5,10 55,0 57.5,10 60,0 62.5,10 65,0 67.5,10 70,0 72.5,10 75,0 77.5,10 80,0 82.5,10 85,0 87.5,10 90,0 92.5,10 95,0 97.5,10 100,0 100,10 0,10"/>
-            </svg>
-        </div>
-    </main>
-
-    <!-- ПОДВАЛ (FOOTER) -->
-    <footer class="bg-[#0c0e13] text-white border-t-4 border-black py-16">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12">
-            <div class="space-y-4">
-                <span class="text-3xl font-black text-brand-primary tracking-tight font-display">DIGITAL БЮРО BUMAGA</span>
-                <p class="text-sm text-white/60 leading-relaxed font-sans font-medium max-w-md">
-                    Интеллектуальная дизайн-система на основе независимого контракта Aura. Никакого визуального мусора, клише и эмодзи.
-                </p>
+            <!-- Подвал страницы -->
+            <div class="mt-20 pt-8 border-t border-gray-100 flex flex-col sm:flex-row items-center justify-between gap-4 text-center">
+                <span class="font-display font-black text-xs text-[#09122c] tracking-tight">WXLF &copy; 2026</span>
+                <span class="font-sans font-medium text-xs text-gray-400">Собрано с любовью по спецификации AuraDesign</span>
             </div>
-            <div class="flex flex-col md:items-end justify-between gap-6">
-                <div class="flex space-x-6 text-sm font-bold font-mono">
-                    <a href="#features" class="hover:text-brand-primary transition-all uppercase">Кейсы</a>
-                    <a href="#about" class="hover:text-brand-primary transition-all uppercase">Команда</a>
-                    <a href="#demo" class="hover:text-brand-primary transition-all uppercase">Бриф</a>
-                </div>
-                <div class="border-t border-white/10 pt-4 w-full md:w-auto flex flex-col md:items-end text-xs text-white/40 font-mono gap-1">
-                    <span>© 2026 DIGITAL БЮРО BUMAGA • Все права защищены.</span>
-                    <span class="uppercase tracking-widest font-semibold text-[10px]">Сверстано AuraDesign Agent</span>
-                </div>
-            </div>
+            
         </div>
-    </footer>
+    </section>
 
 </body>
 </html>

@@ -2,17 +2,31 @@
   "version": "alpha",
   "source": {
     "sourceType": "image",
-    "source": "BUMAGA reference / current demo source",
-    "title": "Current Demo Source",
-    "description": "Источник является изображением. Требуется визуальный анализ через sub-agent/browser или мультимодальную модель.",
-    "colors": [],
-    "fonts": [],
-    "headings": [],
-    "buttons": [],
+    "source": "assets/c__Users_mrrut_AppData_Roaming_Cursor_User_workspaceStorage_empty-window_images_a5e0597df6eb796fe0870877297bcf9f-67eb6b50-0cb7-4a9f-8b16-31247ce5124a.png",
+    "title": "Duong Minh Thanh AKA. WXLF Portfolio",
+    "description": "Портфолио графического дизайнера с ярко-синим Hero-блоком, крупным центрированным заголовком PORTFOLIO белого цвета, ребятами в черных бомберах спина к спине на переднем плане, и белой подложкой с закругленными углами снизу.",
+    "colors": ["#1153fc", "#ffffff", "#facc15", "#09122c", "#ef4444"],
+    "fonts": ["Unbounded", "Plus Jakarta Sans"],
+    "headings": [
+      { "tag": "h1", "text": "PORTFOLIO" },
+      { "tag": "h2", "text": "EDUCATION" },
+      { "tag": "h2", "text": "EXPERIENCE" },
+      { "tag": "h2", "text": "SOFTWARE" },
+      { "tag": "h2", "text": "CONTACT" },
+      { "tag": "h2", "text": "TECHNICAL SKILLS" },
+      { "tag": "h2", "text": "PERSONAL SKILLS" }
+    ],
+    "buttons": [
+      "Willing to learn",
+      "Time management",
+      "Communication",
+      "Attention to detail",
+      "Flexible design styles"
+    ],
     "images": [
       {
-        "src": "BUMAGA reference / current demo source",
-        "alt": " current demo source",
+        "src": "https://tempfile.aiquickdraw.com/r/459ca3084f2e29ac680b83c7537d6e3b_1779316891_m62b39v8.png",
+        "alt": "MCP KV generated transparent hero designers",
         "class": "",
         "style": ""
       }
@@ -20,7 +34,31 @@
     "links": [],
     "components": [
       {
-        "type": "image-reference",
+        "type": "hero",
+        "confidence": "input"
+      },
+      {
+        "type": "education",
+        "confidence": "input"
+      },
+      {
+        "type": "experience",
+        "confidence": "input"
+      },
+      {
+        "type": "software",
+        "confidence": "input"
+      },
+      {
+        "type": "contact",
+        "confidence": "input"
+      },
+      {
+        "type": "technical-skills",
+        "confidence": "input"
+      },
+      {
+        "type": "personal-skills",
         "confidence": "input"
       }
     ],
@@ -28,13 +66,13 @@
       "replicationMode": "copy-in-copy",
       "sourceIsLaw": true,
       "hero": {
-        "headline": "",
-        "headlineLayer": "requires-visual-analysis",
+        "headline": "PORTFOLIO",
+        "headlineLayer": "behind-image",
         "primaryImage": {
-          "src": "BUMAGA reference / current demo source",
-          "alt": " current demo source"
+          "src": "https://tempfile.aiquickdraw.com/r/459ca3084f2e29ac680b83c7537d6e3b_1779316891_m62b39v8.png",
+          "alt": "MCP KV generated transparent hero designers"
         },
-        "imagePosition": "requires-visual-analysis",
+        "imagePosition": "center",
         "mustPreserveLayering": true,
         "mustNotChangeThemeWithoutUserRequest": true
       }

@@ -44,3 +44,4 @@ python "auradesign-agent/aura.py" qa --source-map "AURA_SOURCE_MAP.json" --html 
 ```text
 /aura-design-reviewer проверь сгенерированную страницу. В первую очередь ищи баги контраста, прозрачные кнопки, сломанные изображения, слишком короткий AURADESIGN.md, mobile overflow и визуальную несогласованность.
 ```
+

@@ -245,9 +245,9 @@ padding: "{spacing.sm}"
 ## 9. Asset & Brand Kit Pipeline (Ассеты, Удаление Фона и Brand Kit)
 
 При полном прогоне агент обязан:
-*   создать `AURA_BRAND_KIT_IMAGE_PROMPT.md` для генерации одной большой brand-kit картинки через `gpt-image-2`;
-*   если в hero или кейсах нужен новый объект, сформировать конкретный prompt для `gpt-image-2`;
-*   если объект должен парить на фоне, удалить фон через `recraft_remove_background`;
+*   создать `AURA_BRAND_KIT_IMAGE_PROMPT.md` для генерации одной большой brand-kit картинки через MCP KV `user-mcp-kv/gpt-image-2`;
+*   если в hero или кейсах нужен новый объект, сформировать конкретный prompt для MCP KV `user-mcp-kv/gpt-image-2`;
+*   если объект должен парить на фоне, удалить фон через MCP KV `user-mcp-kv/recraft_remove_background`;
 *   сохранить итоговый URL ассета в `AURA_SOURCE_ANALYSIS.md` или `AURA_ASSET_REGISTRY.json`, если registry создан;
 *   не использовать случайные картинки-заглушки вместо сгенерированных ассетов.
 

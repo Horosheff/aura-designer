@@ -88,12 +88,12 @@ python "auradesign-agent/aura.py" qa --source-map "AURA_SOURCE_MAP.json" --html 
 
 ### 4. Генерация ассетов
 
-Если в среде доступны MCP-инструменты, агент использует:
+Для новых изображений агент обязан использовать MCP KV:
 
-- `gpt-image-2` для генерации изображений.
-- `recraft_remove_background` для удаления фона.
+- `user-mcp-kv/gpt-image-2` для генерации изображений.
+- `user-mcp-kv/recraft_remove_background` для удаления фона.
 
-Если инструменты недоступны, CLI использует fallback-ассеты.
+Если MCP KV недоступен, агент останавливает задачу и сообщает блокер. Fallback-ассеты, Python/Pillow/crop/chroma key и stock-картинки запрещены для новых hero/case-study/person/object изображений.
 
 ### 5. Полноценная страница
 

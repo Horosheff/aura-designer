@@ -154,8 +154,8 @@ auradesign-agent/aura_asset_manager.py
 
 Что делает:
 
-- Подбирает прозрачные PNG fallback-ассеты.
-- Координирует работу с `gpt-image-2` и `recraft_remove_background`, если они доступны в среде.
+- Не подбирает fallback-ассеты и не имитирует генерацию.
+- Пропускает дальше только URL, реально полученный через MCP KV `user-mcp-kv/gpt-image-2` и `user-mcp-kv/recraft_remove_background`.
 - Возвращает `RESULT_ASSET_URL` для генератора.
 
 ## 10. Генератор deliverables

@@ -18,8 +18,8 @@
 - Создает обязательные deliverables: `AURA_REPLICATION_TODO.md`, `AURA_SOURCE_ANALYSIS.md`, `AURA_BRAND_KIT_IMAGE_PROMPT.md`, `AURA_COLOR_PSYCHOLOGY.md`.
 - Готовит prompt для brand-kit изображения: одна большая картинка с палитрой, шрифтами, фонами, компонентами, сеткой, ассетами и mobile preview.
 - Генерирует полноценную HTML-страницу, а не макет-превью.
-- Координирует генерацию hero/case-study изображений через `gpt-image-2`, если инструмент доступен.
-- Удаляет фон у ассетов через `recraft_remove_background`, если инструмент доступен.
+- Генерирует hero/case-study/person/object изображения строго через MCP KV `user-mcp-kv/gpt-image-2`.
+- Удаляет фон у ассетов строго через MCP KV `user-mcp-kv/recraft_remove_background`.
 - Проверяет визуальные провалы: черное на черном, белое на белом, прозрачные CTA, плохие ленты, случайные картинки, слабый hero.
 
 ## Карта агента
@@ -36,7 +36,7 @@ Aura Designer
 │     ├─ aura.py                               # единая CLI-команда
 │     ├─ aura_scanner.py                       # сканирование URL/изображений
 │     ├─ aura_source_analyzer.py               # AURA_SOURCE_MAP / COMPOSITION_LOCK / COMPONENT_MAP
-│     ├─ aura_asset_manager.py                 # ассеты и прозрачные PNG fallback
+│     ├─ aura_asset_manager.py                 # MCP Asset Gate без fallback-картинок
 │     ├─ aura_deliverables.py                  # todo, source analysis, brand-kit prompt, color psychology
 │     ├─ aura_replicator.py                    # copy-in-copy HTML по source-map
 │     ├─ aura_visual_qa.py                     # QA отчет репликации

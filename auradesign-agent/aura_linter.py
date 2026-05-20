@@ -52,11 +52,14 @@ def lint_contract(content):
         if not re.search(rf"^\s*{re.escape(key)}\s*:", content, flags=re.MULTILINE):
             findings.append(("medium", f"Отсутствует цветовой токен `{key}`"))
 
-    if "gpt-image-2" not in content and "asset" not in content.lower() and "ассет" not in content.lower():
-        findings.append(("medium", "Нет явных правил ассетов / генерации изображений."))
+    if "user-mcp-kv/gpt-image-2" not in content:
+        findings.append(("high", "Нет жесткого правила генерации изображений через `user-mcp-kv/gpt-image-2`."))
 
-    if "recraft_remove_background" not in content and "удал" not in content.lower():
-        findings.append(("medium", "Нет правил удаления фона для hero/case-study ассетов."))
+    if "user-mcp-kv/recraft_remove_background" not in content:
+        findings.append(("high", "Нет жесткого правила удаления фона через `user-mcp-kv/recraft_remove_background`."))
+
+    if "если доступны" in content.lower() and ("gpt-image-2" in content or "recraft_remove_background" in content):
+        findings.append(("medium", "MCP KV правила сформулированы мягко через `если доступны`; для Aura это должен быть обязательный блокер."))
 
     if "psychology" not in content.lower() and "психолог" not in content.lower():
         findings.append(("low", "Нет упоминания психологии цвета или отдельного анализа цвета."))

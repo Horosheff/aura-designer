@@ -14,6 +14,8 @@ import json
 import os
 import re
 import sys
+import urllib.parse
+import urllib.request
 
 
 if sys.stdout.encoding != "utf-8":
@@ -38,6 +40,74 @@ def check_file(path, label, findings):
         findings.append(("critical", f"Не найден обязательный файл: `{label}` ({path})"))
         return False
     return True
+
+
+def extract_image_sources(html):
+    return re.findall(r"<img\b[^>]*\bsrc=[\"']([^\"']+)[\"']", html, flags=re.IGNORECASE)
+
+
+def check_image_source(src, html_path, findings):
+    parsed = urllib.parse.urlparse(src)
+    if parsed.scheme in {"http", "https"}:
+        request = urllib.request.Request(src, method="GET", headers={"User-Agent": "AuraDesignerQA/1.0"})
+        try:
+            with urllib.request.urlopen(request, timeout=15) as response:
+                if response.status >= 400:
+                    findings.append(("critical", f"Изображение недоступно: `{src}` вернуло HTTP {response.status}"))
+        except Exception as exc:
+            findings.append(("critical", f"Изображение недоступно: `{src}` ({exc})"))
+        return
+
+    if parsed.scheme == "data":
+        return
+
+    base_dir = os.path.dirname(os.path.abspath(html_path)) or "."
+    local_path = os.path.normpath(os.path.join(base_dir, src))
+    if not os.path.exists(local_path):
+        findings.append(("critical", f"Локальное изображение из HTML не найдено: `{src}` -> `{local_path}`"))
+
+
+def check_asset_registry(output_dir, html, findings):
+    registry_path = os.path.join(output_dir, "AURA_ASSET_REGISTRY.json")
+    generated_image_markers = ["tempfile.aiquickdraw.com", "gpt-image-2", "recraft_remove_background"]
+    html_uses_generated = any(marker in html for marker in generated_image_markers)
+    if html_uses_generated and not os.path.exists(registry_path):
+        findings.append(("critical", "HTML использует сгенерированные изображения, но нет `AURA_ASSET_REGISTRY.json` с MCP KV URL."))
+        return
+
+    if not os.path.exists(registry_path):
+        return
+
+    try:
+        registry = read_json(registry_path)
+    except Exception as exc:
+        findings.append(("critical", f"`AURA_ASSET_REGISTRY.json` не читается: {exc}"))
+        return
+
+    for asset in registry.get("assets", []):
+        if asset.get("generationTool") != "user-mcp-kv/gpt-image-2":
+            findings.append(("critical", f"Ассет `{asset.get('id', 'unknown')}` создан не через `user-mcp-kv/gpt-image-2`."))
+        if asset.get("mustUseInHtml") and asset.get("transparentImageUrl") not in html:
+            findings.append(("critical", f"MCP ассет `{asset.get('id', 'unknown')}` не подключен в HTML."))
+
+
+def check_hero_cutout_overlap(html, findings):
+    """Контролирует, что обрезанный hero-person asset спрятан под следующим блоком."""
+    has_person_cutout = "Duong Minh Thanh Profile" in html or "hero foreground people" in html
+    if not has_person_cutout:
+        return
+
+    if "overflow-hidden pt-" in html:
+        findings.append(("critical", "Hero-person asset находится внутри `overflow-hidden` hero. Нижний край может обрезаться видимой линией. Используйте `overflow-y-visible`."))
+
+    if "translate-y-" not in html:
+        findings.append(("critical", "Hero-person asset не сдвинут вниз через `translate-y-*`; низ фигуры должен уходить под следующий блок."))
+
+    if "mt-[-" not in html:
+        findings.append(("critical", "Второй блок не перекрывает hero через отрицательный margin. Обрезка ног/низа ассета будет видна."))
+
+    if "z-30" not in html and "z-40" not in html:
+        findings.append(("critical", "Нет явного верхнего z-index у второго блока/оверлеев для маскировки нижнего края hero-person asset."))
 
 
 def build_report(source_map_path, html_path, output_dir):
@@ -65,6 +135,11 @@ def build_report(source_map_path, html_path, output_dir):
 
     if re.search(r"[😀-🙏🌀-🗿🚀-🛿☀-⛿✂-➿]", html):
         findings.append(("medium", "В HTML найдены emoji/symbol markers. UI должен использовать SVG/CSS/generative assets."))
+
+    for src in extract_image_sources(html):
+        check_image_source(src, html_path, findings)
+    check_asset_registry(output_dir, html, findings)
+    check_hero_cutout_overlap(html, findings)
 
     required = [
         "AURA_REPLICATION_TODO.md",
@@ -94,6 +169,9 @@ def build_report(source_map_path, html_path, output_dir):
         "- Проверена структура source-map.",
         "- Проверено наличие обязательных deliverables.",
         "- Проверено наличие ключевого headline/image в HTML.",
+        "- Проверена доступность всех `<img src>` из HTML.",
+        "- Проверен `AURA_ASSET_REGISTRY.json` для MCP KV ассетов.",
+        "- Проверен overlap hero-person asset: низ фигуры должен уходить под второй блок, а не обрываться на синем фоне.",
         "- Проверены placeholder/lorem/emoji markers.",
         "- Screenshot diff требует запуска в Cursor/browser среде.",
         "",

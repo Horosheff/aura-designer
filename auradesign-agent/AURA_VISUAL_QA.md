@@ -9,14 +9,15 @@ HTML: `auradesign-agent/index.html`
 - Проверена структура source-map.
 - Проверено наличие обязательных deliverables.
 - Проверено наличие ключевого headline/image в HTML.
+- Проверена доступность всех `<img src>` из HTML.
+- Проверен `AURA_ASSET_REGISTRY.json` для MCP KV ассетов.
+- Проверен overlap hero-person asset: низ фигуры должен уходить под второй блок, а не обрываться на синем фоне.
 - Проверены placeholder/lorem/emoji markers.
 - Screenshot diff требует запуска в Cursor/browser среде.
 
 ## Findings
 
-- **HIGH**: Главное изображение источника не найдено в HTML. Нужно сохранить source image или заменить только после разрешения пользователя.
-- **MEDIUM**: В HTML обнаружены placeholder/lorem маркеры. Для Aura это запрещено.
-- **MEDIUM**: В HTML найдены emoji/symbol markers. UI должен использовать SVG/CSS/generative assets.
+- Критических структурных проблем не найдено.
 
 ## Что нужно для pixel-perfect QA
 

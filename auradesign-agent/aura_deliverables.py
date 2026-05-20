@@ -117,8 +117,8 @@ def build_todo(source, output_html):
 - [ ] Разобрать композицию hero: где стоит изображение, где заголовок, какой слой сверху, какие перекрытия и пропорции.
 - [ ] Создать глубокий `AURADESIGN.md`.
 - [ ] Создать `AURA_SOURCE_ANALYSIS.md` с описанием композиции, иерархии, сетки, ассетов и motion.
-- [ ] Создать brand-kit board через MCP `gpt-image-2`: одна большая картинка с палитрой, шрифтами, UI-компонентами, фонами, паттернами и ассетами.
-- [ ] Если на странице нужен вырезанный объект, сгенерировать изображение через MCP и удалить фон через `recraft_remove_background`.
+- [ ] Создать brand-kit board через MCP KV `user-mcp-kv/gpt-image-2`: одна большая картинка с палитрой, шрифтами, UI-компонентами, фонами, паттернами и ассетами.
+- [ ] Если на странице нужен вырезанный объект, сгенерировать изображение через MCP KV `user-mcp-kv/gpt-image-2`, удалить фон через MCP KV `user-mcp-kv/recraft_remove_background` и записать URL в `AURA_ASSET_REGISTRY.json`.
 - [ ] Создать `AURA_COLOR_PSYCHOLOGY.md` и вынести туда предложения по улучшению цвета, не применяя их без разрешения пользователя.
 - [ ] Собрать HTML-страницу как copy-in-copy репликацию источника.
 - [ ] Проверить side-by-side: источник против результата.
@@ -200,7 +200,7 @@ def build_brand_kit_prompt(name, source, colors, fonts):
 ## После генерации
 
 1. Проверить, что brand-kit board соответствует источнику.
-2. Если на board есть отдельный объект для hero, при необходимости прогнать его через `recraft_remove_background`.
+2. Если на board есть отдельный объект для hero, обязательно прогнать его через MCP KV `user-mcp-kv/recraft_remove_background` и записать URL в `AURA_ASSET_REGISTRY.json`.
 3. Сохранить URL результата в отчет агента и в `AURA_SOURCE_ANALYSIS.md` при следующем обновлении.
 """
 

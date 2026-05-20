@@ -2,13 +2,13 @@
   "replicationMode": "copy-in-copy",
   "sourceIsLaw": true,
   "hero": {
-    "headline": "",
-    "headlineLayer": "requires-visual-analysis",
+    "headline": "PORTFOLIO",
+    "headlineLayer": "behind-image",
     "primaryImage": {
-      "src": "BUMAGA reference / current demo source",
-      "alt": " current demo source"
+      "src": "https://tempfile.aiquickdraw.com/r/459ca3084f2e29ac680b83c7537d6e3b_1779316891_m62b39v8.png",
+      "alt": "MCP KV generated transparent hero designers"
     },
-    "imagePosition": "requires-visual-analysis",
+    "imagePosition": "center",
     "mustPreserveLayering": true,
     "mustNotChangeThemeWithoutUserRequest": true
   }
