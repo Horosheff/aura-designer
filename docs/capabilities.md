@@ -139,8 +139,7 @@ python "auradesign-agent/aura.py" qa --source-map "AURA_SOURCE_MAP.json" --html 
 ```bash
 python "auradesign-agent/aura.py" scan --url "https://example.com" --output "AURADESIGN.md"
 python "auradesign-agent/aura.py" analyze --url "https://example.com" --output-dir "."
-python "auradesign-agent/aura.py" preset bumaga --output "AURADESIGN.md"
-python "auradesign-agent/aura.py" generate --contract "AURADESIGN.md" --niche bumaga --output "index.html"
+python "auradesign-agent/aura.py" generate --contract "AURADESIGN.md" --asset-url "https://mcp-generated-image.example/transparent.png" --output "index.html"
 python "auradesign-agent/aura.py" replicate --source-map "AURA_SOURCE_MAP.json" --contract "AURADESIGN.md" --output "index.html"
 python "auradesign-agent/aura.py" deliverables --contract "AURADESIGN.md" --source "https://example.com" --output-dir "."
 python "auradesign-agent/aura.py" lint --contract "AURADESIGN.md"

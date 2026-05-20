@@ -42,8 +42,9 @@ Aura Designer
 │     ├─ aura_visual_qa.py                     # QA отчет репликации
 │     ├─ aura_linter.py                        # проверка AURADESIGN.md
 │     ├─ aura_generator.py                     # HTML/CSS генератор
-│     ├─ AURADESIGN_SPEC.md                    # спецификация формата
-│     └─ presets/                              # библиотека дизайн-пресетов
+│     └─ AURADESIGN_SPEC.md                    # спецификация формата
+├─ Project Skills
+│  └─ .cursor/skills/                          # кириллические шрифты и shape-replication
 ├─ Документация
 │  ├─ docs/install.md                          # установка в IDE
 │  ├─ docs/agent-map.md                        # подробная карта агента
@@ -95,8 +96,8 @@ cp path/to/aura-designer/.codex/agents/*.md .codex/agents/
 CLI написан на Python 3 и не требует сторонних библиотек.
 
 ```bash
-python "auradesign-agent/aura.py" preset bumaga --output "auradesign-agent/AURADESIGN.md"
-python "auradesign-agent/aura.py" generate --contract "auradesign-agent/AURADESIGN.md" --niche bumaga --output "auradesign-agent/index.html"
+python "auradesign-agent/aura.py" scan --url "https://example.com" --output "auradesign-agent/AURADESIGN.md"
+python "auradesign-agent/aura.py" generate --contract "auradesign-agent/AURADESIGN.md" --asset-url "https://mcp-generated-image.example/transparent.png" --output "auradesign-agent/index.html"
 python "auradesign-agent/aura.py" deliverables --contract "auradesign-agent/AURADESIGN.md" --source "https://example.com" --output-dir "auradesign-agent"
 ```
 
@@ -129,7 +130,7 @@ python install.py --target codex --scope project --project-dir .
 - YAML frontmatter: точные токены для цветов, типографики, spacing, radii, компонентов и motion.
 - Markdown body: дизайнерская логика, настроение, правила композиции, доступность, поведение компонентов, asset policy и запреты.
 
-Пример хорошего контракта лежит в [`AURADESIGN.md`](AURADESIGN.md), а эталон BUMAGA — в [`auradesign-agent/presets/bumaga.md`](auradesign-agent/presets/bumaga.md).
+Пример хорошего контракта лежит в [`AURADESIGN.md`](AURADESIGN.md). Папка пресетов удалена намеренно: Aura Designer должен копировать источник, а не подмешивать готовый стиль из прошлых задач.
 
 ## Строгие правила Aura
 

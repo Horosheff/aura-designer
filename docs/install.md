@@ -82,8 +82,8 @@ CLI можно использовать отдельно от sub-agent режи
 
 ```bash
 cd path/to/aura-designer
-python "auradesign-agent/aura.py" preset bumaga --output "auradesign-agent/AURADESIGN.md"
-python "auradesign-agent/aura.py" generate --contract "auradesign-agent/AURADESIGN.md" --niche bumaga --output "auradesign-agent/index.html"
+python "auradesign-agent/aura.py" scan --url "https://example.com" --output "auradesign-agent/AURADESIGN.md"
+python "auradesign-agent/aura.py" generate --contract "auradesign-agent/AURADESIGN.md" --asset-url "https://mcp-generated-image.example/transparent.png" --output "auradesign-agent/index.html"
 ```
 
 ## Проверка установки

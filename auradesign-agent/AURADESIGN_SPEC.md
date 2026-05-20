@@ -266,24 +266,53 @@ Brand-kit картинка должна быть одним большим из�
 
 ## 6. Правила Подбора Шрифтов Aura (Font Selection Rules)
 
-Шрифты в AuraDesign являются мощнейшим инструментом позиционирования бренда. Выбор неподходящего шрифта разрушает визуальную целостность дизайна, выдавая шаблоны "AI-мусора". Для исключения этой проблемы все шрифтовые пары выбираются строго на основе **Визуальной матрицы архетипов**:
+Шрифты в AuraDesign являются мощнейшим инструментом позиционирования бренда. Для русскоязычных и потенциально русскоязычных страниц шрифтовые пары подбираются только из гарнитур Google Fonts с поддержкой кириллицы. Подробный проектный скилл: `.cursor/skills/aura-cyrillic-google-fonts/SKILL.md`.
 
-### 6.1 Матрица Подбора Шрифтовых Пар по Нишам
+### 6.1 Обязательные Кириллические Требования
 
-| Архетип (Ниша) | Заголовки (Display & Headline) | Основной Текст (Body) | Оптические Ограничения |
-| :--- | :--- | :--- | :--- |
-| **`bumaga`** (брутализм) | Тяжелые, ультра-широкие гротески:<br>`Unbounded` (black/bold), `Plus Jakarta Sans` (ultra-bold), `Clash Display`. Допускается all-lowercase. | Геометрические гротески повышенной плотности:<br>`Plus Jakarta Sans`, `Space Grotesk`, `DM Sans`. | Межбуквенный интервал `letterSpacing: "-0.03em"` до `-0.05em`. Отрицательный трекинг обязателен для строчных заголовков. |
-| **`saas`** (SaaS, стартапы) | Чистые, геометрические гротески с уникальными деталями:<br>`Plus Jakarta Sans`, `Outfit`, `Clash Display`. | Нейтральные мягкие гротески:<br>`Plus Jakarta Sans` (light/medium), `Manrope`, `DM Sans`. | `letterSpacing: "-0.01em"` до `-0.02em`. Высокая контрастность, среднее межстрочное расстояние (1.2-1.3). |
-| **`fintech` / `cosmic`** | Моноширинные или широкие футуристические шрифты:<br>`Space Grotesk`, `Syne`, `Share Tech Mono`. | Чистые моноширинные гротески:<br>`Space Grotesk`, `JetBrains Mono`, `DM Sans`. | Широкие буквы требуют `letterSpacing: "0.02em"` до `0.05em` для моно-шрифтов, либо отрицательного трекинга для заголовков. |
-| **`pets`** (природа, теплота) | Мягкие, закругленные дружелюбные шрифты:<br>`Fredoka`, `Comfortaa`, `Quicksand`. | Мягкие гротески средней насыщенности:<br>`Quicksand`, `Comfortaa`, `Plus Jakarta Sans`. | Избегать острых буквенных окончаний. Закругленные формы требуют комфортного межстрочного интервала (1.5-1.6). |
-| **`alpinism`** (элитарность) | Высококонтрастные классические антиквы (Serifs):<br>`Newsreader` (italic/medium), `Marcellus`, `Playfair Display`. | Изящный текстовый serif или строгий моно:<br>`Newsreader`, `Lora`, `IBM Plex Mono` / `Space Mono`. | Наклонный курсив `italic` для эмоционального акцента. Заголовки требуют увеличенного или нейтрального трекинга. |
-| **`glassmorphism`** | Футуристичные гладкие гротески:<br>`Plus Jakarta Sans`, `Outfit`, `Syne`. | Тонкие технологичные гротески:<br>`Inter`, `Plus Jakarta Sans` (light). | Тонкие начертания `fontWeight: "300"` или `"400"` требуют повышения контрастности цвета до WCAG AAA (7:1). |
+1. **Cyrillic first:** если интерфейс может содержать русский текст, оба шрифта пары должны поддерживать кириллицу. Красивый латинский display-шрифт без кириллицы допустим только для неизменяемого латинского логотипа.
+2. **Большой каталог вместо 5 пресетов:** агент обязан держать много вариантов под разные настроения: SaaS, creator, editorial, brutal, tech, luxury, organic, retro, culture.
+3. **Безопасные базовые кириллические семейства:** `Manrope`, `Onest`, `Golos Text`, `Geologica`, `Jost`, `Montserrat`, `Montserrat Alternates`, `Nunito Sans`, `Rubik`, `IBM Plex Sans`, `Source Sans 3`, `Roboto`, `PT Sans`, `PT Serif`, `Cormorant Garamond`, `Lora`, `Merriweather`, `Unbounded`, `Russo One`, `Rubik Mono One`, `Oswald`, `Comfortaa`, `Fira Sans`, `JetBrains Mono`, `IBM Plex Mono`, `Roboto Mono`.
+4. **Запрещены как Google Fonts для кириллического текста:** `Satoshi`, `Neue Montreal`, `Helvetica Neue`, `Avenir`, `Clash Display`. Их нет в Google Fonts или кириллица не гарантирована.
+5. **Проверять спорные гарнитуры:** `Space Grotesk`, `Syne`, `Outfit`, `Plus Jakarta Sans` нельзя использовать для русского текста без явной проверки кириллицы; безопасные замены: `Manrope`, `Onest`, `Golos Text`, `Jost`, `Geologica`, `Unbounded`.
 
-### 6.2 Ключевые Законы Типографики Aura
+### 6.2 Примеры Кириллических Пар
 
-1. **Категорический Запрет на Inter по умолчанию:** Шрифт `Inter` запрещен к использованию в качестве заголовков во всех нишах, кроме `glassmorphism`/`saas` (где он допускается только для мелкого body). В остальных нишах его использование классифицируется линтером как "AI-клише".
-2. **Закон Оптической Плотности (Contrast Density):** Крупный заголовок (Display/Headline) высокой жирности (`fontWeight: 800/900`) обязан снабжаться отрицательным межбуквенным расстоянием (в Tailwind: `tracking-tight` или `tracking-tighter`, в CSS: `letter-spacing: -0.02em` and выше). Без компенсации буквы "разлетаются" и заголовок теряет цельность.
-3. **Строчный Стиль (Lowercase Rule):** При использовании все-строчного начертания заголовков (all-lowercase, как в брутализме Alessandra Nicole) расстояние между буквами сжимается сильнее (`tracking-tighter`), а межстрочный интервал (line-height) сокращается до `1.05 - 1.1`. Это формирует плотный, завершенный текстовый графический блок, работающий как самостоятельный элемент иллюстрации.
-4. **Запрет на Смешение Семейств (Font-Family Collision):** Запрещено использовать более двух различных шрифтовых семейств на одной странице. Третье семейство допускается исключительно в виде моноширинного шрифта для мелких технических деталей (метки дат, теги категорий) размером не более `10px-12px`.
+- SaaS/Product: `Manrope` + `Inter`, `Onest` + `Manrope`, `Wix Madefor Display` + `Wix Madefor Text`, `Golos Text` + `Golos Text`.
+- Creator/Portfolio: `Nunito Sans` + `Nunito Sans`, `Comfortaa` + `Nunito Sans`, `Rubik` + `Nunito Sans`, `Jost` + `Manrope`.
+- Editorial/Premium: `Cormorant Garamond` + `Manrope`, `Lora` + `Source Sans 3`, `Merriweather` + `Open Sans`, `PT Serif` + `PT Sans`.
+- Brutal/Poster: `Unbounded` + `Manrope`, `Unbounded` + `Golos Text`, `Russo One` + `Roboto`, `Rubik Mono One` + `Rubik`, `Oswald` + `Source Sans 3`.
+- Tech/AI/Fintech: `IBM Plex Mono` + `IBM Plex Sans`, `JetBrains Mono` + `Manrope`, `Roboto Mono` + `Roboto`, `Exo 2` + `Open Sans`, `Geologica` + `Golos Text`.
+- Luxury/Beauty: `Cormorant Garamond` + `Manrope`, `Poiret One` + `Montserrat`, `Tenor Sans` + `Open Sans`, `Prata` + `Roboto`, `Forum` + `PT Sans`.
+- Organic/Pets: `Nunito` + `Nunito Sans`, `Comfortaa` + `Open Sans`, `Rubik` + `Rubik`, `Pangolin` + `Nunito`, `Neucha` + `Open Sans`.
+- Retro/Culture: `Russo One` + `PT Sans`, `Oswald` + `PT Sans`, `Oranienbaum` + `PT Serif`, `Forum` + `PT Sans`.
+
+### 6.3 Ключевые Законы Типографики Aura
+
+1. **Inter не является универсальным ответом:** `Inter` допустим как body-шрифт в продуктовых интерфейсах, но не должен быть дефолтным display-шрифтом для любой ниши.
+2. **Оптическая плотность:** крупный заголовок высокой жирности (`fontWeight: 800/900`) требует отрицательного `letter-spacing: -0.02em...-0.06em`.
+3. **Lowercase typography:** строчные заголовки требуют более плотного трекинга и `line-height: 1.05-1.1`, чтобы текст работал как цельный графический блок.
+4. **Два семейства максимум:** третье семейство допускается только как маленький моноширинный технический акцент.
+
+---
+
+## 7. Правила Репликации Шейпов Aura (Shape Replication Rules)
+
+Шейпы не выбираются из заготовленного набора. Агент обязан копировать именно форму источника: если прислана клякса, делается клякса; если круги — круги; если капсулы — капсулы; если неровные органические blobs — blobs. Подробный проектный скилл: `.cursor/skills/aura-shape-replication/SKILL.md`.
+
+### 7.1 Что фиксировать перед версткой
+
+1. Тип формы: круг, овал, капсула, клякса, blob, карточка, sunburst, цветок, sparkle, волна, линия, лента, рамка.
+2. Геометрию: пропорции, радиус, симметрию/асимметрию, количество лучей/лепестков, наклон, слой.
+3. Контур: есть ли stroke, какой цвет, толщина, opacity, sharp/round joins.
+4. Тени: нет тени, мягкая ambient shadow, жесткая flat shadow, glow, blur.
+5. Технику: CSS radius для простых форм, inline SVG path для blobs/клякс/цветов/волн, MCP asset для сложных иллюстраций или текстур.
+
+### 7.2 Запреты
+
+- Нельзя заменять кляксы на звезды, blobs на круги, flower на sunburst, sparkle на ромб, если источник показывает другую форму.
+- Нельзя добавлять черные обводки, если их нет в источнике.
+- Нельзя добавлять жесткие черные тени, если источник плоский или мягкий.
+- Нельзя использовать форму из прошлой задачи как декоративный стандарт.
 
 

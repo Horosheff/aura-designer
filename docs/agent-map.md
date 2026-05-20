@@ -50,8 +50,7 @@ auradesign-agent/aura.py
 ```bash
 python aura.py scan --url https://example.com
 python aura.py analyze --url https://example.com --output-dir .
-python aura.py preset bumaga
-python aura.py generate --contract AURADESIGN.md --niche bumaga --output index.html
+python aura.py generate --contract AURADESIGN.md --asset-url https://mcp-generated-image.example/transparent.png --output index.html
 python aura.py replicate --source-map AURA_SOURCE_MAP.json --contract AURADESIGN.md --output index.html
 python aura.py deliverables --contract AURADESIGN.md --source https://example.com --output-dir .
 python aura.py lint --contract AURADESIGN.md
@@ -173,25 +172,24 @@ auradesign-agent/aura_deliverables.py
 - Создает `AURA_BRAND_KIT_IMAGE_PROMPT.md` — готовый prompt для MCP `gpt-image-2`, чтобы получить одну большую brand-kit картинку.
 - Создает `AURA_COLOR_PSYCHOLOGY.md` — анализ психологии цветов и рекомендации, которые нельзя применять без разрешения пользователя.
 
-## 11. Пресеты
+## 11. Project Skills
 
 Папка:
 
 ```text
-auradesign-agent/presets/
+.cursor/skills/
 ```
 
-Содержит готовые дизайн-контракты:
+Содержит точечные способности, которые не дают агенту скатываться в шаблоны:
 
-- `bumaga.md` — яркий нео-брутализм, бумажные слои, сигнальные ленты.
-- `saas.md` — чистый SaaS.
-- `fintech.md` — темный технологичный интерфейс.
-- `glassmorphism.md` — стекло, блюр, свет.
-- `pets.md` — теплый pet/family стиль.
-- `cosmic.md` — темный космический стиль.
-- `alpinism.md` — научная винтажная экспедиция.
+- `aura-cyrillic-google-fonts` — большой каталог Google Fonts пар с поддержкой кириллицы и правила подключения.
+- `aura-shape-replication` — копирование любых форм из источника: клякс, blobs, кругов, капсул, волн, карточек, линий, обводок и теней.
 
-## 12. Документация и примеры
+## 12. Пресеты удалены
+
+Папка `auradesign-agent/presets/` удалена намеренно. Готовые стили навязывали прошлые паттерны и мешали copy-in-copy репликации. Aura Designer должен анализировать источник с чистого листа и повторять его, а не подгонять под `bumaga`, `saas` или другой старый шаблон.
+
+## 13. Документация и примеры
 
 ```text
 docs/install.md

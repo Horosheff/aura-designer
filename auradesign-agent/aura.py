@@ -5,12 +5,11 @@
 AuraDesign Agent - Main CLI Interface
 =====================================
 Главная консольная утилита управления экосистемой AuraDesign.
-Объединяет сканирование, пресеты, управление ассетами и генерацию сайтов.
+Объединяет сканирование, source-map анализ, управление ассетами и генерацию сайтов.
 """
 
 import os
 import sys
-import shutil
 import argparse
 import subprocess
 
@@ -36,7 +35,6 @@ ASCII_ART = r"""
               * Intelligent AI Design System *
 """
 
-PRESETS_DIR = "presets"
 FALLBACK_CONTRACT = "AURADESIGN.md"
 FALLBACK_HTML = "index.html"
 
@@ -106,25 +104,11 @@ def handle_analyze(args):
 
 
 def handle_preset(args):
-    """Обработчик команды preset"""
-    print(f"[Preset] Импорт пресета для ниши [{args.niche}]...")
-    preset_filename = f"{args.niche.lower()}.md"
-    preset_path = os.path.join(os.path.dirname(__file__), PRESETS_DIR, preset_filename)
-    
-    if not os.path.exists(preset_path):
-        available_presets = [f.split('.')[0] for f in os.listdir(os.path.join(os.path.dirname(__file__), PRESETS_DIR)) if f.endswith('.md')]
-        print(f"[Error] Пресет '{args.niche}' не найден!", file=sys.stderr)
-        print(f"[Preset] Доступные пресеты: {', '.join(available_presets)}", file=sys.stderr)
-        sys.exit(1)
-        
-    output_path = args.output or FALLBACK_CONTRACT
-    try:
-        shutil.copy(preset_path, output_path)
-        print(f"[OK] Пресет успешно скопирован в: {output_path}")
-        print("[Preset] Теперь вы можете отредактировать токены или сразу запустить генерацию сайта.")
-    except Exception as e:
-        print(f"[Error] Ошибка копирования пресета: {e}", file=sys.stderr)
-        sys.exit(1)
+    """Пресеты удалены: они провоцировали style bleeding."""
+    print("[Preset][DEPRECATED] Папка пресетов удалена намеренно.")
+    print("[Preset][DEPRECATED] Aura Designer работает от источника: scan/analyze -> AURADESIGN.md -> replicate.")
+    print("[Preset][DEPRECATED] Используйте `scan` для нового контракта или `analyze` + `replicate` для copy-in-copy.")
+    sys.exit(2)
 
 
 def handle_generate(args):
@@ -133,15 +117,9 @@ def handle_generate(args):
     
     contract_path = args.contract or FALLBACK_CONTRACT
     if not os.path.exists(contract_path):
-        print(f"[Generate] Контракт {contract_path} не найден. Пробуем скопировать пресет 'saas' по умолчанию...")
-        # Копируем пресет saas как базовый
-        default_preset = os.path.join(os.path.dirname(__file__), PRESETS_DIR, "saas.md")
-        if os.path.exists(default_preset):
-            shutil.copy(default_preset, contract_path)
-            print(f"[OK] Скопирован пресет по умолчанию 'saas' -> {contract_path}")
-        else:
-            print("[Error] Ошибка: Нет файлов спецификации для сборки!", file=sys.stderr)
-            sys.exit(1)
+        print(f"[Generate][BLOCKED] Контракт не найден: {contract_path}", file=sys.stderr)
+        print("[Generate][BLOCKED] Пресеты удалены, автоподмена шаблоном запрещена. Сначала создайте AURADESIGN.md через `scan` или вручную.", file=sys.stderr)
+        sys.exit(1)
 
     # 1. Получаем только реальный MCP KV ассет. Фоллбеки запрещены.
     print("[Generate] Проверка MCP KV ассета...")
@@ -322,9 +300,9 @@ def main():
     analyze_group.add_argument("--image", help="Путь или URL изображения-референса")
     analyze_parser.add_argument("--output-dir", help="Папка для source-map файлов")
     
-    # Команда preset
-    preset_parser = subparsers.add_parser("preset", help="Копирует готовый пресет ниши в файл контракта")
-    preset_parser.add_argument("niche", help="Имя ниши (saas, fintech, glassmorphism, pets, cosmic, alpinism, bumaga)")
+    # Команда preset (deprecated)
+    preset_parser = subparsers.add_parser("preset", help="DEPRECATED: пресеты удалены, используйте scan/analyze/replicate")
+    preset_parser.add_argument("niche", help="Имя старого пресета (команда больше не используется)")
     preset_parser.add_argument("--output", help="Файл сохранения контракта (по умолчанию AURADESIGN.md)")
     
     # Команда generate

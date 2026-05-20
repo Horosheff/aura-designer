@@ -20,13 +20,6 @@
 
 ```
 auradesign-agent/
-├── presets/                 # Библиотека канонических дизайн-пресетов
-│   ├── saas.md              # Светлый минималистичный SaaS
-│   ├── fintech.md           # Контрастный тёмно-стальной FinTech (Space Grotesk + Geist Mono)
-│   ├── glassmorphism.md     # Высокотехнологичный эффект матового стекла (Atmospheric Glass)
-│   ├── pets.md              # Дружелюбный семейный/зоо-пресет (Paws & Paths)
-│   ├── cosmic.md            # Мистический тёмный премиум-дизайн полного затмения (Cosmic Totality)
-│   └── alpinism.md          # Чертежная винтажная эстетика научной экспедиции (Scientific Alpinism)
 ├── aura.py                  # Главный пульт управления (CLI)
 ├── aura_scanner.py          # Анализатор веб-страниц и изображений
 ├── aura_generator.py        # Сборщик готовых HTML-страниц по контракту
@@ -42,11 +35,10 @@ auradesign-agent/
 
 Инструмент написан на чистом Python 3 и **не требует сторонних библиотек** для парсинга и генерации. Для запуска достаточно установленного Python.
 
-### 1. Импорт готового пресета ниши
-Вы можете пропустить этап сканирования и развернуть один из премиальных стилей нашей библиотеки:
+### 1. Source-first подход без пресетов
+Папка пресетов удалена намеренно: готовые стили провоцировали style bleeding. Новый контракт создается из источника или вручную:
 ```bash
-python aura.py preset saas
-# или: fintech, glassmorphism, pets, cosmic, alpinism
+python aura.py scan --url https://linear.app --output AURADESIGN.md
 ```
 *Файл спецификации будет записан в локальный `AURADESIGN.md`.*
 
