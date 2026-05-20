@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Local/generated agent artifacts
+.cursor/aura-requests.json
+*.log
+
+# Screenshots and local visual QA captures
+*.png
+*.jpg
+*.jpeg
+*.webp
+*.gif
+
+# Research dumps and cloned reference repositories
+research/
+google-design-md/
+google-stitch-skills/
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Keep installable Cursor project files
+!.cursor/
+!.cursor/agents/
+!.cursor/agents/*.md
+!.cursor/rules/
+!.cursor/rules/*.mdc
