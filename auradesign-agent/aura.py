@@ -46,7 +46,9 @@ def run_script(script_name, args_list):
     script_path = os.path.join(os.path.dirname(__file__), script_name)
     cmd = [sys.executable, script_path] + args_list
     try:
-        res = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="ignore")
+        env = os.environ.copy()
+        env["PYTHONIOENCODING"] = "utf-8"
+        res = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="ignore", env=env)
         if res.returncode != 0:
             print(f"[Error] Ошибка выполнения {script_name}:\n{res.stderr}", file=sys.stderr)
             return False, res.stdout
@@ -75,6 +77,30 @@ def handle_scan(args):
     if success:
         print(output.strip())
         print("[OK] Контракт успешно подготовлен!")
+        source = args.url or args.image or ""
+        deliverables_args = [
+            "--contract", contract_path,
+            "--source", source,
+            "--output-dir", os.path.dirname(contract_path) or ".",
+        ]
+        deliverables_success, deliverables_output = run_script("aura_deliverables.py", deliverables_args)
+        if deliverables_success and deliverables_output.strip():
+            print(deliverables_output.strip())
+    else:
+        sys.exit(1)
+
+
+def handle_analyze(args):
+    """Создает машинные карты источника для copy-in-copy режима"""
+    analyzer_args = ["--output-dir", args.output_dir or "."]
+    if args.url:
+        analyzer_args += ["--url", args.url]
+    elif args.image:
+        analyzer_args += ["--image", args.image]
+
+    success, output = run_script("aura_source_analyzer.py", analyzer_args)
+    if success:
+        print(output.strip())
     else:
         sys.exit(1)
 
@@ -150,6 +176,69 @@ def handle_generate(args):
         sys.exit(1)
 
 
+def handle_replicate(args):
+    """Генерирует страницу по AURA_SOURCE_MAP.json без архетипной вольности"""
+    replicator_args = [
+        "--source-map", args.source_map or "AURA_SOURCE_MAP.json",
+        "--contract", args.contract or FALLBACK_CONTRACT,
+        "--output", args.output or FALLBACK_HTML,
+    ]
+    if args.asset_url:
+        replicator_args += ["--asset-url", args.asset_url]
+
+    success, output = run_script("aura_replicator.py", replicator_args)
+    if success:
+        print(output.strip())
+    else:
+        sys.exit(1)
+
+
+def handle_deliverables(args):
+    """Создает обязательные аналитические файлы вокруг AURADESIGN.md"""
+    contract_path = args.contract or FALLBACK_CONTRACT
+    if not os.path.exists(contract_path):
+        print(f"[Error] Контракт не найден: {contract_path}", file=sys.stderr)
+        sys.exit(1)
+
+    output_dir = args.output_dir or (os.path.dirname(contract_path) or ".")
+    deliverables_args = [
+        "--contract", contract_path,
+        "--source", args.source or "",
+        "--output-dir", output_dir,
+        "--html", args.html or FALLBACK_HTML,
+    ]
+    success, output = run_script("aura_deliverables.py", deliverables_args)
+    if success:
+        print(output.strip())
+    else:
+        sys.exit(1)
+
+
+def handle_lint(args):
+    """Проверяет AURADESIGN.md на глубину и обязательные правила"""
+    lint_args = ["--contract", args.contract or FALLBACK_CONTRACT]
+    if args.output:
+        lint_args += ["--output", args.output]
+    success, output = run_script("aura_linter.py", lint_args)
+    print(output.strip())
+    if not success:
+        sys.exit(1)
+
+
+def handle_qa(args):
+    """Создает структурный QA-отчет по source-map и HTML"""
+    qa_args = [
+        "--source-map", args.source_map or "AURA_SOURCE_MAP.json",
+        "--html", args.html or FALLBACK_HTML,
+        "--output", args.output or "AURA_VISUAL_QA.md",
+        "--output-dir", args.output_dir or ".",
+    ]
+    success, output = run_script("aura_visual_qa.py", qa_args)
+    print(output.strip())
+    if not success:
+        sys.exit(1)
+
+
 def handle_pipeline(args):
     """Обработчик сквозного конвейера pipeline"""
     print("[Pipeline] Запуск сквозного конвейера AuraDesign Pipeline...")
@@ -158,6 +247,11 @@ def handle_pipeline(args):
     print("\n--- ЭТАП 1: Сканирование сайта и построение дизайн-контракта ---")
     scan_args = argparse.Namespace(url=args.url, image=None, dark=args.dark, output=FALLBACK_CONTRACT)
     handle_scan(scan_args)
+
+    # 1.5. Строим машинные карты источника для режима copy-in-copy
+    print("\n--- ЭТАП 1.5: Анализ источника и построение source maps ---")
+    analyze_args = argparse.Namespace(url=args.url, image=None, output_dir=os.path.dirname(args.output or FALLBACK_HTML) or ".")
+    handle_analyze(analyze_args)
     
     # 2. Определяем нишу по названию сайта для подбора ассетов
     niche = "saas"
@@ -170,10 +264,36 @@ def handle_pipeline(args):
         elif "finance" in url_lower or "crypto" in url_lower or "wallet" in url_lower:
             niche = "fintech"
             
-    # 3. Генерируем ассеты и собираем сайт
-    print("\n--- ЭТАП 2: Подбор ассетов и сборка финального HTML ---")
-    gen_args = argparse.Namespace(contract=FALLBACK_CONTRACT, niche=niche, prompt=None, output=args.output or FALLBACK_HTML)
-    handle_generate(gen_args)
+    # 3. Собираем source-accurate реплику
+    print("\n--- ЭТАП 2: Copy-in-copy сборка HTML по source map ---")
+    output_dir = os.path.dirname(args.output or FALLBACK_HTML) or "."
+    replica_args = argparse.Namespace(
+        source_map=os.path.join(output_dir, "AURA_SOURCE_MAP.json"),
+        contract=FALLBACK_CONTRACT,
+        output=args.output or FALLBACK_HTML,
+        asset_url=None,
+    )
+    handle_replicate(replica_args)
+
+    # 4. Создаем карту репликации, brand-kit prompt и психологию цвета
+    print("\n--- ЭТАП 3: Аналитические deliverables и brand-kit бриф ---")
+    deliverables_args = argparse.Namespace(
+        contract=FALLBACK_CONTRACT,
+        source=args.url,
+        output_dir=output_dir,
+        html=args.output or FALLBACK_HTML,
+    )
+    handle_deliverables(deliverables_args)
+
+    # 5. Структурный QA-отчет
+    print("\n--- ЭТАП 4: QA source-accurate результата ---")
+    qa_args = argparse.Namespace(
+        source_map=os.path.join(output_dir, "AURA_SOURCE_MAP.json"),
+        html=args.output or FALLBACK_HTML,
+        output=os.path.join(output_dir, "AURA_VISUAL_QA.md"),
+        output_dir=output_dir,
+    )
+    handle_qa(qa_args)
     
     print("\n[OK] Сквозной пайплайн успешно выполнен!")
 
@@ -191,6 +311,13 @@ def main():
     scan_group.add_argument("--image", help="Путь к картинке для визуального анализа")
     scan_parser.add_argument("--dark", action="store_true", help="Сгенерировать тёмную тему")
     scan_parser.add_argument("--output", help="Файл сохранения контракта (по умолчанию AURADESIGN.md)")
+
+    # Команда analyze
+    analyze_parser = subparsers.add_parser("analyze", help="Создает AURA_SOURCE_MAP.json, AURA_COMPOSITION_LOCK.json и AURA_COMPONENT_MAP.json")
+    analyze_group = analyze_parser.add_mutually_exclusive_group(required=True)
+    analyze_group.add_argument("--url", help="URL источника")
+    analyze_group.add_argument("--image", help="Путь или URL изображения-референса")
+    analyze_parser.add_argument("--output-dir", help="Папка для source-map файлов")
     
     # Команда preset
     preset_parser = subparsers.add_parser("preset", help="Копирует готовый пресет ниши в файл контракта")
@@ -203,6 +330,32 @@ def main():
     generate_parser.add_argument("--niche", default="saas", help="Ниша подбора ассета (saas, fintech, glassmorphism, pets, cosmic, alpinism, bumaga)")
     generate_parser.add_argument("--prompt", help="Кастомный ИИ-промпт для генерации картинки")
     generate_parser.add_argument("--output", help="Файл сохранения сайта (по умолчанию index.html)")
+
+    # Команда replicate
+    replicate_parser = subparsers.add_parser("replicate", help="Copy-in-copy генерация по AURA_SOURCE_MAP.json")
+    replicate_parser.add_argument("--source-map", help="Путь к AURA_SOURCE_MAP.json")
+    replicate_parser.add_argument("--contract", help="Файл дизайн-контракта")
+    replicate_parser.add_argument("--output", help="Файл сохранения HTML")
+    replicate_parser.add_argument("--asset-url", help="Принудительный URL hero-ассета")
+
+    # Команда deliverables
+    deliverables_parser = subparsers.add_parser("deliverables", help="Создает todo, source analysis, brand-kit prompt и психологию цвета")
+    deliverables_parser.add_argument("--contract", help="Файл дизайн-контракта (по умолчанию AURADESIGN.md)")
+    deliverables_parser.add_argument("--source", help="URL, изображение или описание источника")
+    deliverables_parser.add_argument("--output-dir", help="Папка для аналитических файлов")
+    deliverables_parser.add_argument("--html", help="Целевой HTML-файл")
+
+    # Команда lint
+    lint_parser = subparsers.add_parser("lint", help="Проверяет AURADESIGN.md на обязательные разделы и anti-slop правила")
+    lint_parser.add_argument("--contract", help="Файл дизайн-контракта")
+    lint_parser.add_argument("--output", help="Файл отчета")
+
+    # Команда qa
+    qa_parser = subparsers.add_parser("qa", help="Создает AURA_VISUAL_QA.md по source-map и HTML")
+    qa_parser.add_argument("--source-map", help="Путь к AURA_SOURCE_MAP.json")
+    qa_parser.add_argument("--html", help="HTML для проверки")
+    qa_parser.add_argument("--output", help="Файл QA-отчета")
+    qa_parser.add_argument("--output-dir", help="Папка обязательных deliverables")
     
     # Команда pipeline
     pipeline_parser = subparsers.add_parser("pipeline", help="Сквозной пайплайн: сканирование -> контракт -> ассеты -> сайт")
@@ -214,10 +367,20 @@ def main():
     
     if args.command == "scan":
         handle_scan(args)
+    elif args.command == "analyze":
+        handle_analyze(args)
     elif args.command == "preset":
         handle_preset(args)
     elif args.command == "generate":
         handle_generate(args)
+    elif args.command == "replicate":
+        handle_replicate(args)
+    elif args.command == "deliverables":
+        handle_deliverables(args)
+    elif args.command == "lint":
+        handle_lint(args)
+    elif args.command == "qa":
+        handle_qa(args)
     elif args.command == "pipeline":
         handle_pipeline(args)
 

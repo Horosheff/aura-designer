@@ -20,6 +20,10 @@ is_background: false
 6. Реально ли используются сгенерированные изображения и background-removed ассеты там, где они требуются?
 7. Держится ли layout на desktop и mobile?
 8. Исключены ли emoji из UI, заменены ли они на SVG/CSS/generative assets?
+9. Повторена ли композиция источника copy-in-copy: позиция изображения, заголовок за/перед изображением, масштаб, слои, ритм, сетка и порядок блоков?
+10. Созданы ли обязательные deliverables: `AURA_REPLICATION_TODO.md`, `AURA_SOURCE_ANALYSIS.md`, `AURA_BRAND_KIT_IMAGE_PROMPT.md`, `AURA_COLOR_PSYCHOLOGY.md`?
+11. Есть ли brand-kit изображение или хотя бы готовый MCP prompt для его генерации через `gpt-image-2`?
+12. Не применены ли рекомендации психологии цвета без явного разрешения пользователя?
 
 Отчет:
 

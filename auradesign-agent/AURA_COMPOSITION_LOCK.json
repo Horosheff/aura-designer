@@ -1,0 +1,15 @@
+{
+  "replicationMode": "copy-in-copy",
+  "sourceIsLaw": true,
+  "hero": {
+    "headline": "",
+    "headlineLayer": "requires-visual-analysis",
+    "primaryImage": {
+      "src": "BUMAGA reference / current demo source",
+      "alt": " current demo source"
+    },
+    "imagePosition": "requires-visual-analysis",
+    "mustPreserveLayering": true,
+    "mustNotChangeThemeWithoutUserRequest": true
+  }
+}

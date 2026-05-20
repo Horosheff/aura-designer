@@ -16,6 +16,8 @@
 
 - Создает и улучшает сайты.
 - Пишет глубокие `AURADESIGN.md`.
+- Работает в режиме copy-in-copy: сначала точно повторяет источник, потом предлагает улучшения.
+- Создает обязательные deliverables: todo, source analysis, brand-kit prompt и психологию цвета.
 - Генерирует или координирует ассеты.
 - Следит за hero-блоками, типографикой, motion, адаптивом и визуальной целостностью.
 - Может редактировать файлы проекта.
@@ -47,8 +49,13 @@ auradesign-agent/aura.py
 
 ```bash
 python aura.py scan --url https://example.com
+python aura.py analyze --url https://example.com --output-dir .
 python aura.py preset bumaga
 python aura.py generate --contract AURADESIGN.md --niche bumaga --output index.html
+python aura.py replicate --source-map AURA_SOURCE_MAP.json --contract AURADESIGN.md --output index.html
+python aura.py deliverables --contract AURADESIGN.md --source https://example.com --output-dir .
+python aura.py lint --contract AURADESIGN.md
+python aura.py qa --source-map AURA_SOURCE_MAP.json --html index.html --output-dir .
 python aura.py pipeline --url https://example.com --output index.html
 ```
 
@@ -64,7 +71,7 @@ auradesign-agent/aura_scanner.py
 
 - Анализирует URL или изображение.
 - Извлекает базовые цвета, шрифты, паттерны и настроение.
-- Создает стартовый `AURADESIGN.md`.
+- Создает стартовый `AURADESIGN.md` с правилами `Source Replication Doctrine` и `Composition Lock`.
 
 ## 4. Генератор сайта
 
@@ -81,7 +88,63 @@ auradesign-agent/aura_generator.py
 - Генерирует готовый HTML/CSS сайт.
 - Встраивает шрифты, SVG, анимации, карточки, формы и hero-блок.
 
-## 5. Менеджер ассетов
+## 5. Source Analyzer
+
+Файл:
+
+```text
+auradesign-agent/aura_source_analyzer.py
+```
+
+Что делает:
+
+- Создает `AURA_SOURCE_MAP.json`.
+- Создает `AURA_COMPOSITION_LOCK.json`.
+- Создает `AURA_COMPONENT_MAP.json`.
+- Фиксирует заголовки, изображения, кнопки, цвета, шрифты, компоненты и первичные композиционные сигналы.
+
+## 6. Репликатор
+
+Файл:
+
+```text
+auradesign-agent/aura_replicator.py
+```
+
+Что делает:
+
+- Генерирует HTML по `AURA_SOURCE_MAP.json`.
+- Не использует архетипную вольность.
+- Сохраняет принцип source-accurate layout.
+
+## 7. Visual QA
+
+Файл:
+
+```text
+auradesign-agent/aura_visual_qa.py
+```
+
+Что делает:
+
+- Создает `AURA_VISUAL_QA.md`.
+- Проверяет наличие source-map, deliverables, headline/image в HTML, placeholder и emoji.
+- Готовит список проблем перед browser/screenshot diff.
+
+## 8. Linter
+
+Файл:
+
+```text
+auradesign-agent/aura_linter.py
+```
+
+Что делает:
+
+- Проверяет `AURADESIGN.md` на обязательные разделы.
+- Ищет слишком короткие контракты, отсутствие source lock, asset rules, color psychology и placeholder.
+
+## 9. Менеджер ассетов
 
 Файл:
 
@@ -95,7 +158,22 @@ auradesign-agent/aura_asset_manager.py
 - Координирует работу с `gpt-image-2` и `recraft_remove_background`, если они доступны в среде.
 - Возвращает `RESULT_ASSET_URL` для генератора.
 
-## 6. Пресеты
+## 10. Генератор deliverables
+
+Файл:
+
+```text
+auradesign-agent/aura_deliverables.py
+```
+
+Что делает:
+
+- Создает `AURA_REPLICATION_TODO.md` — рабочий todo-list для точного повторения источника.
+- Создает `AURA_SOURCE_ANALYSIS.md` — анализ композиции, слоев, сетки, hero и визуальных правил.
+- Создает `AURA_BRAND_KIT_IMAGE_PROMPT.md` — готовый prompt для MCP `gpt-image-2`, чтобы получить одну большую brand-kit картинку.
+- Создает `AURA_COLOR_PSYCHOLOGY.md` — анализ психологии цветов и рекомендации, которые нельзя применять без разрешения пользователя.
+
+## 11. Пресеты
 
 Папка:
 
@@ -113,7 +191,7 @@ auradesign-agent/presets/
 - `cosmic.md` — темный космический стиль.
 - `alpinism.md` — научная винтажная экспедиция.
 
-## 7. Документация и примеры
+## 12. Документация и примеры
 
 ```text
 docs/install.md

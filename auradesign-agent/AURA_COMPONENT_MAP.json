@@ -1,0 +1,19 @@
+{
+  "source": "BUMAGA reference / current demo source",
+  "components": [
+    {
+      "type": "image-reference",
+      "confidence": "input"
+    }
+  ],
+  "headings": [],
+  "buttons": [],
+  "images": [
+    {
+      "src": "BUMAGA reference / current demo source",
+      "alt": " current demo source",
+      "class": "",
+      "style": ""
+    }
+  ]
+}

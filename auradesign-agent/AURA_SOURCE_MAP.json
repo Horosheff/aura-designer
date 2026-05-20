@@ -1,0 +1,44 @@
+{
+  "version": "alpha",
+  "source": {
+    "sourceType": "image",
+    "source": "BUMAGA reference / current demo source",
+    "title": "Current Demo Source",
+    "description": "Источник является изображением. Требуется визуальный анализ через sub-agent/browser или мультимодальную модель.",
+    "colors": [],
+    "fonts": [],
+    "headings": [],
+    "buttons": [],
+    "images": [
+      {
+        "src": "BUMAGA reference / current demo source",
+        "alt": " current demo source",
+        "class": "",
+        "style": ""
+      }
+    ],
+    "links": [],
+    "components": [
+      {
+        "type": "image-reference",
+        "confidence": "input"
+      }
+    ],
+    "composition": {
+      "replicationMode": "copy-in-copy",
+      "sourceIsLaw": true,
+      "hero": {
+        "headline": "",
+        "headlineLayer": "requires-visual-analysis",
+        "primaryImage": {
+          "src": "BUMAGA reference / current demo source",
+          "alt": " current demo source"
+        },
+        "imagePosition": "requires-visual-analysis",
+        "mustPreserveLayering": true,
+        "mustNotChangeThemeWithoutUserRequest": true
+      }
+    }
+  },
+  "contractMode": "source-accurate-replication"
+}

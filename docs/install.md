@@ -4,6 +4,12 @@ Aura Designer распространяется как набор sub-agent фа�
 
 ## Установка в Cursor
 
+Быстрый установщик:
+
+```bash
+python install.py --target cursor --scope project --project-dir your-project
+```
+
 ### Вариант 1: в конкретный проект
 
 ```bash
@@ -30,6 +36,12 @@ Cursor читает пользовательские агенты из `~/.curso
 
 ## Установка в Claude Code
 
+Быстрый установщик:
+
+```bash
+python install.py --target claude --scope project --project-dir your-project
+```
+
 Скопируйте совместимые agent-файлы:
 
 ```bash
@@ -50,6 +62,12 @@ QA-агент:
 ```
 
 ## Установка в Codex
+
+Быстрый установщик:
+
+```bash
+python install.py --target codex --scope project --project-dir your-project
+```
 
 Скопируйте совместимые agent-файлы:
 
