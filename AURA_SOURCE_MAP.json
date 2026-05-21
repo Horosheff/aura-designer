@@ -1,10 +1,10 @@
 {
-  "version": "alpha",
+  "version": "1.0",
   "source": {
     "sourceType": "image",
     "source": "assets/c__Users_mrrut_AppData_Roaming_Cursor_User_workspaceStorage_empty-window_images_4c0d6218605807c704ded04f41921622-06e4fdca-3505-4a11-92a7-099c617cd735.png",
-    "title": "C  Users Mrrut Appdata Roaming Cursor User Workspacestorage Empty Window Images 4C0D6218605807C704Ded04F41921622 06E4Fdca 3505 4A11 92A7 099C617Cd735",
-    "description": "Источник является изображением. Требуется визуальный анализ через sub-agent/browser или мультимодальную модель.",
+    "title": "Language You+ Platform",
+    "description": "Источник является изображением.",
     "colors": [],
     "fonts": [],
     "headings": [],
@@ -12,7 +12,7 @@
     "images": [
       {
         "src": "assets/c__Users_mrrut_AppData_Roaming_Cursor_User_workspaceStorage_empty-window_images_4c0d6218605807c704ded04f41921622-06e4fdca-3505-4a11-92a7-099c617cd735.png",
-        "alt": "c__Users_mrrut_AppData_Roaming_Cursor_User_workspaceStorage_empty-window_images_4c0d6218605807c704ded04f41921622-06e4fdca-3505-4a11-92a7-099c617cd735.png",
+        "alt": "Language You+",
         "class": "",
         "style": ""
       }
@@ -28,11 +28,11 @@
       "replicationMode": "copy-in-copy",
       "sourceIsLaw": true,
       "hero": {
-        "headline": "",
+        "headline": "Personal program for you",
         "headlineLayer": "requires-visual-analysis",
         "primaryImage": {
           "src": "assets/c__Users_mrrut_AppData_Roaming_Cursor_User_workspaceStorage_empty-window_images_4c0d6218605807c704ded04f41921622-06e4fdca-3505-4a11-92a7-099c617cd735.png",
-          "alt": "c__Users_mrrut_AppData_Roaming_Cursor_User_workspaceStorage_empty-window_images_4c0d6218605807c704ded04f41921622-06e4fdca-3505-4a11-92a7-099c617cd735.png"
+          "alt": "Language You+"
         },
         "imagePosition": "requires-visual-analysis",
         "mustPreserveLayering": true,
@@ -40,7 +40,7 @@
       }
     },
     "shapeMap": {
-      "version": "alpha",
+      "version": "1.0",
       "source": "assets/c__Users_mrrut_AppData_Roaming_Cursor_User_workspaceStorage_empty-window_images_4c0d6218605807c704ded04f41921622-06e4fdca-3505-4a11-92a7-099c617cd735.png",
       "purpose": "Фиксирует формы источника, чтобы агент копировал кляксы, круги, blobs, капсулы, линии и тени без стилевого смешения.",
       "confidence": "requires-visual-analysis",
@@ -49,57 +49,7 @@
         {
           "id": "hero-decor",
           "whatToCapture": "Все декоративные формы hero: кляксы, круги, stickers, blobs, линии, волны.",
-          "fields": [
-            "shapeType",
-            "width",
-            "height",
-            "radius",
-            "fill",
-            "stroke",
-            "strokeWidth",
-            "shadow",
-            "opacity",
-            "rotation",
-            "zIndex"
-          ]
-        },
-        {
-          "id": "buttons-and-badges",
-          "whatToCapture": "Формы кнопок, бейджей, тегов, чипов и декоративных подписей.",
-          "fields": [
-            "shapeType",
-            "padding",
-            "radius",
-            "fill",
-            "stroke",
-            "shadow",
-            "hoverBehavior"
-          ]
-        },
-        {
-          "id": "cards-and-containers",
-          "whatToCapture": "Карточки, панели, рамки, разделители и фоновые плоскости.",
-          "fields": [
-            "shapeType",
-            "border",
-            "borderOpacity",
-            "shadow",
-            "background",
-            "cornerRadius"
-          ]
-        },
-        {
-          "id": "icons-and-symbols",
-          "whatToCapture": "SVG/иконки: число лучей/лепестков, симметрия, мягкость углов, наличие stroke.",
-          "fields": [
-            "shapeType",
-            "pathStyle",
-            "pointCount",
-            "symmetry",
-            "stroke",
-            "fill",
-            "lineJoin"
-          ]
+          "fields": ["shapeType", "width", "height", "radius", "fill", "stroke", "strokeWidth", "shadow", "opacity", "rotation", "zIndex"]
         }
       ],
       "strictRules": [

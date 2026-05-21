@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<!-- Source Image: assets/c__Users_mrrut_AppData_Roaming_Cursor_User_workspaceStorage_empty-window_images_6cb7528a15e37b8afeae3991a0ad6b47-00891b14-2bfe-43dc-aa91-09743c073341.png -->
 <html lang="ru" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>alessandra nicole — multimedia artist portfolio</title>
+    <title>Language You+ — Персональная языковая платформа</title>
     
-    <!-- Fonts -->
+    <!-- Google Fonts с поддержкой кириллицы -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Onest:wght@700;800;900&display=swap" rel="stylesheet">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -18,19 +17,20 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        sans: ['"Inter"', 'sans-serif'],
+                        display: ['"Onest"', 'sans-serif'],
                     },
                     colors: {
-                        brutal: {
-                            dark: '#141414',
-                            gray: '#f3f2f1',
-                            darkGray: '#eaeae8',
-                            lavender: '#dcd1f0',
-                            pink: '#f59b90',
-                            green: '#a4d4a2',
-                            orange: '#ff9f80',
-                            blue: '#88a3e0',
-                        }
+                        primary: {
+                            DEFAULT: '#6320ee',
+                            hover: '#5811ec',
+                        },
+                        accent: {
+                            DEFAULT: '#fbe452',
+                            hover: '#fbe135',
+                        },
+                        textMain: '#141414',
+                        textMuted: '#5f5f5f',
                     }
                 }
             }
@@ -39,555 +39,984 @@
     
     <style>
         body {
-            background-color: #f3f2f1;
+            font-family: 'Inter', sans-serif;
             color: #141414;
-            font-family: 'Plus Jakarta Sans', sans-serif;
             overflow-x: hidden;
         }
 
-        /* Soft, elegant design instead of neobrutalism */
-        .brutal-border {
-            border: 1px solid rgba(20, 20, 20, 0.06);
-        }
-        .brutal-shadow {
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.02), 0 2px 8px rgba(0, 0, 0, 0.01);
-        }
-        .brutal-shadow-sm {
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.01);
-        }
-        .brutal-shadow-lg {
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.03);
+        .font-display {
+            font-family: 'Onest', sans-serif;
         }
 
-        /* Hover effects */
-        .brutal-btn {
-            transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.15s ease, opacity 0.15s ease;
-        }
-        .brutal-btn:hover {
-            transform: scale(1.03);
-            opacity: 0.95;
-        }
-        .brutal-btn:active {
-            transform: scale(0.97);
+        /* Анимированный градиент на фоне */
+        .animated-bg {
+            background: linear-gradient(135deg, #ded3fc 0%, #c1b3f7 50%, #b2a3f9 100%);
+            background-size: 200% 200%;
+            animation: gradient-shift 12s ease infinite;
         }
 
-        /* Floating animations */
-        @keyframes float-1 {
-            0%, 100% { transform: translateY(0px) rotate(3deg); }
-            50% { transform: translateY(-8px) rotate(1deg); }
-        }
-        @keyframes float-2 {
-            0%, 100% { transform: translateY(0px) rotate(-6deg); }
-            50% { transform: translateY(6px) rotate(-4deg); }
-        }
-        @keyframes float-3 {
-            0%, 100% { transform: translateY(0px) rotate(-1deg); }
-            50% { transform: translateY(-10px) rotate(2deg); }
-        }
-        @keyframes float-virgo {
-            0%, 100% { transform: translate(0px, 0px) rotate(0deg); }
-            50% { transform: translate(-5px, -5px) rotate(15deg); }
-        }
-        @keyframes float-2001 {
-            0%, 100% { transform: translate(0px, 0px) rotate(-10deg); }
-            50% { transform: translate(6px, -4px) rotate(5deg); }
-        }
-        @keyframes float-star {
-            0%, 100% { transform: translate(0px, 0px) scale(1) rotate(0deg); }
-            50% { transform: translate(-4px, 4px) scale(1.1) rotate(45deg); }
-        }
-        @keyframes shine {
-            0% { background-position: -200% 0; }
-            100% { background-position: 200% 0; }
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
-        .animate-polaroid {
-            animation: float-3 8s ease-in-out infinite;
-        }
-        .animate-virgo {
-            animation: float-virgo 5s ease-in-out infinite;
-        }
-        .animate-badge-2001 {
-            animation: float-2001 6s ease-in-out infinite 1s;
-        }
-        .animate-star-fly {
-            animation: float-star 7s ease-in-out infinite 0.5s;
+        /* Мягкие кастомные тени по канону Aura */
+        .aura-shadow-card {
+            box-shadow: 0 30px 70px -10px rgba(99, 32, 238, 0.12), 0 10px 30px -15px rgba(0, 0, 0, 0.05);
         }
 
-        /* Software Icons Custom Hover */
-        .software-icon-container {
-            transition: all 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        .software-icon-container:hover {
-            transform: translate(-3px, -3px);
-            filter: drop-shadow(4px 4px 0px #141414);
-        }
-        .software-icon-container:active {
-            transform: translate(1px, 1px);
-            filter: drop-shadow(1px 1px 0px #141414);
+        .aura-shadow-bento {
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.04);
         }
 
-        /* Diagonal shiny gradient for Zip Lock packet */
-        .plastic-gloss {
-            background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 40%, rgba(255,255,255,0.15) 60%, rgba(255,255,255,0.3) 100%);
-            mix-blend-mode: overlay;
+        /* Горизонтальный скролл без видимой полосы прокрутки */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Плавные переходы */
+        .bento-transition {
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        /* Скругление cutout для Плитки 5 */
+        .cutout-corner-br {
+            position: relative;
+        }
+        .cutout-corner-br::after {
+            content: '';
+            position: absolute;
+            right: -24px;
+            bottom: 0;
+            width: 24px;
+            height: 24px;
+            background-color: transparent;
+            border-bottom-left-radius: 24px;
+            box-shadow: -10px 10px 0 10px #ffffff;
+            pointer-events: none;
+        }
+
+        .cutout-corner-tl {
+            position: relative;
+        }
+        .cutout-corner-tl::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: -24px;
+            width: 24px;
+            height: 24px;
+            background-color: transparent;
+            border-bottom-left-radius: 24px;
+            box-shadow: -10px 10px 0 10px #ffffff;
+            pointer-events: none;
+            transform: rotate(90deg);
         }
     </style>
 </head>
-<body class="bg-brutal-gray text-brutal-dark min-h-screen px-4 py-8 md:py-12 flex flex-col justify-between selection:bg-brutal-lavender">
+<body class="min-h-screen bg-white p-0 m-0 flex flex-col justify-start items-center">
 
-    <!-- MAIN CONTAINER -->
-    <main class="w-full max-w-5xl mx-auto bg-transparent">
+    <!-- ГЛАВНЫЙ КОНТЕЙНЕР (Сайт на весь экран) -->
+    <main class="w-full min-h-screen bg-white flex flex-col">
         
-        <!-- TOP BLOCK: HERO SECTION (Grid or Flex split) -->
-        <section class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center pb-8">
-            
-            <!-- LEFT: POLAROID CARD + Ambient Glow (Col 1 to 5) -->
-            <div class="md:col-span-5 flex justify-center items-center relative min-h-[380px] md:min-h-[440px]">
-                
-                <!-- Ambient Glow Behind Polaroid -->
-                <div class="absolute w-[240px] h-[240px] rounded-full bg-gradient-to-tr from-brutal-lavender to-brutal-pink blur-3xl opacity-60 pointer-events-none z-0"></div>
-                
-                <!-- Polaroid Wrapper with float animation -->
-                <div class="relative z-10 animate-polaroid pointer-events-auto">
+        <!-- 1. ШАПКА САЙТА (Header) -->
+        <header class="w-full border-b border-black/[0.03] shrink-0">
+            <div class="max-w-7xl mx-auto w-full px-6 sm:px-10 py-6 flex items-center justify-between">
+                <!-- Логотип -->
+                <a href="#" class="flex flex-col group" data-tab="tab-courses">
+                    <span class="font-display text-xl sm:text-2xl font-black tracking-tight text-textMain transition-colors duration-300 group-hover:text-primary">Language</span>
+                    <span class="text-[10px] sm:text-[11px] font-bold text-primary tracking-[0.2em] uppercase mt-[-4px] flex items-center gap-1">
+                        You <span class="text-accent font-black">+</span>
+                    </span>
+                </a>
+
+                <!-- Навигация (Скрыта на мобильных) -->
+                <nav class="hidden md:flex items-center gap-8">
+                    <a href="#courses" class="text-primary font-semibold text-[15px] hover:text-primary transition duration-200" data-tab="tab-courses">Our courses</a>
+                    <a href="#groups" class="text-textMuted font-medium text-[15px] hover:text-primary transition duration-200" data-tab="tab-groups">Group programs</a>
+                    <a href="#corporate" class="text-textMuted font-medium text-[15px] hover:text-primary transition duration-200" data-tab="tab-corporate">For organizations</a>
+                    <a href="#kids" class="text-textMuted font-medium text-[15px] hover:text-primary transition duration-200" data-tab="tab-kids">For children</a>
+                </nav>
+
+                <!-- Правая панель управления -->
+                <div class="flex items-center gap-4">
+                    <a href="#pricing" class="hidden sm:inline-flex items-center justify-center bg-primary text-white text-sm font-semibold rounded-full px-6 py-3 hover:bg-primary-hover hover:scale-[1.03] transition-all duration-300 shadow-md shadow-primary/10" data-tab="tab-kids">
+                        Start learning
+                    </a>
                     
-                    <!-- ZIP-LOCK BAG WRAPPER (Bordered, reflecting light) -->
-                    <div class="relative p-4 brutal-border bg-white/40 backdrop-blur-[2px] rounded-2xl brutal-shadow shadow-lg overflow-hidden flex flex-col items-center">
-                        
-                        <!-- Zip lock seal strip at the top -->
-                        <div class="w-full h-4 border-b border-brutal-dark/20 flex items-center justify-between px-2 mb-3 bg-white/60">
-                            <!-- Zip Slider slider element -->
-                            <div class="h-2.5 w-6 bg-brutal-lavender brutal-border rounded-sm brutal-shadow-sm flex items-center justify-center">
-                                <div class="w-1 h-1.5 bg-brutal-dark rounded-full"></div>
-                            </div>
-                            <!-- Small lines for sealing texture -->
-                            <div class="flex-grow border-t border-dashed border-brutal-dark/40 mx-2 h-0"></div>
-                            <div class="w-2 h-2 rounded-full bg-brutal-pink"></div>
-                        </div>
+                    <!-- Круглая кнопка меню -->
+                    <button id="menuBtn" class="w-11 h-11 rounded-full bg-white border border-black/5 flex flex-col justify-center items-center gap-[4.5px] hover:bg-black/[0.03] transition duration-200 shadow-sm" aria-label="Open menu">
+                        <span class="w-3.5 h-[2px] bg-textMain rounded-full"></span>
+                        <span class="w-5 h-[2px] bg-textMain rounded-full"></span>
+                        <span class="w-3.5 h-[2px] bg-textMain rounded-full"></span>
+                    </button>
+                </div>
+            </div>
+        </header>
 
-                        <!-- Glossy plastic overlay reflection on top of everything inside -->
-                        <div class="absolute inset-0 plastic-gloss pointer-events-none z-20"></div>
+        <!-- Мобильное меню (Выпадающее) -->
+        <div id="mobileMenu" class="hidden w-full border-b border-black/[0.03] bg-white/95 backdrop-blur-md px-6 py-4 flex-col gap-4 md:hidden shrink-0">
+            <div class="max-w-7xl mx-auto w-full flex flex-col gap-4 px-6">
+                <a href="#courses" class="text-textMain font-semibold py-2 border-b border-black/[0.02]" data-tab="tab-courses">Our courses</a>
+                <a href="#groups" class="text-textMain font-semibold py-2 border-b border-black/[0.02]" data-tab="tab-groups">Group programs</a>
+                <a href="#corporate" class="text-textMain font-semibold py-2 border-b border-black/[0.02]" data-tab="tab-corporate">For organizations</a>
+                <a href="#kids" class="text-textMain font-semibold py-2 border-b border-black/[0.02]" data-tab="tab-kids">For children</a>
+                <a href="#pricing" class="w-full text-center bg-primary text-white text-sm font-semibold rounded-full py-3 mt-2 shadow-md shadow-primary/10" data-tab="tab-kids">
+                    Start learning
+                </a>
+            </div>
+        </div>
 
-                        <!-- ACTUAL POLAROID CARD INSIDE -->
-                        <div class="bg-white p-3 brutal-border brutal-shadow-sm flex flex-col items-center max-w-[230px] rotate-[-2deg]">
-                            
-                            <!-- Card Picture Area -->
-                            <div class="relative w-[200px] h-[200px] bg-gray-200 overflow-hidden brutal-border">
-                                <img src="https://tempfile.aiquickdraw.com/images/chatgpt/file_000000004a30720cadf47eaabe9d4982.png" 
-                                     alt="Alessandra Nicole" 
-                                     class="w-full h-full object-cover select-none pointer-events-none">
-                            </div>
-                            
-                            <!-- Polaroid Bottom Space for signature -->
-                            <div class="w-full pt-4 pb-2 flex flex-col items-center justify-center">
-                                <div class="flex items-center gap-1.5 text-sm font-extrabold text-brutal-dark/60 tracking-wider">
-                                    <svg viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5 text-brutal-dark/60 shrink-0">
-                                        <path d="M 12 2 Q 12 12, 22 12 Q 12 12, 12 22 Q 12 12, 2 12 Q 12 12, 12 2 Z"/>
-                                    </svg>
-                                    <span>2026 Studio</span>
-                                </div>
-                                <span class="font-serif italic text-xs text-brutal-dark/40 mt-1">alessandra nicole</span>
-                            </div>
-                        </div>
-                    </div>
+        <!-- ОБЛАСТЬ КОНТЕНТА С ИНТЕРАКТИВНЫМИ ВКЛАДКАМИ (SPA) -->
+        <div class="flex-1 overflow-y-auto no-scrollbar flex flex-col">
 
-                    <!-- FLOATING FLYING ITEMS AROUND POLAROID -->
-                    
-                    <!-- 1. Virgo Sign (Left side) -->
-                    <div class="absolute -left-6 top-[20%] w-12 h-12 rounded-full bg-brutal-lavender brutal-border brutal-shadow-sm flex items-center justify-center animate-virgo z-30 group cursor-default hover:rotate-12 transition-transform">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-brutal-dark select-none">
-                            <path d="M4 18V8.5C4 7 5.5 5.5 7 5.5S10 7 10 8.5V18 M10 8.5C10 7 11.5 5.5 13 5.5S16 7 16 8.5V20C16 21.5 17.5 22.5 19 22.5S22 21 22 19.5C22 18 20.5 16.5 19 16.5H16"/>
-                        </svg>
-                    </div>
+            <!-- Вкладка: Наша программа / Bento Dashboard -->
+            <div id="tab-courses" class="tab-section flex-1 flex flex-col justify-between shrink-0">
 
-                    <!-- 2. Pink round badge '2001' (Right side) -->
-                    <div class="absolute -right-6 top-[35%] w-14 h-14 rounded-full bg-brutal-pink brutal-border brutal-shadow-sm flex flex-col items-center justify-center animate-badge-2001 z-30 hover:-rotate-12 transition-transform cursor-default">
-                        <span class="text-[10px] font-black tracking-widest text-brutal-dark/50 uppercase leading-none">est.</span>
-                        <span class="text-sm font-black text-brutal-dark mt-0.5">2001</span>
-                    </div>
-
-                    <!-- 3. Four-pointed blue star (Bottom Right side) -->
-                    <div class="absolute -right-4 bottom-[15%] w-10 h-10 animate-star-fly z-30 text-brutal-blue">
-                        <svg viewBox="0 0 24 24" fill="currentColor" class="w-full h-full filter drop-shadow-[2px_2px_0px_rgba(20,20,20,1)]">
-                            <path d="M 12 2 Q 12 12, 22 12 Q 12 12, 12 22 Q 12 12, 2 12 Q 12 12, 12 2 Z" stroke="#141414" stroke-width="2" stroke-linejoin="round"/>
-                        </svg>
-                    </div>
+                <!-- 2. HERO SECTION -->
+                <section class="w-full border-b border-black/[0.03]">
+                    <div class="max-w-7xl mx-auto w-full px-6 sm:px-10 pt-8 pb-6">
+                        <!-- Верхняя строка: Заголовок и Описание -->
+            <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6 lg:gap-12 mb-10">
+                <!-- Заголовок (в одну строку на больших экранах, сжатый трекинг) -->
+                <h1 class="font-display text-4xl sm:text-5xl md:text-6xl lg:text-[72px] xl:text-[80px] font-black tracking-tighter text-textMain leading-[0.9] flex-1">
+                    Personal program for you
+                </h1>
+                
+                <!-- Описание справа -->
+                <div class="lg:w-[340px] xl:w-[380px] shrink-0 lg:pt-2">
+                    <p class="text-[13px] sm:text-[14px] text-textMuted leading-relaxed font-medium">
+                        We know how hard it is to decide to learn a new language, but with our help you will learn that learning a new language is fun and effortless
+                    </p>
                 </div>
             </div>
             
-            <!-- RIGHT: NAME + HEADLINE + BUTTONS (Col 6 to 12) -->
-            <div class="md:col-span-7 flex flex-col gap-6">
-                
-                <!-- Main Header: Lowercase alessandra nicole -->
-                <div class="flex flex-col">
-                    <h1 class="font-sans font-black text-5xl sm:text-6xl md:text-7xl leading-[1.05] tracking-tight lowercase">
-                        alessandra <br>
-                        <span class="inline-block bg-brutal-lavender rounded-3xl px-4 py-1 mt-1 transform -rotate-1">
-                            nicole
+            <!-- Нижняя строка: Языковой слайдер чипсов (во всю ширину) -->
+            <div class="w-full overflow-hidden">
+                <div class="flex gap-2.5 overflow-x-auto no-scrollbar py-2 px-1">
+                    
+                    <!-- Chinese (желтый) -->
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#fef3c7] text-textMain text-sm font-semibold hover:-translate-y-0.5 hover:shadow-sm transition-all duration-200 cursor-pointer">
+                        <span class="w-5 h-5 rounded-full overflow-hidden flex items-center justify-center bg-white shadow-sm flex-shrink-0">
+                            <svg viewBox="0 0 100 100" class="w-full h-full">
+                                <rect width="100" height="100" fill="#de2910"/>
+                                <polygon points="50,15 54,28 67,28 56,36 60,49 50,40 40,49 44,36 33,28 46,28" fill="#ffde00"/>
+                                <polygon points="25,12 28,18 35,18 30,22 32,28 25,24 18,28 20,22 15,18 22,18" fill="#ffde00" transform="scale(0.6) translate(40, 2) rotate(15)"/>
+                                <polygon points="25,12 28,18 35,18 30,22 32,28 25,24 18,28 20,22 15,18 22,18" fill="#ffde00" transform="scale(0.6) translate(50, 15) rotate(45)"/>
+                                <polygon points="25,12 28,18 35,18 30,22 32,28 25,24 18,28 20,22 15,18 22,18" fill="#ffde00" transform="scale(0.6) translate(48, 32) rotate(60)"/>
+                                <polygon points="25,12 28,18 35,18 30,22 32,28 25,24 18,28 20,22 15,18 22,18" fill="#ffde00" transform="scale(0.6) translate(36, 42) rotate(15)"/>
+                            </svg>
                         </span>
-                    </h1>
-                </div>
+                        Chinese
+                    </div>
 
-                <!-- Bio description -->
-                <div class="max-w-xl">
-                    <p class="font-sans text-base md:text-lg text-brutal-dark/80 leading-relaxed font-medium">
-                        I'm a 23-year-old multimedia artist specializing in building tactile, playful visual experiences. Currently combining pastel aesthetics with heavy-ink brutalist roots to tell organic digital stories.
+                    <!-- Spanish (зеленый) -->
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#dcfce7] text-textMain text-sm font-semibold hover:-translate-y-0.5 hover:shadow-sm transition-all duration-200 cursor-pointer">
+                        <span class="w-5 h-5 rounded-full overflow-hidden flex items-center justify-center bg-white shadow-sm flex-shrink-0">
+                            <svg viewBox="0 0 100 100" class="w-full h-full">
+                                <rect width="100" height="30" fill="#aa151b"/>
+                                <rect y="30" width="100" height="40" fill="#f1bf00"/>
+                                <rect y="70" width="100" height="30" fill="#aa151b"/>
+                                <!-- Минималистичный герб -->
+                                <circle cx="35" cy="50" r="10" fill="#aa151b" opacity="0.8"/>
+                            </svg>
+                        </span>
+                        Spanish
+                    </div>
+
+                    <!-- English (сиреневый) -->
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#f3e8ff] text-textMain text-sm font-semibold hover:-translate-y-0.5 hover:shadow-sm transition-all duration-200 cursor-pointer">
+                        <span class="w-5 h-5 rounded-full overflow-hidden flex items-center justify-center bg-white shadow-sm flex-shrink-0">
+                            <svg viewBox="0 0 100 100" class="w-full h-full">
+                                <rect width="100" height="100" fill="#012169"/>
+                                <path d="M0 0 L100 100 M100 0 L0 100" stroke="#ffffff" stroke-width="12"/>
+                                <path d="M0 0 L100 100 M100 0 L0 100" stroke="#C8102E" stroke-width="6"/>
+                                <path d="M50 0 L50 100 M0 50 L100 50" stroke="#ffffff" stroke-width="20"/>
+                                <path d="M50 0 L50 100 M0 50 L100 50" stroke="#C8102E" stroke-width="12"/>
+                            </svg>
+                        </span>
+                        English
+                    </div>
+
+                    <!-- Georgian (персик) -->
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#ffedd5] text-textMain text-sm font-semibold hover:-translate-y-0.5 hover:shadow-sm transition-all duration-200 cursor-pointer">
+                        <span class="w-5 h-5 rounded-full overflow-hidden flex items-center justify-center bg-white shadow-sm flex-shrink-0">
+                            <svg viewBox="0 0 100 100" class="w-full h-full">
+                                <rect width="100" height="100" fill="#ffffff"/>
+                                <path d="M50 0 L50 100 M0 50 L100 50" stroke="#ff0000" stroke-width="14"/>
+                                <!-- 4 мелких красных болгарских креста -->
+                                <path d="M22 22 M22 15 L22 29 M15 22 L29 22" stroke="#ff0000" stroke-width="4"/>
+                                <path d="M78 22 M78 15 L78 29 M71 22 L85 22" stroke="#ff0000" stroke-width="4"/>
+                                <path d="M22 78 M22 71 L22 85 M15 78 L29 78" stroke="#ff0000" stroke-width="4"/>
+                                <path d="M78 78 M78 71 L78 85 M71 78 L85 78" stroke="#ff0000" stroke-width="4"/>
+                            </svg>
+                        </span>
+                        Georgian
+                    </div>
+
+                    <!-- German (светло-зеленый) -->
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#ecfccb] text-textMain text-sm font-semibold hover:-translate-y-0.5 hover:shadow-sm transition-all duration-200 cursor-pointer">
+                        <span class="w-5 h-5 rounded-full overflow-hidden flex items-center justify-center bg-white shadow-sm flex-shrink-0">
+                            <svg viewBox="0 0 100 100" class="w-full h-full">
+                                <rect width="100" height="33" fill="#000000"/>
+                                <rect y="33" width="100" height="34" fill="#dd0000"/>
+                                <rect y="67" width="100" height="33" fill="#ffce00"/>
+                            </svg>
+                        </span>
+                        German
+                    </div>
+
+                    <!-- Japanese (голубой) -->
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#e0f2fe] text-textMain text-sm font-semibold hover:-translate-y-0.5 hover:shadow-sm transition-all duration-200 cursor-pointer">
+                        <span class="w-5 h-5 rounded-full overflow-hidden flex items-center justify-center bg-white shadow-sm flex-shrink-0">
+                            <svg viewBox="0 0 100 100" class="w-full h-full">
+                                <rect width="100" height="100" fill="#ffffff"/>
+                                <circle cx="50" cy="50" r="24" fill="#bc002d"/>
+                            </svg>
+                        </span>
+                        Japanese
+                    </div>
+
+                    <!-- Turkish (коралл) -->
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#fee2e2] text-textMain text-sm font-semibold hover:-translate-y-0.5 hover:shadow-sm transition-all duration-200 cursor-pointer">
+                        <span class="w-5 h-5 rounded-full overflow-hidden flex items-center justify-center bg-white shadow-sm flex-shrink-0">
+                            <svg viewBox="0 0 100 100" class="w-full h-full">
+                                <rect width="100" height="100" fill="#e30a17"/>
+                                <circle cx="46" cy="50" r="22" fill="#ffffff"/>
+                                <circle cx="51" cy="50" r="18" fill="#e30a17"/>
+                                <polygon points="68,40 71,49 80,49 73,55 76,64 68,58 60,64 63,55 56,49 65,49" fill="#ffffff"/>
+                            </svg>
+                        </span>
+                        Turkish
+                    </div>
+
+                    <!-- Finnish (желтый) -->
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#fef3c7] text-textMain text-sm font-semibold hover:-translate-y-0.5 hover:shadow-sm transition-all duration-200 cursor-pointer">
+                        <span class="w-5 h-5 rounded-full overflow-hidden flex items-center justify-center bg-white shadow-sm flex-shrink-0">
+                            <svg viewBox="0 0 100 100" class="w-full h-full">
+                                <rect width="100" height="100" fill="#ffffff"/>
+                                <rect x="25" width="22" height="100" fill="#003580"/>
+                                <rect y="38" width="100" height="24" fill="#003580"/>
+                            </svg>
+                        </span>
+                        Finnish
+                    </div>
+
+                    <!-- French (зеленый) -->
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#dcfce7] text-textMain text-sm font-semibold hover:-translate-y-0.5 hover:shadow-sm transition-all duration-200 cursor-pointer">
+                        <span class="w-5 h-5 rounded-full overflow-hidden flex items-center justify-center bg-white shadow-sm flex-shrink-0">
+                            <svg viewBox="0 0 100 100" class="w-full h-full">
+                                <rect width="33" height="100" fill="#002395"/>
+                                <rect x="33" width="34" height="100" fill="#ffffff"/>
+                                <rect x="67" width="33" height="100" fill="#ed2939"/>
+                            </svg>
+                        </span>
+                        French
+                    </div>
+
+                </div>
+            </div>
+            </div>
+        </section>
+
+        <!-- 3. BENTO GRID -->
+        <section id="courses" class="w-full pb-12">
+            <div class="max-w-7xl mx-auto w-full px-6 sm:px-10">
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-5">
+                    
+                    <!-- Плитка 1 (Левая вертикальная, 4/12 ширины) -->
+                    <div class="md:col-span-4 bg-surface-gray rounded-[28px] overflow-hidden relative flex flex-col justify-between h-[380px] md:h-[644px] group bento-transition hover:scale-[1.01] hover:shadow-md">
+                        <!-- Изображение -->
+                        <img src="https://tempfile.aiquickdraw.com/images/chatgpt/file_00000000b628722f98be65a180cadbde.png" alt="Group classes for family" class="w-full h-full object-cover object-top transition duration-700 group-hover:scale-103">
+                        
+                        <!-- Накладываемый белый блок с закруглением rounded-tr-[28px] -->
+                        <div class="absolute bottom-0 left-0 bg-white pt-6 pr-6 pb-6 rounded-tr-[28px] max-w-[90%] flex flex-col justify-end">
+                            <h3 class="font-display text-lg sm:text-xl font-black text-textMain uppercase leading-[1.05] tracking-tighter">
+                                GROUP CLASSES<br>FOR YOUR FAMILY
+                            </h3>
+                        </div>
+                    </div>
+
+                    <!-- Правая часть (8/12 ширины): содержит верхнюю зону (384px) и нижнюю зону (240px) -->
+                    <div class="md:col-span-8 flex flex-col gap-5">
+                        
+                        <!-- Верхняя зона (384px): содержит плитку 2 (желтая), плитку 3 (фиолетовая) и плитку 4 (Anywhere) -->
+                        <div class="grid grid-cols-1 sm:grid-cols-8 gap-5 h-auto md:h-[384px]">
+                            
+                            <!-- Левая колонка верхней зоны (5/8 ширины): содержит желтую и фиолетовую плитки -->
+                            <div class="sm:col-span-5 flex flex-col gap-5 h-full justify-between">
+                                
+                                <!-- Плитка 2 (желтая, верхняя) -->
+                                <div class="bg-accent rounded-[28px] p-6 sm:p-8 flex flex-col justify-between h-[210px] relative group bento-transition hover:scale-[1.01] hover:shadow-md shrink-0">
+                                    <!-- Кнопка со стрелочкой ↗ в правом углу -->
+                                    <div class="absolute top-6 right-6 w-11 h-11 rounded-full bg-white flex items-center justify-center shadow-sm cursor-pointer hover:bg-white/90 active:scale-95 transition-all duration-200">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4.5 h-4.5 text-textMain">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+                                        </svg>
+                                    </div>
+                                    
+                                    <div class="max-w-[80%]">
+                                        <h3 class="font-display text-lg sm:text-xl font-black text-textMain uppercase leading-[1.05] tracking-tighter">
+                                            BIG WINS BEGIN WITH<br>SMALL STEPS
+                                        </h3>
+                                    </div>
+                                    <p class="text-[12.5px] sm:text-[13.5px] text-textMain/80 leading-snug font-medium">
+                                        We know how difficult it can be to take the first step, so we're here to support you and give you 5 free lessons to find the best teacher for you!
+                                    </p>
+                                </div>
+
+                                <!-- Плитка 3 (фиолетовая, нижняя) -->
+                                <div class="bg-primary rounded-[28px] p-5 sm:p-6 flex flex-col justify-between h-[154px] bento-transition hover:scale-[1.01] hover:shadow-md text-white shrink-0">
+                                    <!-- Набор пастельных тегов -->
+                                    <div class="flex flex-wrap gap-1.5">
+                                        <span class="px-3 py-1.5 rounded-full bg-white/10 text-white text-[11px] font-semibold tracking-wide">Linguistic immersion</span>
+                                        <span class="px-3 py-1.5 rounded-full bg-white/10 text-white text-[11px] font-semibold tracking-wide">Fluency</span>
+                                        <span class="px-3 py-1.5 rounded-full bg-white/10 text-white text-[11px] font-semibold tracking-wide">New friends</span>
+                                        <span class="px-3 py-1.5 rounded-full bg-white/10 text-white text-[11px] font-semibold tracking-wide">Accent reduction</span>
+                                        <span class="px-3 py-1.5 rounded-full bg-white/10 text-white text-[11px] font-semibold tracking-wide">Bilingual advantage</span>
+                                        <span class="px-3 py-1.5 rounded-full bg-white/10 text-white text-[11px] font-semibold tracking-wide">Capability</span>
+                                    </div>
+
+                                    <div class="text-[10px] text-white/60 font-semibold italic mt-2">
+                                        * And much more on our platform
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Правая колонка верхней зоны (3/8 ширины): содержит плитку 4 (Anywhere) -->
+                            <div class="sm:col-span-3 bg-surface-gray rounded-[28px] overflow-hidden relative h-[280px] sm:h-full group bento-transition hover:scale-[1.01] hover:shadow-md">
+                                <!-- Фото девушки на кровати -->
+                                <img src="https://tempfile.aiquickdraw.com/images/chatgpt/file_00000000f640722f929f3bc17c221c3a.png" alt="Learning anywhere" class="w-full h-full object-cover object-center transition duration-700 group-hover:scale-103">
+                                
+                                <!-- Вертикальный полупрозрачный темный бейдж справа -->
+                                <div class="absolute right-4 top-4 bottom-4 w-9 bg-black/40 backdrop-blur-md rounded-full flex flex-col justify-between items-center py-6 text-white text-[11px] font-bold tracking-[0.2em] uppercase" style="writing-mode: vertical-rl;">
+                                    <span>Anywhere</span>
+                                    <div class="w-1.5 h-1.5 rounded-full bg-accent animate-ping"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Нижняя зона (240px): содержит плитку 5 (LESSONS FOR KIDS) -->
+                        <div class="bg-surface-gray rounded-[28px] overflow-hidden relative flex flex-col sm:flex-row h-[320px] sm:h-[240px] group bento-transition hover:scale-[1.01] hover:shadow-md w-full">
+                            <!-- Слева: белый блок с кастомным фигурным вырезом (cutout) -->
+                            <div class="bg-white p-6 sm:p-8 flex flex-col justify-center items-start sm:max-w-[40%] h-1/2 sm:h-full z-10 relative shrink-0">
+                                <h3 class="font-display text-2xl sm:text-3xl md:text-[32px] font-black text-textMain uppercase leading-[0.95] tracking-tighter">
+                                    LESSONS<br>FOR KIDS
+                                </h3>
+                                <!-- Декоративные скругляющие уголки (cutout) для десктопа -->
+                                <div class="hidden sm:block absolute right-[-24px] top-0 w-6 h-6 text-white fill-current">
+                                    <svg viewBox="0 0 100 100" class="w-full h-full transform rotate-90">
+                                        <path d="M0 100 C 0 50, 50 0, 100 0 L 100 100 Z" fill="currentColor"/>
+                                    </svg>
+                                </div>
+                                <div class="hidden sm:block absolute right-[-24px] bottom-0 w-6 h-6 text-white fill-current">
+                                    <svg viewBox="0 0 100 100" class="w-full h-full">
+                                        <path d="M0 0 C 0 50, 50 100, 100 100 L 100 0 Z" fill="currentColor"/>
+                                    </svg>
+                                </div>
+                            </div>
+
+                            <!-- Справа: фото детей с учителем -->
+                            <div class="flex-1 h-1/2 sm:h-full overflow-hidden">
+                                <img src="https://tempfile.aiquickdraw.com/images/chatgpt/file_00000000f47c722f9aebb718ba27fd4a.png" alt="Lessons for kids" class="w-full h-full object-cover object-center transition duration-700 group-hover:scale-103">
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+            </div> <!-- Конец tab-courses -->
+
+            <!-- Вкладка: Как это работает -->
+            <div id="tab-groups" class="tab-section hidden shrink-0">
+
+                <!-- 4. КАК ЭТО РАБОТАЕТ (How it Works) -->
+                <section id="groups" class="w-full py-12 sm:py-16 bg-surface-gray/50 border-b border-black/[0.02]">
+                    <div class="max-w-7xl mx-auto w-full px-6 sm:px-10">
+            <div class="max-w-3xl mb-12">
+                <div class="text-[11px] font-bold text-primary tracking-[0.2em] uppercase mb-2">ПРОЦЕСС ОБУЧЕНИЯ</div>
+                <h2 class="font-display text-3xl sm:text-4xl font-black text-textMain tracking-tight">
+                    Как устроена платформа Language You+
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Шаг 1 -->
+                <div class="bg-white p-6 sm:p-8 rounded-[24px] border border-black/5 aura-shadow-bento hover:-translate-y-1 transition-all duration-300">
+                    <div class="w-12 h-12 rounded-2xl bg-[#f3e8ff] flex items-center justify-center text-primary mb-6">
+                        <!-- SVG Иконка "Тест" -->
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.03 0 1.9.693 2.166 1.638m-7.377 0A48.536 48.436 0 0112 3m0 0c-1.135-.094-2.098-.94-2.192-2.076z" />
+                        </svg>
+                    </div>
+                    <div class="text-xs font-bold text-primary/60 tracking-wider mb-2">ШАГ 01</div>
+                    <h3 class="font-display text-lg font-bold text-textMain mb-2">Умный тест уровня</h3>
+                    <p class="text-[14px] text-textMuted leading-relaxed">
+                        Наш адаптивный алгоритм за 10 минут оценит словарный запас, грамматику и понимание на слух, определив точную стартовую точку.
                     </p>
                 </div>
 
-                <!-- Contact list with inline SVG -->
-                <div class="flex flex-wrap gap-x-6 gap-y-3 items-center text-sm font-bold text-brutal-dark/90">
-                    <!-- Telephone -->
-                    <a href="tel:+63912345678" class="flex items-center gap-2 hover:text-brutal-blue transition-colors group">
-                        <div class="p-1.5 bg-white brutal-border rounded-lg brutal-shadow-sm group-hover:translate-y-[-1px] transition-transform">
-                            <svg class="w-4 h-4 text-brutal-dark" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-                            </svg>
-                        </div>
-                        <span class="tracking-tight font-extrabold">+63 912 345 678</span>
-                    </a>
-
-                    <!-- Email -->
-                    <a href="mailto:alessandranicolenaldo@gmail.com" class="flex items-center gap-2 hover:text-brutal-pink transition-colors group">
-                        <div class="p-1.5 bg-white brutal-border rounded-lg brutal-shadow-sm group-hover:translate-y-[-1px] transition-transform">
-                            <svg class="w-4 h-4 text-brutal-dark" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                            </svg>
-                        </div>
-                        <span class="tracking-tight font-extrabold lowercase">alessandranicolenaldo@gmail.com</span>
-                    </a>
-                </div>
-
-                <!-- Capsule Buttons Section -->
-                <div class="flex flex-wrap gap-3 pt-2 items-center">
-                    
-                    <!-- 1. Emphatic (Blue Capsule) -->
-                    <button class="brutal-btn px-4 py-2 bg-brutal-blue text-brutal-dark rounded-full font-extrabold text-xs tracking-wider uppercase">
-                        emphatic
-                    </button>
-
-                    <!-- 2. Creative (Green Capsule + Wave below in container) -->
-                    <div class="flex flex-col items-center">
-                        <button class="brutal-btn px-4 py-2 bg-brutal-green text-brutal-dark rounded-full font-extrabold text-xs tracking-wider uppercase">
-                            creative
-                        </button>
-                        <!-- Wavy Arrow SVG beneath -->
-                        <svg class="w-8 h-2.5 text-brutal-green mt-1" viewBox="0 0 50 15" fill="none" stroke="currentColor" stroke-width="3">
-                            <path d="M2 10C8 2 12 2 18 10C24 18 28 18 34 10C40 2 44 2 48 10" stroke-linecap="round"/>
+                <!-- Шаг 2 -->
+                <div class="bg-white p-6 sm:p-8 rounded-[24px] border border-black/5 aura-shadow-bento hover:-translate-y-1 transition-all duration-300">
+                    <div class="w-12 h-12 rounded-2xl bg-[#fee2e2] flex items-center justify-center text-[#ef4444] mb-6">
+                        <!-- SVG Иконка "Календарь/Расписание" -->
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z" />
                         </svg>
                     </div>
+                    <div class="text-xs font-bold text-[#ef4444]/60 tracking-wider mb-2">ШАГ 02</div>
+                    <h3 class="font-display text-lg font-bold text-textMain mb-2">Формат на выбор</h3>
+                    <p class="text-[14px] text-textMuted leading-relaxed">
+                        Учитесь индивидуально с тьютором, в мини-группах по 4-6 человек или проходите интерактивные тренажеры в удобном для вас темпе.
+                    </p>
+                </div>
 
-                    <!-- 3. Team Player (Lavender Spiky Star/Badge Sticker) -->
-                    <button class="brutal-btn relative w-24 h-24 flex items-center justify-center group focus:outline-none hover:scale-105 active:scale-95 transition-transform">
-                        <!-- Symmetrical 16-pointed Lavender Star SVG background -->
-                        <svg viewBox="0 0 100 100" class="absolute inset-0 w-full h-full text-[#b584d4]">
-                            <path d="M 50.0,4.0 L 57.0,14.7 L 67.6,7.5 L 70.0,20.1 L 82.5,17.5 L 79.9,30.0 L 92.5,32.4 L 85.3,43.0 L 96.0,50.0 L 85.3,57.0 L 92.5,67.6 L 79.9,70.0 L 82.5,82.5 L 70.0,79.9 L 67.6,92.5 L 57.0,85.3 L 50.0,96.0 L 43.0,85.3 L 32.4,92.5 L 30.0,79.9 L 17.5,82.5 L 20.1,70.0 L 7.5,67.6 L 14.7,57.0 L 4.0,50.0 L 14.7,43.0 L 7.5,32.4 L 20.1,30.0 L 17.5,17.5 L 30.0,20.1 L 32.4,7.5 L 43.0,14.7 Z" fill="currentColor"/>
-                        </svg>
-                        <!-- Centered text over star -->
-                        <div class="relative z-10 flex flex-col items-center justify-center text-brutal-dark font-black text-[10px] leading-tight select-none uppercase pointer-events-none">
-                            <span>team</span>
-                            <span>player</span>
-                        </div>
-                    </button>
-
-                    <!-- 4. Detail-Oriented (Pink Slanted Capsule) -->
-                    <button class="brutal-btn px-4 py-2 bg-brutal-pink text-brutal-dark rounded-full font-extrabold text-xs tracking-wider uppercase transform rotate-[-3deg]">
-                        detail-oriented
-                    </button>
-
-                    <!-- 5. Insightful (Orange Box/Capsule) -->
-                    <button class="brutal-btn px-4 py-2 bg-brutal-orange text-brutal-dark rounded-lg font-extrabold text-xs tracking-wider uppercase">
-                        insightful
-                    </button>
-
-                    <!-- 6. Gold Sparkle Star Sticker -->
-                    <div class="w-10 h-10 text-[#ebd065] hover:scale-110 active:scale-95 transition-transform cursor-pointer">
-                        <svg viewBox="0 0 24 24" fill="currentColor" class="w-full h-full">
-                            <path d="M 12 2 Q 12 12, 22 12 Q 12 12, 12 22 Q 12 12, 2 12 Q 12 12, 12 2 Z"/>
+                <!-- Шаг 3 -->
+                <div class="bg-white p-6 sm:p-8 rounded-[24px] border border-black/5 aura-shadow-bento hover:-translate-y-1 transition-all duration-300">
+                    <div class="w-12 h-12 rounded-2xl bg-[#dcfce7] flex items-center justify-center text-[#10b981] mb-6">
+                        <!-- SVG Иконка "Разговор" -->
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.084.58.125 1.176.125 1.777 0 3.327-4.03 6.06-9 6.06a10.116 10.116 0 01-2.185-.236l-3.32 3.321c-.482.482-1.304.141-1.304-.541V15.75c-1.378-1.126-2.25-2.673-2.25-4.373 0-3.328 4.03-6.06 9-6.06 1.83 0 3.527.377 4.903 1.011M12 18.75c-3.02 0-5.74-1.203-7.25-3.111" />
                         </svg>
                     </div>
+                    <div class="text-xs font-bold text-[#10b981]/60 tracking-wider mb-2">ШАГ 03</div>
+                    <h3 class="font-display text-lg font-bold text-textMain mb-2">Разговорная практика</h3>
+                    <p class="text-[14px] text-textMuted leading-relaxed">
+                        Никакой зубрежки. 80% времени урока — это активная устная практика, симуляция реальных жизненных сценариев и преодоление барьера.
+                    </p>
                 </div>
+            </div>
             </div>
         </section>
 
-        <!-- DASHED HR DIVIDER -->
-        <hr class="border-dashed border-2 border-brutal-dark/15 my-8">
+            </div> <!-- Конец tab-groups -->
 
-        <!-- BOTTOM BLOCK: TWO COLUMNS (Grid 12 cols) -->
-        <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 pt-4">
-            
-            <!-- LEFT COLUMN (Cols 1 to 6) -->
-            <div class="lg:col-span-6 flex flex-col gap-10">
-                
-                <!-- EDUCATION SECTION -->
-                <div class="flex flex-col gap-4">
-                    <h2 class="font-sans font-black text-2xl tracking-tight lowercase text-brutal-dark">
-                        education
+            <!-- Вкладка: Преподаватели -->
+            <div id="tab-corporate" class="tab-section hidden shrink-0">
+
+                <!-- 5. НАШИ ПРЕПОДАВАТЕЛИ (Meet Our Tutors) -->
+                <section id="corporate" class="w-full py-12 sm:py-16">
+                    <div class="max-w-7xl mx-auto w-full px-6 sm:px-10">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+                <div class="max-w-2xl">
+                    <div class="text-[11px] font-bold text-primary tracking-[0.2em] uppercase mb-2">ЭКСПЕРТЫ PLATFORM</div>
+                    <h2 class="font-display text-3xl sm:text-4xl font-black text-textMain tracking-tight">
+                        Учитесь у лучших
                     </h2>
-                    
-                    <div class="flex flex-col gap-6 mt-2">
-                        <!-- Degree 1 -->
-                        <div class="flex flex-col gap-2">
-                            <div class="flex items-center">
-                                <span class="px-3 py-1 bg-white text-brutal-dark rounded-full border border-brutal-dark/10 font-extrabold text-[10px] tracking-wider uppercase flex items-center gap-1.5">
-                                    <svg viewBox="0 0 24 24" fill="currentColor" class="w-3 h-3 text-brutal-blue">
-                                        <path d="M 12 2 Q 12 12, 22 12 Q 12 12, 12 22 Q 12 12, 2 12 Q 12 12, 12 2 Z"/>
+                </div>
+                <p class="text-[14px] text-textMuted md:max-w-xs leading-normal">
+                    Все преподаватели сертифицированы, проходят строгий отбор и имеют опыт работы более 5 лет.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Преподаватель 1 -->
+                <div class="bg-[#f3f2f1]/40 rounded-[28px] p-5 border border-black/5 flex flex-col justify-between h-[340px] group transition duration-300 hover:bg-white hover:shadow-xl hover:-translate-y-1">
+                    <div class="w-full h-44 rounded-[20px] overflow-hidden bg-[#e0f2fe] relative">
+                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=400" alt="Sarah Cooper" class="w-full h-full object-cover transition duration-500 group-hover:scale-105">
+                        <span class="absolute top-3 left-3 px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full text-[11px] font-bold text-primary tracking-wide shadow-sm">Native Speaker</span>
+                    </div>
+                    <div class="mt-4 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between">
+                                <h3 class="font-display text-lg font-bold text-textMain">Sarah Cooper</h3>
+                                <div class="w-8 h-8 rounded-full bg-white border border-black/5 flex items-center justify-center hover:bg-primary hover:text-white transition cursor-pointer">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-3.5 h-3.5">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
                                     </svg>
-                                    2020 - 2024
-                                </span>
+                                </div>
                             </div>
-                            <h4 class="font-sans font-black text-base text-brutal-dark uppercase mt-1">
-                                Bachelor of Fine Arts in Multimedia Arts
-                            </h4>
-                            <p class="font-sans font-bold text-xs text-brutal-dark/50 uppercase">De La Salle-College of Saint Benilde</p>
-                            <p class="font-sans text-sm text-brutal-dark/75 mt-1 font-medium leading-relaxed">
-                                Specialized in graphic design, layouting, and interactive digital experiences. Graduated with honors.
-                            </p>
+                            <p class="text-[13px] text-textMuted mt-1">Experience: 7 years • Cambridge</p>
+                        </div>
+                        <div class="flex items-center gap-1.5 mt-2">
+                            <span class="px-2.5 py-1 rounded-full bg-[#f3e8ff] text-primary text-[10px] font-bold">English</span>
+                            <span class="px-2.5 py-1 rounded-full bg-black/[0.03] text-textMuted text-[10px] font-bold">IELTS/TOEFL</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- EXPERIENCE SECTION -->
-                <div class="flex flex-col gap-4">
-                    <h2 class="font-sans font-black text-2xl tracking-tight lowercase text-brutal-dark">
-                        experience
-                    </h2>
-                    
-                    <div class="flex flex-col gap-8 mt-2">
-                        <!-- Exp 1 -->
-                        <div class="flex flex-col gap-2">
-                            <div class="flex items-center">
-                                <span class="px-3 py-1 bg-white text-brutal-dark rounded-full border border-brutal-dark/10 font-extrabold text-[10px] tracking-wider uppercase flex items-center gap-1.5">
-                                    <svg viewBox="0 0 24 24" fill="currentColor" class="w-3 h-3 text-brutal-lavender">
-                                        <path d="M 12 2 Q 12 12, 22 12 Q 12 12, 12 22 Q 12 12, 2 12 Q 12 12, 12 2 Z"/>
+                <!-- Преподаватель 2 -->
+                <div class="bg-[#f3f2f1]/40 rounded-[28px] p-5 border border-black/5 flex flex-col justify-between h-[340px] group transition duration-300 hover:bg-white hover:shadow-xl hover:-translate-y-1">
+                    <div class="w-full h-44 rounded-[20px] overflow-hidden bg-[#fee2e2] relative">
+                        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=400" alt="Mateo Silva" class="w-full h-full object-cover transition duration-500 group-hover:scale-105">
+                        <span class="absolute top-3 left-3 px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full text-[11px] font-bold text-[#ef4444] tracking-wide shadow-sm">Native Speaker</span>
+                    </div>
+                    <div class="mt-4 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between">
+                                <h3 class="font-display text-lg font-bold text-textMain">Mateo Silva</h3>
+                                <div class="w-8 h-8 rounded-full bg-white border border-black/5 flex items-center justify-center hover:bg-primary hover:text-white transition cursor-pointer">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-3.5 h-3.5">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
                                     </svg>
-                                    2024 - Present
-                                </span>
+                                </div>
                             </div>
-                            <h4 class="font-sans font-black text-base text-brutal-dark uppercase mt-1">
-                                Junior Brand Designer
-                            </h4>
-                            <p class="font-sans font-bold text-xs text-brutal-dark/50 uppercase">Pixel Pulse Agency</p>
-                            <p class="font-sans text-sm text-brutal-dark/75 mt-1 font-medium leading-relaxed">
-                                Developing brand systems, packaging layouts, and digital campaign collateral for design-forward retail startups.
-                            </p>
+                            <p class="text-[13px] text-textMuted mt-1">Experience: 5 years • Madrid Univ.</p>
                         </div>
-
-                        <!-- Exp 2 -->
-                        <div class="flex flex-col gap-2">
-                            <div class="flex items-center">
-                                <span class="px-3 py-1 bg-white text-brutal-dark rounded-full border border-brutal-dark/10 font-extrabold text-[10px] tracking-wider uppercase flex items-center gap-1.5">
-                                    <svg viewBox="0 0 24 24" fill="currentColor" class="w-3 h-3 text-brutal-pink">
-                                        <path d="M 12 2 Q 12 12, 22 12 Q 12 12, 12 22 Q 12 12, 2 12 Q 12 12, 12 2 Z"/>
-                                    </svg>
-                                    2022 - 2024
-                                </span>
-                            </div>
-                            <h4 class="font-sans font-black text-base text-brutal-dark uppercase mt-1">
-                                Freelance Multimedia Artist
-                            </h4>
-                            <p class="font-sans font-bold text-xs text-brutal-dark/50 uppercase">Independent Practice</p>
-                            <p class="font-sans text-sm text-brutal-dark/75 mt-1 font-medium leading-relaxed">
-                                Crafted distinct graphic elements, print material, and motion graphics for independent musicians and local brands.
-                            </p>
-                        </div>
-
-                        <!-- Exp 3 -->
-                        <div class="flex flex-col gap-2">
-                            <div class="flex items-center">
-                                <span class="px-3 py-1 bg-white text-brutal-dark rounded-full border border-brutal-dark/10 font-extrabold text-[10px] tracking-wider uppercase flex items-center gap-1.5">
-                                    <svg viewBox="0 0 24 24" fill="currentColor" class="w-3 h-3 text-brutal-green">
-                                        <path d="M 12 2 Q 12 12, 22 12 Q 12 12, 12 22 Q 12 12, 2 12 Q 12 12, 12 2 Z"/>
-                                    </svg>
-                                    2021 - 2022
-                                </span>
-                            </div>
-                            <h4 class="font-sans font-black text-base text-brutal-dark uppercase mt-1">
-                                Design Intern
-                            </h4>
-                            <p class="font-sans font-bold text-xs text-brutal-dark/50 uppercase">Prism Editorial Studio</p>
-                            <p class="font-sans text-sm text-brutal-dark/75 mt-1 font-medium leading-relaxed">
-                                Supported layout creation for quarterly lifestyle magazines, catalog prepress, and social media layout formatting.
-                            </p>
+                        <div class="flex items-center gap-1.5 mt-2">
+                            <span class="px-2.5 py-1 rounded-full bg-[#dcfce7] text-[#10b981] text-[10px] font-bold">Spanish</span>
+                            <span class="px-2.5 py-1 rounded-full bg-black/[0.03] text-textMuted text-[10px] font-bold">Conversational</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- LANGUAGE SECTION -->
-                <div class="flex flex-col gap-4">
-                    <h2 class="font-sans font-black text-2xl tracking-tight lowercase text-brutal-dark">
-                        language
-                    </h2>
-                    
-                    <div class="flex flex-wrap gap-3 mt-2">
-                        <!-- Tag Filipino -->
-                        <div class="px-4 py-2 bg-brutal-dark text-white rounded-full font-extrabold text-xs uppercase tracking-wider">
-                            Filipino: Native
+                <!-- Преподаватель 3 -->
+                <div class="bg-[#f3f2f1]/40 rounded-[28px] p-5 border border-black/5 flex flex-col justify-between h-[340px] group transition duration-300 hover:bg-white hover:shadow-xl hover:-translate-y-1">
+                    <div class="w-full h-44 rounded-[20px] overflow-hidden bg-[#fef3c7] relative">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=400" alt="Yuki Tanaka" class="w-full h-full object-cover transition duration-500 group-hover:scale-105">
+                        <span class="absolute top-3 left-3 px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full text-[11px] font-bold text-[#b45309] tracking-wide shadow-sm">Native Speaker</span>
+                    </div>
+                    <div class="mt-4 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between">
+                                <h3 class="font-display text-lg font-bold text-textMain">Yuki Tanaka</h3>
+                                <div class="w-8 h-8 rounded-full bg-white border border-black/5 flex items-center justify-center hover:bg-primary hover:text-white transition cursor-pointer">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-3.5 h-3.5">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <p class="text-[13px] text-textMuted mt-1">Experience: 6 years • JLPT N1</p>
                         </div>
-                        <!-- Tag English -->
-                        <div class="px-4 py-2 bg-white text-brutal-dark rounded-full border border-brutal-dark/10 font-extrabold text-xs uppercase tracking-wider">
-                            English: Advanced
+                        <div class="flex items-center gap-1.5 mt-2">
+                            <span class="px-2.5 py-1 rounded-full bg-[#e0f2fe] text-[#0284c7] text-[10px] font-bold">Japanese</span>
+                            <span class="px-2.5 py-1 rounded-full bg-black/[0.03] text-textMuted text-[10px] font-bold">Business Course</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Преподаватель 4 -->
+                <div class="bg-[#f3f2f1]/40 rounded-[28px] p-5 border border-black/5 flex flex-col justify-between h-[340px] group transition duration-300 hover:bg-white hover:shadow-xl hover:-translate-y-1">
+                    <div class="w-full h-44 rounded-[20px] overflow-hidden bg-[#e0f2fe] relative">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400" alt="Алексей Иванов" class="w-full h-full object-cover transition duration-500 group-hover:scale-105">
+                        <span class="absolute top-3 left-3 px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full text-[11px] font-bold text-primary tracking-wide shadow-sm">Bilingual Expert</span>
+                    </div>
+                    <div class="mt-4 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between">
+                                <h3 class="font-display text-lg font-bold text-textMain">Alexey Ivanov</h3>
+                                <div class="w-8 h-8 rounded-full bg-white border border-black/5 flex items-center justify-center hover:bg-primary hover:text-white transition cursor-pointer">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-3.5 h-3.5">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <p class="text-[13px] text-textMuted mt-1">Experience: 9 years • MSU / Sorbonne</p>
+                        </div>
+                        <div class="flex items-center gap-1.5 mt-2">
+                            <span class="px-2.5 py-1 rounded-full bg-[#dcfce7] text-[#10b981] text-[10px] font-bold">French / English</span>
+                            <span class="px-2.5 py-1 rounded-full bg-black/[0.03] text-textMuted text-[10px] font-bold">Grammar</span>
                         </div>
                     </div>
                 </div>
             </div>
-            
-            <!-- RIGHT COLUMN (Cols 7 to 12) -->
-            <div class="lg:col-span-6 flex flex-col gap-10">
-                
-                <!-- SKILLS SECTION -->
-                <div class="flex flex-col gap-4">
-                    <h2 class="font-sans font-black text-2xl tracking-tight lowercase text-brutal-dark">
-                        skills
-                    </h2>
-                    
-                    <div class="flex flex-wrap gap-3 mt-2">
-                        <!-- Layout Design (Filled) -->
-                        <span class="px-4 py-2 bg-brutal-dark text-white rounded-full font-bold text-xs uppercase tracking-wider cursor-default hover:scale-105 transition-transform">
-                            Layout Design
-                        </span>
-                        <!-- Branding (Outline) -->
-                        <span class="px-4 py-2 bg-white text-brutal-dark rounded-full border border-brutal-dark/10 font-bold text-xs uppercase tracking-wider cursor-default hover:scale-105 transition-transform">
-                            Branding
-                        </span>
-                        <!-- Digital Illustration (Filled) -->
-                        <span class="px-4 py-2 bg-brutal-dark text-white rounded-full font-bold text-xs uppercase tracking-wider cursor-default hover:scale-105 transition-transform">
-                            Digital Illustration
-                        </span>
-                        <!-- Print Design (Outline) -->
-                        <span class="px-4 py-2 bg-white text-brutal-dark rounded-full border border-brutal-dark/10 font-bold text-xs uppercase tracking-wider cursor-default hover:scale-105 transition-transform">
-                            Print Design
-                        </span>
-                        <!-- Motion Graphics (Outline) -->
-                        <span class="px-4 py-2 bg-white text-brutal-dark rounded-full border border-brutal-dark/10 font-bold text-xs uppercase tracking-wider cursor-default hover:scale-105 transition-transform">
-                            Motion Graphics
-                        </span>
-                        <!-- UI/UX Design (Filled) -->
-                        <span class="px-4 py-2 bg-brutal-dark text-white rounded-full font-bold text-xs uppercase tracking-wider cursor-default hover:scale-105 transition-transform">
-                            UI/UX Design
-                        </span>
-                    </div>
-                </div>
-
-                <!-- SOFTWARES SECTION (6 Custom Geometric SVG icons) -->
-                <div class="flex flex-col gap-4">
-                    <h2 class="font-sans font-black text-2xl tracking-tight lowercase text-brutal-dark">
-                        softwares
-                    </h2>
-                    
-                    <!-- Card enclosing the 6 icons (Soft shadow and thin border) -->
-                    <div class="p-6 bg-white border border-brutal-dark/5 shadow-sm rounded-2xl">
-                        <div class="grid grid-cols-3 gap-6">
-                            
-                            <!-- 1. Ps (Photoshop): Dusty Pink Circle -->
-                            <div class="software-icon-container flex flex-col items-center justify-center cursor-pointer group">
-                                <div class="w-14 h-14 bg-brutal-pink rounded-full flex items-center justify-center shadow-none hover:scale-105 active:scale-95 transition-transform">
-                                    <span class="font-sans font-black text-xl text-brutal-dark">Ps</span>
-                                </div>
-                                <span class="font-sans font-extrabold text-[10px] text-brutal-dark/70 mt-2 uppercase tracking-wide">Photoshop</span>
-                            </div>
-
-                            <!-- 2. Ai (Illustrator): Blue 4-leaved flower/star -->
-                            <div class="software-icon-container flex flex-col items-center justify-center cursor-pointer group">
-                                <div class="w-14 h-14 relative flex items-center justify-center hover:scale-105 active:scale-95 transition-transform">
-                                    <!-- 4-lobed Flower SVG background (Puffy and curved lobes) -->
-                                    <svg viewBox="0 0 100 100" class="absolute inset-0 w-full h-full text-brutal-blue">
-                                        <path d="M50,32 C54,20 64,15 78,20 C92,25 88,40 72,50 C90,60 92,75 78,80 C64,85 54,80 50,68 C46,80 36,85 22,80 C8,75 12,60 30,50 C10,38 8,25 22,20 C36,15 46,20 50,32 Z" fill="currentColor"/>
-                                    </svg>
-                                    <span class="font-sans font-black text-xl text-brutal-dark relative z-10">Ai</span>
-                                </div>
-                                <span class="font-sans font-extrabold text-[10px] text-brutal-dark/70 mt-2 uppercase tracking-wide">Illustrator</span>
-                            </div>
-
-                            <!-- 3. Id (InDesign): Green Hexagon -->
-                            <div class="software-icon-container flex flex-col items-center justify-center cursor-pointer group">
-                                <div class="w-14 h-14 relative flex items-center justify-center hover:scale-105 active:scale-95 transition-transform">
-                                    <!-- Hexagon SVG background -->
-                                    <svg viewBox="0 0 100 100" class="absolute inset-0 w-full h-full text-brutal-green">
-                                        <polygon points="50,6 90,28 90,72 50,94 10,72 10,28" fill="currentColor"/>
-                                    </svg>
-                                    <span class="font-sans font-black text-xl text-brutal-dark relative z-10">Id</span>
-                                </div>
-                                <span class="font-sans font-extrabold text-[10px] text-brutal-dark/70 mt-2 uppercase tracking-wide">InDesign</span>
-                            </div>
-
-                            <!-- 4. Pr (Premiere): Purple Rounded Square -->
-                            <div class="software-icon-container flex flex-col items-center justify-center cursor-pointer group">
-                                <div class="w-14 h-14 bg-brutal-lavender rounded-xl flex items-center justify-center shadow-none hover:scale-105 active:scale-95 transition-transform">
-                                    <span class="font-sans font-black text-xl text-brutal-dark">Pr</span>
-                                </div>
-                                <span class="font-sans font-extrabold text-[10px] text-brutal-dark/70 mt-2 uppercase tracking-wide">Premiere</span>
-                            </div>
-
-                            <!-- 5. Ae (After Effects): Red Multi-ray Star -->
-                            <div class="software-icon-container flex flex-col items-center justify-center cursor-pointer group">
-                                <div class="w-14 h-14 relative flex items-center justify-center hover:scale-105 active:scale-95 transition-transform">
-                                    <!-- Multi-ray Star/Flower SVG background -->
-                                    <svg viewBox="0 0 100 100" class="absolute inset-0 w-full h-full text-brutal-pink">
-                                        <path d="M 50.0,4.0 L 57.0,14.7 L 67.6,7.5 L 70.0,20.1 L 82.5,17.5 L 79.9,30.0 L 92.5,32.4 L 85.3,43.0 L 96.0,50.0 L 85.3,57.0 L 92.5,67.6 L 79.9,70.0 L 82.5,82.5 L 70.0,79.9 L 67.6,92.5 L 57.0,85.3 L 50.0,96.0 L 43.0,85.3 L 32.4,92.5 L 30.0,79.9 L 17.5,82.5 L 20.1,70.0 L 7.5,67.6 L 14.7,57.0 L 4.0,50.0 L 14.7,43.0 L 7.5,32.4 L 20.1,30.0 L 17.5,17.5 L 30.0,20.1 L 32.4,7.5 L 43.0,14.7 Z" fill="currentColor"/>
-                                    </svg>
-                                    <span class="font-sans font-black text-xl text-brutal-dark relative z-10">Ae</span>
-                                </div>
-                                <span class="font-sans font-extrabold text-[10px] text-brutal-dark/70 mt-2 uppercase tracking-wide">After Effects</span>
-                            </div>
-
-                            <!-- 6. Fg (Figma): Gold Rhombus -->
-                            <div class="software-icon-container flex flex-col items-center justify-center cursor-pointer group">
-                                <div class="w-14 h-14 relative flex items-center justify-center hover:scale-105 active:scale-95 transition-transform">
-                                    <!-- Rhombus/Diamond SVG background (Sparkle Star with concave sides) -->
-                                    <svg viewBox="0 0 100 100" class="absolute inset-0 w-full h-full text-[#ebd065]">
-                                        <path d="M 50 4 Q 50 50, 96 50 Q 50 50, 50 96 Q 50 50, 4 50 Q 50 50, 50 4 Z" fill="currentColor"/>
-                                    </svg>
-                                    <span class="font-sans font-black text-xl text-brutal-dark relative z-10">Fg</span>
-                                </div>
-                                <span class="font-sans font-extrabold text-[10px] text-brutal-dark/70 mt-2 uppercase tracking-wide">Figma</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- INTERESTS SECTION -->
-                <div class="flex flex-col gap-4">
-                    <h2 class="font-sans font-black text-2xl tracking-tight lowercase text-brutal-dark">
-                        interests
-                    </h2>
-                    
-                    <ul class="flex flex-col gap-3 font-sans font-bold text-sm text-brutal-dark/80 pl-1">
-                        <li class="flex items-center gap-2.5">
-                            <svg viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5 text-brutal-pink shrink-0">
-                                <path d="M 12 2 Q 12 12, 22 12 Q 12 12, 12 22 Q 12 12, 2 12 Q 12 12, 12 2 Z"/>
-                            </svg>
-                            <span>Analog photography & zines</span>
-                        </li>
-                        <li class="flex items-center gap-2.5">
-                            <svg viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5 text-brutal-green shrink-0">
-                                <path d="M 12 2 Q 12 12, 22 12 Q 12 12, 12 22 Q 12 12, 2 12 Q 12 12, 12 2 Z"/>
-                            </svg>
-                            <span>Collectible card and sticker layouting</span>
-                        </li>
-                        <li class="flex items-center gap-2.5">
-                            <svg viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5 text-brutal-blue shrink-0">
-                                <path d="M 12 2 Q 12 12, 22 12 Q 12 12, 12 22 Q 12 12, 2 12 Q 12 12, 12 2 Z"/>
-                            </svg>
-                            <span>Indie publication production</span>
-                        </li>
-                        <li class="flex items-center gap-2.5">
-                            <svg viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5 text-brutal-orange shrink-0">
-                                <path d="M 12 2 Q 12 12, 22 12 Q 12 12, 12 22 Q 12 12, 2 12 Q 12 12, 12 2 Z"/>
-                            </svg>
-                            <span>3D character design & clay rendering</span>
-                        </li>
-                    </ul>
-                </div>
             </div>
         </section>
 
-        <!-- FOOTER -->
-        <footer class="mt-20 pt-8 border-t border-brutal-dark/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-center">
-            <span class="font-sans font-black text-sm text-brutal-dark uppercase tracking-wider">Alessandra Nicole &copy; 2026</span>
-            <span class="font-sans font-medium text-xs text-brutal-dark/40">Handcrafted strictly to AuraDesign system standards</span>
+            </div> <!-- Конец tab-corporate -->
+
+            <!-- Вкладка: Тарифы, FAQ и Подвал -->
+            <div id="tab-kids" class="tab-section hidden shrink-0">
+
+                <!-- 6. ТАРИФНЫЕ ПЛАНЫ (Pricing) -->
+                <section id="pricing" class="w-full py-12 sm:py-16 bg-surface-gray/30 border-t border-b border-black/[0.02]">
+                    <div class="max-w-7xl mx-auto w-full px-6 sm:px-10">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <div class="text-[11px] font-bold text-primary tracking-[0.2em] uppercase mb-2">СТОИМОСТЬ ОБУЧЕНИЯ</div>
+                <h2 class="font-display text-3xl sm:text-4xl font-black text-textMain tracking-tight mb-4">
+                    Выберите удобный формат подписки
+                </h2>
+                <p class="text-[14px] text-textMuted leading-relaxed">
+                    Простые и прозрачные тарифы. Платите за пакет уроков со скидкой или выберите ежемесячную подписку на разговорные клубы.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+                <!-- Тариф 1: Белый (Базовый) -->
+                <div class="bg-white rounded-[28px] p-6 sm:p-8 border border-black/5 flex flex-col justify-between h-[420px] bento-transition hover:scale-[1.015] hover:shadow-xl relative">
+                    <div>
+                        <div class="text-xs font-bold text-textMuted tracking-wider uppercase mb-1">САМОСТОЯТЕЛЬНЫЙ</div>
+                        <h3 class="font-display text-2xl font-black text-textMain uppercase mb-4">Light Start</h3>
+                        <div class="flex items-baseline gap-1 mb-6">
+                            <span class="font-display text-3xl sm:text-4xl font-black text-textMain">3 900 ₽</span>
+                            <span class="text-textMuted text-xs">/ месяц</span>
+                        </div>
+                        <ul class="space-y-3 text-[13px] text-textMuted">
+                            <li class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-[#10b981] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                Безлимитный доступ к тренажерам
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-[#10b981] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                2 разговорных клуба в неделю
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-[#10b981] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                Персональный план на ИИ
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="#" class="w-full text-center bg-[#f3f2f1] text-textMain text-sm font-semibold rounded-full py-3.5 hover:bg-black/[0.05] transition-all duration-200">
+                        Выбрать тариф
+                    </a>
+                </div>
+
+                <!-- Тариф 2: Желтый (Акцентный) -->
+                <div class="bg-accent rounded-[28px] p-6 sm:p-8 flex flex-col justify-between h-[420px] bento-transition hover:scale-[1.015] hover:shadow-xl relative border border-accent-hover">
+                    <span class="absolute top-4 right-4 bg-white text-primary text-[10px] font-bold px-3 py-1 rounded-full shadow-sm">ПОПУЛЯРНОЕ</span>
+                    <div>
+                        <div class="text-xs font-bold text-textMain/60 tracking-wider uppercase mb-1">С ТЬЮТОРОМ</div>
+                        <h3 class="font-display text-2xl font-black text-textMain uppercase mb-4">You+ Pro</h3>
+                        <div class="flex items-baseline gap-1 mb-6">
+                            <span class="font-display text-3xl sm:text-4xl font-black text-textMain">11 500 ₽</span>
+                            <span class="text-textMain/80 text-xs">/ месяц</span>
+                        </div>
+                        <ul class="space-y-3 text-[13px] text-textMain/90 font-medium">
+                            <li class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-primary flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                8 индивидуальных уроков с тьютором
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-primary flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                Безлимитный разговорный клуб
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-primary flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                Проверка ДЗ преподавателем
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="#" class="w-full text-center bg-primary text-white text-sm font-semibold rounded-full py-3.5 hover:bg-primary-hover hover:scale-[1.02] transition-all duration-200 shadow-md shadow-primary/10">
+                        Начать обучение
+                    </a>
+                </div>
+
+                <!-- Тариф 3: Фиолетовый -->
+                <div class="bg-primary rounded-[28px] p-6 sm:p-8 text-white flex flex-col justify-between h-[420px] bento-transition hover:scale-[1.015] hover:shadow-xl relative border border-primary-hover">
+                    <div>
+                        <div class="text-xs font-bold text-white/60 tracking-wider uppercase mb-1">ДЛЯ СЕМЬИ И ГРУПП</div>
+                        <h3 class="font-display text-2xl font-black text-white uppercase mb-4">Unlimited Plus</h3>
+                        <div class="flex items-baseline gap-1 mb-6">
+                            <span class="font-display text-3xl sm:text-4xl font-black text-white">19 800 ₽</span>
+                            <span class="text-white/60 text-xs">/ месяц</span>
+                        </div>
+                        <ul class="space-y-3 text-[13px] text-white/90">
+                            <li class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-accent flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                Доступ для 2 членов семьи
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-accent flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                12 групповых уроков в месяц
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-accent flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                Индивидуальный куратор-методист
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="#" class="w-full text-center bg-white text-primary text-sm font-semibold rounded-full py-3.5 hover:bg-[#f3f2f1] transition-all duration-200">
+                        Выбрать тариф
+                    </a>
+                </div>
+            </div>
+            </div>
+        </section>
+
+        <!-- 7. FAQ (Интерактивный) -->
+        <section id="kids" class="w-full py-12 sm:py-16">
+            <div class="max-w-7xl mx-auto w-full px-6 sm:px-10">
+            <div class="max-w-2xl mb-10">
+                <div class="text-[11px] font-bold text-primary tracking-[0.2em] uppercase mb-2">ОСТАЛИСЬ ВОПРОСЫ?</div>
+                <h2 class="font-display text-3xl sm:text-4xl font-black text-textMain tracking-tight">
+                    Часто задаваемые вопросы
+                </h2>
+            </div>
+
+            <div class="max-w-3xl space-y-3">
+                <!-- FAQ 1 -->
+                <div class="border border-black/5 rounded-[20px] bg-surface-gray/20 overflow-hidden">
+                    <button class="faq-toggle w-full px-6 py-5 flex items-center justify-between text-left font-display font-bold text-textMain hover:bg-black/[0.01] transition duration-200">
+                        <span>Как проходит первый вводный урок?</span>
+                        <span class="faq-icon w-8 h-8 rounded-full bg-white border border-black/5 flex items-center justify-center text-textMuted transition-transform duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-out">
+                        <p class="px-6 pb-5 text-[14px] text-textMuted leading-relaxed border-t border-black/[0.01] pt-3">
+                            Первый урок является ознакомительным и диагностическим. Наш методист познакомит вас с платформой, проведет быстрое устное тестирование, выявит ваши языковые цели и составит подробную индивидуальную программу обучения. Это занимает 30 минут и абсолютно бесплатно!
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="border border-black/5 rounded-[20px] bg-surface-gray/20 overflow-hidden">
+                    <button class="faq-toggle w-full px-6 py-5 flex items-center justify-between text-left font-display font-bold text-textMain hover:bg-black/[0.01] transition duration-200">
+                        <span>Можно ли менять расписание и переносить уроки?</span>
+                        <span class="faq-icon w-8 h-8 rounded-full bg-white border border-black/5 flex items-center justify-center text-textMuted transition-transform duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-out">
+                        <p class="px-6 pb-5 text-[14px] text-textMuted leading-relaxed border-t border-black/[0.01] pt-3">
+                            Да, конечно. Наша платформа создана для гибкого обучения. Вы можете переносить или отменять уроки без потери оплаты в личном кабинете не позднее, чем за 8 часов до начала запланированного занятия.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="border border-black/5 rounded-[20px] bg-surface-gray/20 overflow-hidden">
+                    <button class="faq-toggle w-full px-6 py-5 flex items-center justify-between text-left font-display font-bold text-textMain hover:bg-black/[0.01] transition duration-200">
+                        <span>Какой формат эффективнее: группы или 1-на-1?</span>
+                        <span class="faq-icon w-8 h-8 rounded-full bg-white border border-black/5 flex items-center justify-center text-textMuted transition-transform duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-out">
+                        <p class="px-6 pb-5 text-[14px] text-textMuted leading-relaxed border-t border-black/[0.01] pt-3">
+                            Индивидуальные уроки идеальны для быстрого преодоления языкового барьера, подготовки к узкоспециализированным целям (интервью, экзамены) и гибкого темпа. Групповые занятия отлично подходят для симуляции командных споров, развития восприятия различных акцентов на слух и социализации при меньшей стоимости. Многие наши студенты совмещают оба формата!
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ 4 -->
+                <div class="border border-black/5 rounded-[20px] bg-surface-gray/20 overflow-hidden">
+                    <button class="faq-toggle w-full px-6 py-5 flex items-center justify-between text-left font-display font-bold text-textMain hover:bg-black/[0.01] transition duration-200">
+                        <span>Как быстро я увижу первый прогресс?</span>
+                        <span class="faq-icon w-8 h-8 rounded-full bg-white border border-black/5 flex items-center justify-center text-textMuted transition-transform duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-out">
+                        <p class="px-6 pb-5 text-[14px] text-textMuted leading-relaxed border-t border-black/[0.01] pt-3">
+                            Благодаря нашей коммуникативной методике 80/20, студенты начинают самостоятельно формулировать несложные фразы и поддерживать простую беседу уже после первых 3-4 уроков. Для устойчивого перехода на следующий уровень владения языком обычно требуется от 3 до 5 месяцев регулярных занятий.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </section>
+
+        <!-- 8. ПОДВАЛ САЙТА (Footer) -->
+        <footer class="w-full py-10 sm:py-16 bg-surface-gray border-t border-black/[0.03]">
+            <div class="max-w-7xl mx-auto w-full px-6 sm:px-10">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 mb-12">
+                <!-- Левая часть: лого и рассылка -->
+                <div class="md:col-span-5 flex flex-col justify-between">
+                    <div>
+                        <a href="#" class="flex flex-col group mb-6">
+                            <span class="font-display text-2xl font-black tracking-tight text-textMain transition-colors duration-300 group-hover:text-primary">Language</span>
+                            <span class="text-[11px] font-bold text-primary tracking-[0.2em] uppercase mt-[-4px] flex items-center gap-1">
+                                You <span class="text-accent font-black">+</span>
+                            </span>
+                        </a>
+                        <p class="text-[14px] text-textMuted leading-relaxed mb-6 max-w-sm">
+                            Присоединяйтесь к нашему комьюнити из 15,000+ счастливых студентов, изучающих языки с любовью и удовольствием.
+                        </p>
+                    </div>
+
+                    <!-- Форма рассылки -->
+                    <div class="w-full max-w-sm">
+                        <h4 class="text-xs font-bold text-textMain tracking-wider uppercase mb-3">Подпишитесь на дайджест</h4>
+                        <form class="flex gap-2" onsubmit="event.preventDefault(); alert('Спасибо за подписку!');">
+                            <input type="email" placeholder="Ваша почта" required class="flex-1 bg-white border border-black/5 rounded-full px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200">
+                            <button type="submit" class="bg-primary text-white text-sm font-semibold rounded-full px-5 py-3 hover:bg-primary-hover active:scale-95 transition-all duration-200 shadow-md shadow-primary/10">
+                                ->
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Правая часть: категории ссылок -->
+                <div class="md:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-6 md:pl-8">
+                    <!-- Колонка 1 -->
+                    <div>
+                        <h4 class="text-xs font-bold text-textMain tracking-wider uppercase mb-4">Обучение</h4>
+                        <ul class="space-y-2.5 text-[14px] text-textMuted">
+                            <li><a href="#" class="hover:text-primary transition duration-200">Индивидуально</a></li>
+                            <li><a href="#" class="hover:text-primary transition duration-200">Групповой формат</a></li>
+                            <li><a href="#" class="hover:text-primary transition duration-200">Детские курсы</a></li>
+                            <li><a href="#" class="hover:text-primary transition duration-200">Разговорные клубы</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Колонка 2 -->
+                    <div>
+                        <h4 class="text-xs font-bold text-textMain tracking-wider uppercase mb-4">Платформа</h4>
+                        <ul class="space-y-2.5 text-[14px] text-textMuted">
+                            <li><a href="#" class="hover:text-primary transition duration-200">Как это работает</a></li>
+                            <li><a href="#" class="hover:text-primary transition duration-200">Методология 80/20</a></li>
+                            <li><a href="#" class="hover:text-primary transition duration-200">Преподаватели</a></li>
+                            <li><a href="#" class="hover:text-primary transition duration-200">Тарифные планы</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Колонка 3 -->
+                    <div>
+                        <h4 class="text-xs font-bold text-textMain tracking-wider uppercase mb-4">Контакты</h4>
+                        <ul class="space-y-2.5 text-[14px] text-textMuted">
+                            <li><a href="mailto:hello@languageyou.ru" class="hover:text-primary transition duration-200">hello@languageyou.ru</a></li>
+                            <li><a href="tel:+78005553535" class="hover:text-primary transition duration-200">8 (800) 555-35-35</a></li>
+                            <li class="pt-2 flex items-center gap-3">
+                                <!-- Соцсети на чистом SVG -->
+                                <a href="#" class="w-8 h-8 rounded-full bg-white border border-black/5 flex items-center justify-center text-textMuted hover:text-primary hover:scale-105 transition-all duration-200">
+                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                                        <path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.4 0-4.36 1.94-4.36 4.33 0 .34.04.67.1.98C8.13 9.14 4.93 7.42 2.78 4.8c-.37.64-.58 1.39-.58 2.18 0 1.5 1.03 2.82 2.6 3.51-.95-.03-1.85-.29-2.63-.73v.06c0 2.1 1.5 3.84 3.48 4.26-.36.1-.74.15-1.13.15-.28 0-.55-.03-.81-.08.55 1.71 2.14 2.96 4.02 3-.147.115-.407.243-.78.384A6.16 6.16 0 0 1 2 18.54c1.88 1.21 4.12 1.92 6.54 1.92 7.85 0 12.13-6.5 12.13-12.13l-.01-.55c.84-.6 1.56-1.36 2.13-2.22z"/>
+                                    </svg>
+                                </a>
+                                <a href="#" class="w-8 h-8 rounded-full bg-white border border-black/5 flex items-center justify-center text-textMuted hover:text-primary hover:scale-105 transition-all duration-200">
+                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.65 8.35c-.15.15-.35.22-.55.22s-.4-.07-.55-.22L13 7.71v6.79c0 .78-.62 1.5-1.5 1.5s-1.5-.72-1.5-1.5V7.71l-2.05 2.64c-.3.3-.78.3-1.08 0a.754.754 0 0 1 0-1.08l3.35-4.3c.3-.3.78-.3 1.08 0l3.35 4.3c.3.3.3.78 0 1.08z"/>
+                                    </svg>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Копирайт и юридическая инфо -->
+            <div class="border-t border-black/[0.03] pt-6 flex flex-col sm:flex-row justify-between items-center text-[12px] text-textMuted gap-4">
+                <div>
+                    © 2026 Language You+ Platform. All rights reserved.
+                </div>
+                <div class="flex gap-6">
+                    <a href="#" class="hover:text-primary transition duration-150">Privacy Policy</a>
+                    <a href="#" class="hover:text-primary transition duration-150">Terms of Service</a>
+                </div>
+            </div>
+            </div>
         </footer>
-        
+
+            </div> <!-- Конец tab-kids -->
+
+        </div> <!-- Конец области контента -->
+
     </main>
+
+    <!-- ИНТЕРАКТИВНЫЙ СЦЕНАРИЙ (FAQ Accordions & Mobile Menu) -->
+    <script>
+        // Инициализация FAQ аккордеонов
+        const faqToggles = document.querySelectorAll('.faq-toggle');
+        
+        faqToggles.forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                const content = toggle.nextElementSibling;
+                const icon = toggle.querySelector('.faq-icon');
+                
+                // Закрываем другие открытые FAQ
+                document.querySelectorAll('.faq-content').forEach(otherContent => {
+                    if (otherContent !== content && otherContent.style.maxHeight !== '0px' && otherContent.style.maxHeight !== '') {
+                        otherContent.style.maxHeight = '0px';
+                        otherContent.previousElementSibling.querySelector('.faq-icon').style.transform = 'rotate(0deg)';
+                        otherContent.previousElementSibling.querySelector('.faq-icon').classList.remove('bg-primary', 'text-white');
+                        otherContent.previousElementSibling.querySelector('.faq-icon').classList.add('bg-white', 'text-textMuted');
+                    }
+                });
+
+                // Переключаем текущий
+                if (content.style.maxHeight === '0px' || content.style.maxHeight === '') {
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                    icon.style.transform = 'rotate(45deg)';
+                    icon.classList.remove('bg-white', 'text-textMuted');
+                    icon.classList.add('bg-primary', 'text-white');
+                } else {
+                    content.style.maxHeight = '0px';
+                    icon.style.transform = 'rotate(0deg)';
+                    icon.classList.remove('bg-primary', 'text-white');
+                    icon.classList.add('bg-white', 'text-textMuted');
+                }
+            });
+        });
+
+        // Мобильное меню toggle
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('flex');
+        });
+
+        // Закрывать меню при клике по ссылкам
+        document.querySelectorAll('#mobileMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('flex');
+            });
+        });
+
+        // SPA Tab Switching Logic
+        const tabLinks = document.querySelectorAll('[data-tab]');
+        const tabSections = document.querySelectorAll('.tab-section');
+
+        function switchTab(tabId) {
+            // Скрываем все разделы
+            tabSections.forEach(section => {
+                section.classList.add('hidden');
+            });
+            // Показываем целевой раздел
+            const targetSection = document.getElementById(tabId);
+            if (targetSection) {
+                targetSection.classList.remove('hidden');
+            }
+
+            // Обновляем стили ссылок в навигации
+            document.querySelectorAll('nav a, #mobileMenu a').forEach(link => {
+                const linkTab = link.getAttribute('data-tab');
+                if (linkTab === tabId) {
+                    link.classList.remove('text-textMuted', 'font-medium');
+                    link.classList.add('text-primary', 'font-semibold');
+                } else {
+                    link.classList.remove('text-primary', 'font-semibold');
+                    link.classList.add('text-textMuted', 'font-medium');
+                }
+            });
+        }
+
+        tabLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                const tabId = link.getAttribute('data-tab');
+                if (tabId) {
+                    e.preventDefault();
+                    switchTab(tabId);
+                }
+            });
+        });
+    </script>
 </body>
 </html>

@@ -2,11 +2,11 @@
   "replicationMode": "copy-in-copy",
   "sourceIsLaw": true,
   "hero": {
-    "headline": "",
+    "headline": "Personal program for you",
     "headlineLayer": "requires-visual-analysis",
     "primaryImage": {
       "src": "assets/c__Users_mrrut_AppData_Roaming_Cursor_User_workspaceStorage_empty-window_images_4c0d6218605807c704ded04f41921622-06e4fdca-3505-4a11-92a7-099c617cd735.png",
-      "alt": "c__Users_mrrut_AppData_Roaming_Cursor_User_workspaceStorage_empty-window_images_4c0d6218605807c704ded04f41921622-06e4fdca-3505-4a11-92a7-099c617cd735.png"
+      "alt": "Language You+"
     },
     "imagePosition": "requires-visual-analysis",
     "mustPreserveLayering": true,

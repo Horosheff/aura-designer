@@ -1,8 +1,8 @@
 # AURA_VISUAL_QA
 
 Статус: **PASS**
-Source map: `auradesign-agent/AURA_SOURCE_MAP.json`
-HTML: `auradesign-agent/index.html`
+Source map: `AURA_SOURCE_MAP.json`
+HTML: `index.html`
 
 ## Проверки
 
